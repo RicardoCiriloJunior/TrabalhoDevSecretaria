@@ -1,6 +1,7 @@
 package org.example.model;
 
 public class Notas {
+    private long id;
     private int id_disciplina;
     private String matricula;
     private int ano;
@@ -9,15 +10,31 @@ public class Notas {
     // Construtores
     
     public Notas(){}
+
+    public Notas(long id) {
+        this.id = id;
+    }
+
     public Notas(int id_disciplina, String matricula, int ano, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
         this.ano = ano;
         this.nota = nota;
     }
+    public Notas(int id_disciplina, String matricula, int ano, double nota, long id) {
+        this.id_disciplina = id_disciplina;
+        this.matricula = matricula;
+        this.ano = ano;
+        this.nota = nota;
+        this.id = id;
+    }
     
     // Getters
 
+
+    public long getId() {
+        return id;
+    }
 
     public int getId_disciplina() {
         return id_disciplina;
@@ -37,6 +54,10 @@ public class Notas {
     
     // Setters
 
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setId_disciplina(int id_disciplina) {
         this.id_disciplina = id_disciplina;

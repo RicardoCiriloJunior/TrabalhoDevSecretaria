@@ -1,6 +1,7 @@
 package org.example.model;
 
 public class Observacoes {
+    private long id;
     private int id_professor;
     private int id_disciplina;
     private String matricula;
@@ -9,7 +10,17 @@ public class Observacoes {
 
     public Observacoes(){}
 
+    public Observacoes(long id, int id_professor, int id_disciplina, String matricula, String observacao) {
+        this.id = id;
+        this.id_professor = id_professor;
+        this.id_disciplina = id_disciplina;
+        this.matricula = matricula;
+        this.observacao = observacao;
+    }
 
+    public Observacoes(long id) {
+        this.id = id;
+    }
 
     public Observacoes(int id_disciplina, int id_professor, String matricula, String observacao){
         this.id_disciplina = id_disciplina;
@@ -19,6 +30,11 @@ public class Observacoes {
     }
 
     // Getters
+
+
+    public long getId() {
+        return id;
+    }
 
     public int getId_professor() {
         return id_professor;
@@ -37,6 +53,11 @@ public class Observacoes {
     }
 
     // Setters
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setId_professor(int id_professor) {
         this.id_professor = id_professor;

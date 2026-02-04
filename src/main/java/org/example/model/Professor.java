@@ -1,6 +1,7 @@
 package org.example.model;
 
 public class Professor {
+    private long id;
     private int id_disciplina;
     private String usuario;
     private String senha;
@@ -10,11 +11,23 @@ public class Professor {
 
     public Professor(){}
 
+    public Professor(long id) {
+        this.id = id;
+    }
+
     public Professor(int id_disciplina, String usuario, String senha, String nome){
         this.id_disciplina = id_disciplina;
         this.usuario = usuario;
         this.nome = nome;
         this.senha = senha;
+    }
+
+    public Professor(long id, int id_disciplina, String usuario, String senha, String nome) {
+        this.id = id;
+        this.id_disciplina = id_disciplina;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.nome = nome;
     }
 
     public Professor(String usuario, String senha){
@@ -24,6 +37,10 @@ public class Professor {
 
     // Geterrs
 
+
+    public long getId() {
+        return id;
+    }
 
     public int getId_disciplina() {
         return id_disciplina;
@@ -43,6 +60,10 @@ public class Professor {
 
     // Setters
 
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setId_disciplina(int id_disciplina) {
         this.id_disciplina = id_disciplina;
