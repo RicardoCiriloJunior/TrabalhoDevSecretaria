@@ -1,4 +1,19 @@
 package org.example.mapper;
 
-public class ObservacoesMapper {
+import org.example.model.Observacoes;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ObservacoesMapper implements RowMapper<Observacoes> {
+
+    public Observacoes map(ResultSet rs) throws SQLException {
+        return new Observacoes(
+                rs.getLong("id"),
+                rs.getLong("id_professor"),
+                rs.getLong("id_disciplina"),
+                rs.getLong("matricula"),
+                rs.getString("ano")
+        );
+    }
 }
