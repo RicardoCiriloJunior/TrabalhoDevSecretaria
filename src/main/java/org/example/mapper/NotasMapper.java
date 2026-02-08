@@ -1,4 +1,19 @@
 package org.example.mapper;
 
-public class NotasMapper {
+import org.example.model.Notas;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class NotasMapper implements RowMapper<Notas> {
+
+    public Notas map(ResultSet rs) throws SQLException {
+        return new Notas(
+                rs.getLong("id"),
+                rs.getLong("id_disciplina"),
+                rs.getLong("matricula"),
+                rs.getInt("ano"),
+                rs.getDouble("nota")
+        );
+    }
 }
