@@ -2,15 +2,15 @@ package org.example.model;
 
 public class Observacoes {
     private long id;
-    private int id_professor;
-    private int id_disciplina;
-    private String matricula;
+    private long id_professor;
+    private long id_disciplina;
+    private long matricula;
     private String observacao;
 
 
     public Observacoes(){}
 
-    public Observacoes(long id, int id_professor, int id_disciplina, String matricula, String observacao) {
+    public Observacoes(long id, long id_professor, long id_disciplina, long matricula, String observacao) {
         this.id = id;
         this.id_professor = id_professor;
         this.id_disciplina = id_disciplina;
@@ -22,7 +22,7 @@ public class Observacoes {
         this.id = id;
     }
 
-    public Observacoes(int id_disciplina, int id_professor, String matricula, String observacao){
+    public Observacoes(long id_disciplina, long id_professor, long matricula, String observacao){
         this.id_disciplina = id_disciplina;
         this.id_professor = id_professor;
         this.matricula = matricula;
@@ -36,15 +36,15 @@ public class Observacoes {
         return id;
     }
 
-    public int getId_professor() {
+    public long getId_professor() {
         return id_professor;
     }
 
-    public int getId_disciplina() {
+    public long getId_disciplina() {
         return id_disciplina;
     }
 
-    public String getMatricula() {
+    public long getMatricula() {
         return matricula;
     }
 
@@ -59,15 +59,15 @@ public class Observacoes {
         this.id = id;
     }
 
-    public void setId_professor(int id_professor) {
+    public void setId_professor(long id_professor) {
         this.id_professor = id_professor;
     }
 
-    public void setId_disciplina(int id_disciplina) {
+    public void setId_disciplina(long id_disciplina) {
         this.id_disciplina = id_disciplina;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(long matricula) {
         this.matricula = matricula;
     }
 

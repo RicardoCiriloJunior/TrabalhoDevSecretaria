@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Professor {
     private long id;
-    private int id_disciplina;
+    private long id_disciplina;
     private String usuario;
     private String senha;
     private String nome;
@@ -15,14 +15,14 @@ public class Professor {
         this.id = id;
     }
 
-    public Professor(int id_disciplina, String usuario, String senha, String nome){
+    public Professor(long id_disciplina, String usuario, String senha, String nome){
         this.id_disciplina = id_disciplina;
         this.usuario = usuario;
         this.nome = nome;
         this.senha = senha;
     }
 
-    public Professor(long id, int id_disciplina, String usuario, String senha, String nome) {
+    public Professor(long id, long id_disciplina, String usuario, String nome, String senha) {
         this.id = id;
         this.id_disciplina = id_disciplina;
         this.usuario = usuario;
@@ -42,7 +42,7 @@ public class Professor {
         return id;
     }
 
-    public int getId_disciplina() {
+    public long getId_disciplina() {
         return id_disciplina;
     }
 
@@ -65,7 +65,7 @@ public class Professor {
         this.id = id;
     }
 
-    public void setId_disciplina(int id_disciplina) {
+    public void setId_disciplina(long id_disciplina) {
         this.id_disciplina = id_disciplina;
     }
 

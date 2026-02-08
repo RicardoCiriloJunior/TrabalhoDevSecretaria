@@ -2,8 +2,8 @@ package org.example.model;
 
 public class Notas {
     private long id;
-    private int id_disciplina;
-    private String matricula;
+    private long id_disciplina;
+    private long matricula;
     private int ano;
     private double nota;
     
@@ -15,13 +15,13 @@ public class Notas {
         this.id = id;
     }
 
-    public Notas(int id_disciplina, String matricula, int ano, double nota) {
+    public Notas(long id_disciplina, long matricula, int ano, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
         this.ano = ano;
         this.nota = nota;
     }
-    public Notas(int id_disciplina, String matricula, int ano, double nota, long id) {
+    public Notas(long id,long id_disciplina, long matricula, int ano, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
         this.ano = ano;
@@ -36,11 +36,11 @@ public class Notas {
         return id;
     }
 
-    public int getId_disciplina() {
+    public long getId_disciplina() {
         return id_disciplina;
     }
 
-    public String getMatricula() {
+    public long getMatricula() {
         return matricula;
     }
 
@@ -59,11 +59,11 @@ public class Notas {
         this.id = id;
     }
 
-    public void setId_disciplina(int id_disciplina) {
+    public void setId_disciplina(long id_disciplina) {
         this.id_disciplina = id_disciplina;
     }
 
-    public void setMatriculas(String matricula) {
+    public void setMatriculas(long matricula) {
         this.matricula = matricula;
     }
 

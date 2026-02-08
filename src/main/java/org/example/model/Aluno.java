@@ -1,7 +1,7 @@
 package org.example.model;
 
 public class Aluno {
-    private String matricula;
+    private long matricula;
     private String nome;
     private String email;
     private int ano;
@@ -12,7 +12,7 @@ public class Aluno {
 
     public Aluno(){}
 
-    public Aluno(String matricula, String nome, String senha, String email, int ano){
+    public Aluno(long matricula, String nome, String senha, String email, int ano){
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
@@ -20,7 +20,7 @@ public class Aluno {
         this.ano = ano;
     }
 
-    public Aluno(String matricula, String nome){
+    public Aluno(long matricula, String nome){
         this.matricula = matricula;
         this.nome = nome;
     }
