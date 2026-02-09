@@ -35,11 +35,13 @@ public class Aluno {
         return nome;
     }
 
+    public String getRecSenha () { return recSenha; }
+
+    public String getSenha () { return senha; }
 
     public String getMatricula(){
         return email;
     }
-
 
     public int getAno(){
         return ano;
