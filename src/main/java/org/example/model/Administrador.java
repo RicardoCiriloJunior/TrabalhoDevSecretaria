@@ -7,7 +7,7 @@ public class Administrador {
 
     // Construtores
 
-    public Administrador(){}
+   
 
     public Administrador(long id) {
         this.id = id;

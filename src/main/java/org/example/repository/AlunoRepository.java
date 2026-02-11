@@ -66,47 +66,18 @@ public class AlunoRepository {
         }
     }
 
-    public boolean updateEmail(Aluno aluno){
-        String sql = "UPDATE aluno SET email = ? WHERE matricula = ?";
+    public boolean update(Aluno aluno){
+        String sql = "UPDATE aluno SET nome = ?, email = ?, ano = ?, senha = ?, recup_senha = ? WHERE matricula = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString (1, aluno.getEmail ());
-            pstmt.setString(2, aluno.getMatricula ());
-
-
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean updateSenha(Aluno aluno){
-        String sql = "UPDATE aluno SET senha = ? WHERE matricula = ?";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString (1, aluno.getSenha ());
-            pstmt.setString(2, aluno.getMatricula ());
-
-
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    public boolean updateRecSenha(Aluno aluno){
-        String sql = "UPDATE aluno SET recup_senha = ? WHERE matricula = ?";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString (1, aluno.getRecSenha ());
-            pstmt.setString(2, aluno.getMatricula ());
+            pstmt.setString (1, aluno.getNome ());
+            pstmt.setString (2, aluno.getEmail ());
+            pstmt.setInt (3, aluno.getAno ());
+            pstmt.setString (4, aluno.getSenha ());
+            pstmt.setString (5, aluno.getRecSenha ());
+            pstmt.setString(6, aluno.getMatricula ());
 
 
             return pstmt.executeUpdate() > 0;
@@ -123,19 +94,6 @@ public class AlunoRepository {
 
             pstmt.setString(1, matricula);
             return  pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean deleteByEmail(String email){
-        String sql = "DELETE FROM aluno WHERE email = ?";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, email);
-            return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
