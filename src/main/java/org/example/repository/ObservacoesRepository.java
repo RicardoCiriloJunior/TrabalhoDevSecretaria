@@ -50,6 +50,21 @@ public class ObservacoesRepository {
         }
     }
 
+    public Observacoes findByMatricula(long matricula){
+        String sql = "SELECT * FROM observacoes WHERE id = ? ";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong (1, matricula);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 

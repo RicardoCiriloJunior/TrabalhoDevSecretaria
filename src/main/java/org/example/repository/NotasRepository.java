@@ -35,6 +35,20 @@ public class NotasRepository {
         }
     }
 
+    public Notas findByMatricula(long matricula){
+        String sql = "SELECT * FROM notas WHERE matricula = ? ";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong (1, matricula);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public Notas findById(long id){
         String sql = "SELECT * FROM notas WHERE id = ? ";
 
