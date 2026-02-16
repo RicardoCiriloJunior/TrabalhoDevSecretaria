@@ -4,12 +4,12 @@ const btnStop = document.getElementById("stop");
 const timer = document.getElementById("timer");
 
 let timerInterval;
-let seg = 10;
+let seg = 0;
 
 export function startTimer() {
     timer.textContent = formatTimer();
     timerInterval = setInterval(() => {
-        seg--;
+        seg++;
         timer.textContent = formatTimer()
     }, 1000)
     btnStop.disabled = false;
