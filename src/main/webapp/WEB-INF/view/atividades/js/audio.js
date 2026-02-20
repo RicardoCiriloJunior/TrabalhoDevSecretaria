@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnPlay = document.getElementById("play");
     const btnStop = document.getElementById("stop");
-    const downloadLink = document.getElementById("download");
 
     let audioChunks = [];
     let mediaRecorder;
@@ -23,16 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalMeasurements = 0;
     let finalGrade = 0;
 
+    let attempts = 2;
+    updateAttempts();
+
+    let audioBlob;
+
     const onMediaRecorderStop = () => {
-        const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-        downloadLink.href = URL.createObjectURL(audioBlob);
-        downloadLink.download = `gravacao-${Date.now()}.webm`;
-        downloadLink.style.display = "block";
+
+        attempts--;
+        updateAttempts();
+
+        audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+
 
         audioChunks = [];
     };
 
     btnPlay.addEventListener("click", async () => {
+        if (attempts == 0) return;
 
         if (!stream) {
             try {
@@ -71,16 +78,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mediaRecorder.start();
         startTimer();
-
-        btnPlay.disabled = true;
-        btnStop.disabled = false;
-        setTimeout( () => stop(), 1000 * 10);
+        setTimeout(() => stop(), 1000 * 10);
     });
 
     btnStop.addEventListener("click", () => {
-        stop()
+        if (attempts >= 2) return;
+        stop();
+
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(audioBlob);
+        downloadLink.download = `gravacao-${Date.now()}.webm`;
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     });
-    function stop(){
+    function stop() {
         if (!mediaRecorder) return;
 
         mediaRecorder.stop();
@@ -89,8 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stopUserMedia();
 
         isMeasuring = false;
-        btnStop.disabled = true;
-        btnPlay.disabled = false;
+        btnPlay.disabled = attempts == 0;
 
         finalGrade = calculateGrade(score, totalMeasurements);
         showGrade(finalGrade)
@@ -142,5 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const finalGradeContainer = document.getElementById("notaFinal");
         grade = parseFloat(grade)
         finalGradeContainer.textContent = `${grade.toFixed(2)}`
+    }
+    function updateAttempts() {
+        if (attempts == 0) {
+            alert("Suas tentativas acabaram! Clique em 'finalizar' para salvar sua nota e baixar seu arquivo de grito!.")
+        }
+        const descriptionContainer = document.getElementById("tentativas");
+        descriptionContainer.textContent = `${attempts}`;
     }
 });
