@@ -17,6 +17,25 @@ public class ProfessorRepository {
 
     public ProfessorRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
+    public boolean update(Professor professor){
+        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, id_disciplina = ? WHERE id = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString (1, professor.getNome ());
+            pstmt.setString (2, professor.getEmail ());
+            pstmt.setString (3, professor.getSenha ());
+            pstmt.setLong(4, professor.getId_disciplina ());
+            pstmt.setLong (5, professor.getId ());
+
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Long save (Professor professor) {
         String sql = "INSERT INTO professor (nome, senha, usuario, id_disciplina) VALUES (?, ?, ?, ?) RETURNING id";
 
@@ -25,7 +44,7 @@ public class ProfessorRepository {
 
             pstmt.setString(1, professor.getNome ());
             pstmt.setString (2, professor.getNome ());
-            pstmt.setString (3, professor.getUsuario ());
+            pstmt.setString (3, professor.getEmail ());
             pstmt.setLong (4, professor.getId_disciplina ());
             ResultSet rs = pstmt.executeQuery();
 
@@ -50,6 +69,21 @@ public class ProfessorRepository {
         }
     }
 
+    public Professor findByDisciplina(long idDisciplina){
+        String sql = "SELECT * FROM professor WHERE id_disciplina = ? ";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong (1, idDisciplina);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Professor findByNome(String nome){
         String sql = "SELECT * FROM professor WHERE nome = ? ";
 
@@ -65,25 +99,6 @@ public class ProfessorRepository {
         }
     }
 
-
-    public boolean updateSenha(Professor professor){
-        String sql = "UPDATE professor SET senha = ? WHERE id = ?";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString (1, professor.getSenha ());
-            pstmt.setLong(2, professor.getId ());
-
-
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
     public boolean deleteById(long id){
         String sql = "DELETE FROM professor WHERE id = ?";
 
@@ -96,8 +111,6 @@ public class ProfessorRepository {
             throw new RuntimeException(e);
         }
     }
-
-
 
     public Professor findByEmail (String email){
         String sql = "SELECT * FROM professor WHERE email = ? LIMIT 1";

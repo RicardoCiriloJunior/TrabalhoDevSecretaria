@@ -50,13 +50,13 @@ public class ObservacoesRepository {
         }
     }
 
-    public Observacoes findByMatricula(long matricula){
-        String sql = "SELECT * FROM observacoes WHERE id = ? ";
+    public Observacoes findByMatricula(String matricula){
+        String sql = "SELECT * FROM observacoes WHERE matricula = ? ";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setLong (1, matricula);
+            pstmt.setString (1, matricula);
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? mapper.map(rs) : null;
@@ -64,9 +64,6 @@ public class ObservacoesRepository {
             throw new RuntimeException(e);
         }
     }
-
-
-
 
     public boolean deleteById(long id){
         String sql = "DELETE FROM observacoes WHERE id = ?";
@@ -80,7 +77,6 @@ public class ObservacoesRepository {
             throw new RuntimeException(e);
         }
     }
-
 
     public List<Observacoes> findAll() {
         String sql = "SELECT * FROM Observacoes";

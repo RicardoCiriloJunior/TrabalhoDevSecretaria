@@ -3,7 +3,7 @@ package org.example.model;
 public class Notas {
     private long id;
     private long id_disciplina;
-    private long matricula;
+    private String matricula;
     private int ano;
     private double nota;
     
@@ -15,13 +15,13 @@ public class Notas {
         this.id = id;
     }
 
-    public Notas(long id_disciplina, long matricula, int ano, double nota) {
+    public Notas(long id_disciplina, String matricula, int ano, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
         this.ano = ano;
         this.nota = nota;
     }
-    public Notas(long id,long id_disciplina, long matricula, int ano, double nota) {
+    public Notas(long id,long id_disciplina, String matricula, int ano, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
         this.ano = ano;
@@ -40,7 +40,7 @@ public class Notas {
         return id_disciplina;
     }
 
-    public long getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
@@ -63,7 +63,7 @@ public class Notas {
         this.id_disciplina = id_disciplina;
     }
 
-    public void setMatriculas(long matricula) {
+    public void setMatriculas(String matricula) {
         this.matricula = matricula;
     }
 

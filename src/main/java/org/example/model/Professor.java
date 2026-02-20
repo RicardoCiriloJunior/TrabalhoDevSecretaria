@@ -3,7 +3,7 @@ package org.example.model;
 public class Professor {
     private long id;
     private long id_disciplina;
-    private String usuario;
+    private String email;
     private String senha;
     private String nome;
 
@@ -15,23 +15,23 @@ public class Professor {
         this.id = id;
     }
 
-    public Professor(long id_disciplina, String usuario, String senha, String nome){
+    public Professor(long id_disciplina, String email, String senha, String nome){
         this.id_disciplina = id_disciplina;
-        this.usuario = usuario;
+        this.email = email;
         this.nome = nome;
         this.senha = senha;
     }
 
-    public Professor(long id, long id_disciplina, String usuario, String nome, String senha) {
+    public Professor(long id, long id_disciplina, String email, String nome, String senha) {
         this.id = id;
         this.id_disciplina = id_disciplina;
-        this.usuario = usuario;
+        this.email = email;
         this.senha = senha;
         this.nome = nome;
     }
 
-    public Professor(String usuario, String senha){
-        this.usuario = usuario;
+    public Professor(String email, String senha){
+        this.email = email;
         this.senha = senha;
     }
 
@@ -46,8 +46,8 @@ public class Professor {
         return id_disciplina;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getEmail () {
+        return email;
     }
 
     public String getSenha() {
@@ -69,8 +69,8 @@ public class Professor {
         this.id_disciplina = id_disciplina;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setEmail (String email) {
+        this.email = email;
     }
 
     public void setSenha(String senha) {
@@ -87,7 +87,7 @@ public class Professor {
     public String toString() {
         return "Professor{" +
                 "id_disciplina=" + id_disciplina +
-                ", usuario='" + usuario + '\'' +
+                ", usuario='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", nome='" + nome + '\'' +
                 '}';
