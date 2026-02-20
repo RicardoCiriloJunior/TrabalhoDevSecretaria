@@ -1,7 +1,6 @@
 package org.example.repository;
 
 import org.example.mapper.ProfessorMapper;
-import org.example.model.Observacoes;
 import org.example.model.Professor;
 import org.example.util.ConnectionFactory;
 
@@ -43,21 +42,6 @@ public class ProfessorRepository {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setLong (1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            return rs.next() ? mapper.map(rs) : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Professor findByMatricula(long matricula){
-        String sql = "SELECT * FROM observacoes WHERE matricula = ? ";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setLong (1, matricula);
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? mapper.map(rs) : null;
