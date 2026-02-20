@@ -59,6 +59,8 @@ public class Aluno {
         this.ano = ano;
     }
 
+    public void setRecSenha(String recSenha) { this.recSenha = recSenha; }
+
     // To string
 
 

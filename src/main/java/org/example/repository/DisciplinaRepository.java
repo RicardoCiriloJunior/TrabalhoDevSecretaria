@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisciplinasRepository {
+public class DisciplinaRepository {
     private final ConnectionFactory connectionFactory;
     private final DisciplinaMapper mapper = new DisciplinaMapper();
-    public DisciplinasRepository(ConnectionFactory connectionFactory){
+    public DisciplinaRepository (ConnectionFactory connectionFactory){
         this.connectionFactory = connectionFactory;
     }
     public Long save(Disciplina disciplina){
@@ -46,7 +46,7 @@ public class DisciplinasRepository {
         }
     }
     public boolean update(Disciplina disciplina){
-        String sql = "UPDATE disciplina SET nome ? WHERE id = ?";
+        String sql = "UPDATE disciplina SET nome = ? WHERE id = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -72,7 +72,7 @@ public class DisciplinasRepository {
         }
     }
     public boolean deleteByDisciplina(String disciplina){
-        String sql = "DELETE FROM discipline WHERE disciplina = ?";
+        String sql = "DELETE FROM disciplina WHERE disciplina = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -16,7 +16,6 @@ public class NotasRepository {
     private final NotasMapper mapper = new NotasMapper();
 
     public NotasRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
-
     public Long save (Notas Notas) {
         String sql = "INSERT INTO notas (nota, ano, matricula, id_disciplina) VALUES (?, ?, ?, ?) RETURNING id";
 
@@ -25,7 +24,7 @@ public class NotasRepository {
 
             pstmt.setDouble(1, Notas.getNota ());
             pstmt.setInt (2, Notas.getAno ());
-            pstmt.setLong (3, Notas.getMatricula ());
+            pstmt.setString (3, Notas.getMatricula ());
             pstmt.setLong (4, Notas.getId_disciplina ());
             ResultSet rs = pstmt.executeQuery();
 
@@ -34,14 +33,13 @@ public class NotasRepository {
             throw new RuntimeException (e);
         }
     }
-
-    public Notas findByMatricula(long matricula){
+    public Notas findByMatricula(String matricula){
         String sql = "SELECT * FROM notas WHERE matricula = ? ";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setLong (1, matricula);
+            pstmt.setString (1, matricula);
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? mapper.map(rs) : null;
@@ -49,48 +47,87 @@ public class NotasRepository {
             throw new RuntimeException(e);
         }
     }
-    public Notas findById(long id){
-        String sql = "SELECT * FROM notas WHERE id = ? ";
+    public List<Notas> findByNota(double nota){
+        String sql = "SELECT * FROM notas WHERE nota = ? ";
+        List<Notas> notas = new ArrayList<> ();
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setLong (1, id);
+            pstmt.setDouble (1, nota);
             ResultSet rs = pstmt.executeQuery();
 
-            return rs.next() ? mapper.map(rs) : null;
+            while (rs.next()){
+                notas.add(mapper.map(rs));
+            }
+
+            return notas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    public boolean deleteById(long id){
-        String sql = "DELETE FROM notas WHERE id = ?";
+    public List<Notas> findByIdDisciplina(long idDisciplina){
+        String sql = "SELECT * FROM notas WHERE id_discpilina = ? ";
+        List<Notas> notas = new ArrayList<> ();
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setLong(1, id);
+            pstmt.setLong (1, idDisciplina);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                notas.add(mapper.map(rs));
+            }
+
+            return notas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean deleteByMatricula(String matricula){
+        String sql = "DELETE FROM notas WHERE matricula = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, matricula);
             return  pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+    public boolean update(Notas notas){
+        String sql = "UPDATE notas SET id_disciplina = ?, matricula = ?, ano = ?, nota = ?  WHERE id = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, notas.getId_disciplina ());
+            pstmt.setString(2, notas.getMatricula ());
+            pstmt.setInt (1, notas.getAno ());
+            pstmt.setDouble (1, notas.getNota ());
 
 
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public List<Notas> findAll() {
         String sql = "SELECT * FROM notas";
-        List<Notas> Notas = new ArrayList<> ();
+        List<Notas> notas = new ArrayList<> ();
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()){
-                Notas.add(mapper.map(rs));
+                notas.add(mapper.map(rs));
             }
 
-            return Notas;
+            return notas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
