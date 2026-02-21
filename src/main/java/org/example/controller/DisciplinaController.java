@@ -9,6 +9,7 @@ public class DisciplinaController {
 
     private DisciplinaService disciplinaService;
 
+    //Construtor
     public DisciplinaController(DisciplinaService disciplinaService){
         this.disciplinaService = disciplinaService;
     }
