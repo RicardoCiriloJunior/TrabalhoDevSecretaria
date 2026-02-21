@@ -8,9 +8,7 @@ public class AdministradorService {
     private AdministradorRepository administradorRepository;
 
     public boolean entrarNaConta (Administrador adm) {
-        Administrador login = administradorRepository.findByLogin (adm.getLogin ());
-        Administrador senha = administradorRepository.findBySenha (adm.getSenha ());
-
-        return login.getLogin ().equals (senha.getLogin ()) && login.getSenha ().equals (senha.getSenha ());
+        Administrador login = administradorRepository.findByLogin(adm.getLogin(), adm.getSenha());
+        return login != null;
     }
 }
