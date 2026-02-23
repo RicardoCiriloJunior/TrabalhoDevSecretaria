@@ -17,28 +17,14 @@ public class AdministradorRepository {
 
     public AdministradorRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
-    public Administrador findByLogin (String login){
-        String sql = "SELECT * FROM administrador WHERE login = ? ";
+    public Administrador findByLogin (String login, String senha){
+        String sql = "SELECT * FROM administrador WHERE login = ? AND senha =?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString (1, login);
-            ResultSet rs = pstmt.executeQuery();
-
-            return rs.next() ? mapper.map(rs) : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Administrador findBySenha (String senha){
-        String sql = "SELECT * FROM administrador WHERE senha = ? ";
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString (1, senha);
+            pstmt.setString(2, senha);
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? mapper.map(rs) : null;
