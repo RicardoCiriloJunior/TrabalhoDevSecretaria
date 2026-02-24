@@ -27,7 +27,7 @@ public class AlunoRepository {
             pstmt.setString (2, aluno.getNome ());
             pstmt.setString (3, aluno.getSenha ());
             pstmt.setString (4, aluno.getEmail ());
-            pstmt.setInt (5, aluno.getCpf ());
+            pstmt.setLong (5, aluno.getCpf ());
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? rs.getLong("matricula") : null;
