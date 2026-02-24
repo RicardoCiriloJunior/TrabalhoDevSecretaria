@@ -4,7 +4,6 @@ public class Aluno {
     private long matricula;
     private String nome;
     private String email;
-    private int ano;
     private String senha;
     private String recSenha;
 
@@ -12,12 +11,16 @@ public class Aluno {
 
     public Aluno(){}
 
-    public Aluno(long matricula, String nome, String senha, String email, int ano){
+    public Aluno(long matricula, String nome, String senha, String email){
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.ano = ano;
+    }
+    public Aluno( String senha, String email){
+        this.senha = senha;
+        this.email = email;
     }
 
     public Aluno(long matricula, String nome){
