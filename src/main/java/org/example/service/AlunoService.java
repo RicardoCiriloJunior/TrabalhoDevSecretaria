@@ -46,4 +46,9 @@ public class AlunoService {
     }
 
     public boolean adicionaAluno (Aluno aluno){ return alunoRepository.save (aluno) != 0; }
+
+    public boolean emailValidoParaAluno(String email) {
+        boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+        return formatoValido && !email.endsWith("@monstrossa.com");
+    }
 }
