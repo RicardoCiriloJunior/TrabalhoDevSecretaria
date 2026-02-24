@@ -11,7 +11,7 @@ public class NotasMapper implements RowMapper<Notas> {
         return new Notas(
                 rs.getLong("id"),
                 rs.getLong("id_disciplina"),
-                rs.getLong("matricula"),
+                rs.getString("matricula"),
                 rs.getInt("ano"),
                 rs.getDouble("nota")
         );
