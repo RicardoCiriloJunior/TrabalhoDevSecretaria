@@ -13,7 +13,7 @@ public class AlunoMapper implements RowMapper<Aluno> {
                 rs.getString("nome"),
                 rs.getString("senha"),
                 rs.getString("email"),
-                rs.getInt("ano")
+                rs.getLong("cpf")
         );
     }
 }

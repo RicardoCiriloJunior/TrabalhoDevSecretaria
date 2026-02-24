@@ -7,16 +7,18 @@ public class Aluno {
     private String senha;
     private String recSenha;
 
+    private long cpf;
+
     // Construtores
 
     public Aluno(){}
 
-    public Aluno(long matricula, String nome, String senha, String email){
+    public Aluno(long matricula, String nome, String senha, String email, long cpf){
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
-        this.ano = ano;
+        this.cpf = cpf;
     }
     public Aluno( String senha, String email){
         this.senha = senha;
@@ -31,23 +33,23 @@ public class Aluno {
     // Getters e Setters
 
     public String getEmail(){
-        return email;
+        return this.email;
     }
 
     public String getNome(){
-        return nome;
+        return this.nome;
     }
 
-    public String getRecSenha () { return recSenha; }
+    public String getRecSenha () { return this.recSenha; }
 
-    public String getSenha () { return senha; }
+    public String getSenha () { return this.senha; }
 
     public String getMatricula(){
-        return email;
+        return this.email;
     }
 
-    public int getAno(){
-        return ano;
+    public long getCpf(){
+        return this.cpf;
     }
 
     public void setSenha(String senha) {
@@ -56,10 +58,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
     }
 
     public void setRecSenha(String recSenha) { this.recSenha = recSenha; }
@@ -73,7 +71,7 @@ public class Aluno {
                 "matricula='" + matricula + '\'' +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", ano=" + ano +
+                ", cpf=" + cpf +
                 ", senha='" + senha + '\'' +
                 ", recSenha='" + recSenha + '\'' +
                 '}';

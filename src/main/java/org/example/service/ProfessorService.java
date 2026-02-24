@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Aluno;
 import org.example.model.Professor;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.ProfessorRepository;
@@ -17,6 +18,17 @@ public class ProfessorService {
             return professorRepository.findByEmail (email);
         }
         return null;
+    }
+
+    public Professor encontrarProfessorPorCpf(String cpf){
+        cpf = cpf.replace (".", "");
+        cpf = cpf.replace ("-","");
+        cpf = cpf.replace (" ", "");
+
+        long cpfFormatado = Long.parseLong (cpf);
+
+        return professorRepository.findByCpf (cpfFormatado);
+
     }
 
     public Professor encontrarProfessorPorNome(String nome){ return professorRepository.findByNome (nome); }

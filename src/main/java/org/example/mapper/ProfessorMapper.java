@@ -11,9 +11,10 @@ public class ProfessorMapper implements RowMapper<Professor> {
         return new Professor(
                 rs.getLong("id"),
                 rs.getLong("id_disciplina"),
-                rs.getString("usuario"),
+                rs.getString("email"),
                 rs.getString("nome"),
-                rs.getString("senha")
+                rs.getString("senha"),
+                rs.getLong ("cpf")
         );
     }
 }
