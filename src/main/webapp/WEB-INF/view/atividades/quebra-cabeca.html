@@ -20,7 +20,10 @@
     <main>
         <h1 class="title">Tecnologia de Portais Interdimensionais</h1>
         <section class="atividade-puzzle-container">
-            <h2 id="titulo-puzzle">QUEBRA-CABEÇA</h2>
+            <div id="atividade-puzzle-header">
+                <h2 id="titulo-puzzle">QUEBRA-CABEÇA</h2>
+                <p id="notaFinal">Nota: <span id="nota">0</span></p>
+            </div>
             <div id="quebra-cabeca-container">
                 <section id="pecas-container">
 
@@ -29,7 +32,12 @@
 
                 </section>
             </div>
-            <button id="btn-finalizar">Finalizar</button>
+            <div id="controle-puzzle">
+                <button id="btn-iniciar">Iniciar</button>
+                <span id="cronometro">00:00</span>
+                <span id="tentativas">Tentativas: 2</span>
+                <button id="btn-finalizar" disabled>Finalizar</button>
+            </div>
         </section>
         <img src="../../../assets/imgs/quebra-cabeca.png" alt="sla" id="quebra-cabeca-fundo" style="display: none;">
         <img src="../../../assets/imgs/bichinho-puzzle.png" alt="bichinho" id="bichinho-puzzle">
