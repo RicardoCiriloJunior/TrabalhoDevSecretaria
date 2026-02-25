@@ -12,7 +12,7 @@ public class ObservacoesMapper implements RowMapper<Observacoes> {
                 rs.getLong("id"),
                 rs.getLong("id_professor"),
                 rs.getLong("id_disciplina"),
-                rs.getLong("matricula"),
+                rs.getString("matricula"),
                 rs.getString("ano")
         );
     }
