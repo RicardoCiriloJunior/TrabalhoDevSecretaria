@@ -1,44 +1,40 @@
-package org.example.controller;
+package org.example.controller.Notas;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.model.Notas;
 import org.example.service.NotasService;
 
-import java.util.List;
 
-public class NotasController {
+public class AtribuirNotasController extends HttpServlet {
 
     private NotasService notasService;
 
 
     // Construtor
-    public NotasController(NotasService notasService){
+    public AtribuirNotasController(NotasService notasService){
         this.notasService = notasService;
     }
 
-    // Métodos
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
-    public List<Notas> listarTodasNotas(){
-        return notasService.listarTodas();
+        String nota = req.getParameter("nota");
+        String matricula = req.getParameter("matricula");
+
+        HttpSession session = req.getSession();
+        long id_Disciplina = (Long) session.getAttribute("idDisciplina");
+
+        double notaDouble = Double.parseDouble(nota);
+
+        Notas notas = new Notas(notaDouble, matricula, id_Disciplina);
+
+        try {
+            notasService.atribuirNota(notas);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-
-    public boolean atribuirNota(Notas nota){
-        return notasService.atribuirNota(nota);
-    }
-
-
-    public boolean alterarNota(Notas nota, double valor){
-        return notasService.alterarNota(nota, valor);
-    }
-
-    public boolean deletarNota(String matricula){
-        return notasService.deletarNota(matricula);
-    }
-
-    public List<Notas> filtrarNotas(double nota){
-        return notasService.filtrarPorNota(nota);
-    }
-
-    public List<Notas> filtarPorDisciplinas(String disciplina){
-        return notasService.filtrarPorDisciplina(disciplina);
-    }
-
 }
