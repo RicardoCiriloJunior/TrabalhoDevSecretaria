@@ -4,7 +4,6 @@ public class Notas {
     private long id;
     private long id_disciplina;
     private String matricula;
-    private int ano;
     private double nota;
     
     // Construtores
@@ -15,16 +14,14 @@ public class Notas {
         this.id = id;
     }
 
-    public Notas(long id_disciplina, String matricula, int ano, double nota) {
+    public Notas(long id_disciplina, String matricula, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
-        this.ano = ano;
         this.nota = nota;
     }
-    public Notas(long id,long id_disciplina, String matricula, int ano, double nota) {
+    public Notas(long id,long id_disciplina, String matricula, double nota) {
         this.id_disciplina = id_disciplina;
         this.matricula = matricula;
-        this.ano = ano;
         this.nota = nota;
         this.id = id;
     }
@@ -42,10 +39,6 @@ public class Notas {
 
     public String getMatricula() {
         return matricula;
-    }
-
-    public int getAno() {
-        return ano;
     }
 
     public double getNota() {
@@ -67,10 +60,6 @@ public class Notas {
         this.matricula = matricula;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
     public void setNota(double nota) {
         this.nota = nota;
     }
@@ -83,7 +72,6 @@ public class Notas {
         return "Notas{" +
                 "id_disciplina=" + id_disciplina +
                 ", matricula='" + matricula + '\'' +
-                ", ano=" + ano +
                 ", nota=" + nota +
                 '}';
     }
