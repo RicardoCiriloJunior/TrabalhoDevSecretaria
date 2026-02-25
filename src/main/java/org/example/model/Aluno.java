@@ -1,32 +1,35 @@
 package org.example.model;
 
 public class Aluno {
-    private long matricula;
+    private String matricula;
     private String nome;
     private String email;
     private String senha;
     private String recSenha;
+    private String cpf;
 
     // Construtores
 
     public Aluno(){}
 
-    public Aluno(long matricula, String nome, String senha, String email){
+    public Aluno(String matricula, String nome, String senha, String email){
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
-        this.ano = ano;
+    }
+    public Aluno(String nome, String senha, String email, String cpf, String matricula){
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+        this.matricula = matricula;
     }
     public Aluno( String senha, String email){
         this.senha = senha;
         this.email = email;
     }
 
-    public Aluno(long matricula, String nome){
-        this.matricula = matricula;
-        this.nome = nome;
-    }
 
     // Getters e Setters
 
@@ -43,12 +46,9 @@ public class Aluno {
     public String getSenha () { return senha; }
 
     public String getMatricula(){
-        return email;
+        return matricula;
     }
 
-    public int getAno(){
-        return ano;
-    }
 
     public void setSenha(String senha) {
         this.senha = senha;
@@ -58,9 +58,7 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
+
 
     public void setRecSenha(String recSenha) { this.recSenha = recSenha; }
 
@@ -73,7 +71,6 @@ public class Aluno {
                 "matricula='" + matricula + '\'' +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", ano=" + ano +
                 ", senha='" + senha + '\'' +
                 ", recSenha='" + recSenha + '\'' +
                 '}';

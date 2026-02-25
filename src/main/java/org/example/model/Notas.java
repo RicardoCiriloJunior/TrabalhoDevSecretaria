@@ -28,6 +28,11 @@ public class Notas {
         this.nota = nota;
         this.id = id;
     }
+    public Notas(double nota, String matricula, long id_disciplina) {
+        this.nota = nota;
+        this.matricula = matricula;
+        this.id_disciplina = id_disciplina;
+    }
     
     // Getters
 
