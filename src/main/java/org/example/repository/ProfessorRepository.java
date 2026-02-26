@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.mapper.ProfessorMapper;
+import org.example.model.Aluno;
 import org.example.model.Professor;
 import org.example.util.ConnectionFactory;
 
@@ -144,5 +145,22 @@ public class ProfessorRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public Professor findByLogin (String email, String senha){
+        String sql = "SELECT * FROM professor WHERE email = ? AND senha = ? LIMIT 1";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, email);
+            pstmt.setString(2, senha);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

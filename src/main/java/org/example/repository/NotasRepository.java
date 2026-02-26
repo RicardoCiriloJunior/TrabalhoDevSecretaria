@@ -17,15 +17,14 @@ public class NotasRepository {
 
     public NotasRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
     public Long save (Notas Notas) {
-        String sql = "INSERT INTO notas (nota, ano, matricula, id_disciplina) VALUES (?, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO notas (nota,matricula, id_disciplina) VALUES (?, ?, ?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement (sql)){
 
             pstmt.setDouble(1, Notas.getNota ());
-            pstmt.setInt (2, Notas.getAno ());
-            pstmt.setString (3, Notas.getMatricula ());
-            pstmt.setLong (4, Notas.getId_disciplina ());
+            pstmt.setString (2, Notas.getMatricula ());
+            pstmt.setLong (3, Notas.getId_disciplina ());
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? rs.getLong("id") : null;
