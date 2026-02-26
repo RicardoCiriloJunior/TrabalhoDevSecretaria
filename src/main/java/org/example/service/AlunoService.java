@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.model.Aluno;
 import org.example.repository.AlunoRepository;
+import org.example.util.Senhas;
 
 import java.util.List;
 
@@ -9,13 +10,16 @@ public class AlunoService {
 
     private AlunoRepository alunoRepository;
 
+    private Senhas senhas;
+
     public List<Aluno> listarTodos() {
         return alunoRepository.findAll ();
     }
 
-    public Aluno encontrarAlunoPorEmail(String email) {
+    public Aluno loginAluno(String email, String senha) {
+        String senhaCripto = Senhas.gerarHash(senha);
         if (email.matches ("^.*@.*\\.com")) {
-            return alunoRepository.findByEmail (email);
+            return alunoRepository.findByLogin (email, senhaCripto);
         }
         return null;
     }
@@ -45,10 +49,14 @@ public class AlunoService {
         return alunoRepository.update (aluno);
     }
 
-    public boolean adicionaAluno (Aluno aluno){ return alunoRepository.save (aluno) != 0; }
+    public boolean adicionaAluno (Aluno aluno){
+        String senhaCripto = Senhas.gerarHash(aluno.getSenha());
+        aluno.setSenha(senhaCripto);
+        return alunoRepository.save (aluno) != 0; }
 
     public boolean emailValidoParaAluno(String email) {
         boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
         return formatoValido && !email.endsWith("@monstrossa.com");
     }
+
 }

@@ -1,8 +1,10 @@
 package org.example.service;
 
+import org.example.model.Aluno;
 import org.example.model.Professor;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.ProfessorRepository;
+import org.example.util.Senhas;
 
 import java.util.List;
 
@@ -40,11 +42,23 @@ public class ProfessorService {
         }
     }
 
-    public boolean adicionaProfessor(Professor professor){ return professorRepository.save (professor) != 0; }
+    public boolean adicionaProfessor(Professor professor){
+        String senhaCripto = Senhas.gerarHash(professor.getSenha());
+        professor.setSenha(senhaCripto);
+        return professorRepository.save (professor) != 0; }
 
     public boolean alterarSenha(Professor professor, String senha){
         professor.setSenha (senha);
 
         return professorRepository.update (professor);
     }
+
+    public Professor loginProfessor(String email, String senha) {
+        String senhaCripto = Senhas.gerarHash(senha);
+        if (email.matches ("^.*@.*\\.com")) {
+            return professorRepository.findByLogin (email, senhaCripto);
+        }
+        return null;
+    }
+
 }

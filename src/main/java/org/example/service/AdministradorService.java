@@ -7,7 +7,7 @@ public class AdministradorService {
 
     private AdministradorRepository administradorRepository;
 
-    public boolean entrarNaConta (Administrador adm) {
+    public boolean entrarNaConta (Administrador adm){
         Administrador login = administradorRepository.findByLogin(adm.getLogin(), adm.getSenha());
         return login != null;
     }
