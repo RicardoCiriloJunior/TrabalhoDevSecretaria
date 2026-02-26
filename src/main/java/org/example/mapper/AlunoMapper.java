@@ -9,10 +9,11 @@ public class AlunoMapper implements RowMapper<Aluno> {
 
     public Aluno map(ResultSet rs) throws SQLException {
         return new Aluno(
-                rs.getString("matricula"),
+                rs.getString ("matricula"),
                 rs.getString("nome"),
                 rs.getString("senha"),
-                rs.getString("email")
+                rs.getString("email"),
+                rs.getLong("cpf")
         );
     }
 }

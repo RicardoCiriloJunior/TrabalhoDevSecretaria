@@ -4,20 +4,16 @@ public class Observacoes {
     private long id;
     private long id_professor;
     private long id_disciplina;
-    private String matricula;
+    private long matricula;
     private String observacao;
 
 
     public Observacoes(){}
 
-    public Observacoes(long id, long id_professor, long id_disciplina, String matricula, String observacao) {
+    public Observacoes(long id, long id_professor, long id_disciplina, long matricula, String observacao) {
         this.id = id;
         this.id_professor = id_professor;
         this.id_disciplina = id_disciplina;
-        this.matricula = matricula;
-        this.observacao = observacao;
-    }
-    public Observacoes(String matricula, String observacao) {
         this.matricula = matricula;
         this.observacao = observacao;
     }
@@ -26,7 +22,7 @@ public class Observacoes {
         this.id = id;
     }
 
-    public Observacoes(long id_disciplina, long id_professor, String matricula, String observacao){
+    public Observacoes(long id_disciplina, long id_professor, long matricula, String observacao){
         this.id_disciplina = id_disciplina;
         this.id_professor = id_professor;
         this.matricula = matricula;
@@ -48,7 +44,7 @@ public class Observacoes {
         return id_disciplina;
     }
 
-    public String getMatricula() {
+    public long getMatricula() {
         return matricula;
     }
 
@@ -71,7 +67,7 @@ public class Observacoes {
         this.id_disciplina = id_disciplina;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(long matricula) {
         this.matricula = matricula;
     }
 

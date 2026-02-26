@@ -3,6 +3,7 @@ package org.example.model;
 public class Professor {
     private long id;
     private long id_disciplina;
+    private long cpf;
     private String email;
     private String senha;
     private String nome;
@@ -15,48 +16,53 @@ public class Professor {
         this.id = id;
     }
 
-    public Professor(long id_disciplina, String email, String senha, String nome){
+    public Professor(long id_disciplina, String email, String senha, String nome, long cpf){
         this.id_disciplina = id_disciplina;
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        this.cpf = cpf;
     }
 
-    public Professor(long id, long id_disciplina, String email, String nome, String senha) {
+    public Professor(long id, long id_disciplina, String email, String nome, String senha, long cpf) {
         this.id = id;
         this.id_disciplina = id_disciplina;
         this.email = email;
         this.senha = senha;
         this.nome = nome;
+        this.cpf = cpf;
     }
 
-    public Professor(String email, String senha){
+    public Professor(String email, String senha, long cpf){
         this.email = email;
         this.senha = senha;
+        this.cpf = cpf;
     }
 
     // Geterrs
 
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public long getId_disciplina() {
-        return id_disciplina;
+        return this.id_disciplina;
     }
 
     public String getEmail () {
-        return email;
+        return this.email;
     }
 
     public String getSenha() {
-        return senha;
+        return this.senha;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
+
+    public long getCpf() { return this.cpf; }
 
     // Setters
 
@@ -90,6 +96,7 @@ public class Professor {
                 ", usuario='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
                 '}';
     }
 }

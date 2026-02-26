@@ -19,7 +19,7 @@ public class ProfessorRepository {
     public ProfessorRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
     public boolean update(Professor professor){
-        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, id_disciplina = ? WHERE id = ?";
+        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, id_disciplina = ?, cpf= ? WHERE id = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -28,7 +28,8 @@ public class ProfessorRepository {
             pstmt.setString (2, professor.getEmail ());
             pstmt.setString (3, professor.getSenha ());
             pstmt.setLong(4, professor.getId_disciplina ());
-            pstmt.setLong (5, professor.getId ());
+            pstmt.setLong(5,professor.getCpf ());
+            pstmt.setLong (6, professor.getId ());
 
 
             return pstmt.executeUpdate() > 0;
@@ -38,7 +39,7 @@ public class ProfessorRepository {
     }
 
     public Long save (Professor professor) {
-        String sql = "INSERT INTO professor (nome, senha, usuario, id_disciplina) VALUES (?, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO professor (nome, senha, usuario, id_disciplina, cpf) VALUES (?, ?, ?, ?, ?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement (sql)){
@@ -47,6 +48,7 @@ public class ProfessorRepository {
             pstmt.setString (2, professor.getNome ());
             pstmt.setString (3, professor.getEmail ());
             pstmt.setLong (4, professor.getId_disciplina ());
+            pstmt.setLong (5, professor.getCpf ());
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? rs.getLong("id") : null;
@@ -120,6 +122,21 @@ public class ProfessorRepository {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Professor findByCpf (long cpf){
+        String sql = "SELECT * FROM professor WHERE cpf = ? LIMIT 1";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, cpf);
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next() ? mapper.map(rs) : null;

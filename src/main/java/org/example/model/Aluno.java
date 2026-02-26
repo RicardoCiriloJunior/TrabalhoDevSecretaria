@@ -6,49 +6,50 @@ public class Aluno {
     private String email;
     private String senha;
     private String recSenha;
-    private String cpf;
+    private long cpf;
 
     // Construtores
 
     public Aluno(){}
 
-    public Aluno(String matricula, String nome, String senha, String email){
+    public Aluno(String matricula, String nome, String senha, String email, long cpf){
         this.matricula = matricula;
-        this.nome = nome;
-        this.senha = senha;
-        this.email = email;
-    }
-    public Aluno(String nome, String senha, String email, String cpf, String matricula){
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
-        this.matricula = matricula;
     }
     public Aluno( String senha, String email){
         this.senha = senha;
         this.email = email;
     }
 
+    public Aluno(String matricula, String nome, String senha){
+        this.matricula = matricula;
+        this.nome = nome;
+    }
 
     // Getters e Setters
 
     public String getEmail(){
-        return email;
+        return this.email;
     }
 
     public String getNome(){
-        return nome;
+        return this.nome;
     }
 
-    public String getRecSenha () { return recSenha; }
+    public String getRecSenha () { return this.recSenha; }
 
-    public String getSenha () { return senha; }
+    public String getSenha () { return this.senha; }
 
     public String getMatricula(){
-        return matricula;
+        return this.matricula;
     }
 
+    public long getCpf(){
+        return this.cpf;
+    }
 
     public void setSenha(String senha) {
         this.senha = senha;
@@ -57,8 +58,6 @@ public class Aluno {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
 
     public void setRecSenha(String recSenha) { this.recSenha = recSenha; }
 
@@ -71,6 +70,7 @@ public class Aluno {
                 "matricula='" + matricula + '\'' +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
+                ", cpf=" + cpf +
                 ", senha='" + senha + '\'' +
                 ", recSenha='" + recSenha + '\'' +
                 '}';

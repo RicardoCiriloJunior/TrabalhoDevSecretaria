@@ -21,6 +21,17 @@ public class ProfessorService {
         return null;
     }
 
+    public Professor encontrarProfessorPorCpf(String cpf){
+        cpf = cpf.replace (".", "");
+        cpf = cpf.replace ("-","");
+        cpf = cpf.replace (" ", "");
+
+        long cpfFormatado = Long.parseLong (cpf);
+
+        return professorRepository.findByCpf (cpfFormatado);
+
+    }
+
     public Professor encontrarProfessorPorNome(String nome){ return professorRepository.findByNome (nome); }
 
     public Professor encontrarProfessorPorDisciplina(String disciplina){
