@@ -97,15 +97,14 @@ public class NotasRepository {
         }
     }
     public boolean update(Notas notas){
-        String sql = "UPDATE notas SET id_disciplina = ?, matricula = ?, ano = ?, nota = ?  WHERE id = ?";
+        String sql = "UPDATE notas SET id_disciplina = ?, matricula = ?,nota = ?  WHERE id = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setLong(1, notas.getId_disciplina ());
             pstmt.setString(2, notas.getMatricula ());
-            pstmt.setInt (1, notas.getAno ());
-            pstmt.setDouble (1, notas.getNota ());
+            pstmt.setDouble (3, notas.getNota ());
 
 
 

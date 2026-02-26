@@ -19,6 +19,13 @@ public class Aluno {
         this.email = email;
         this.cpf = cpf;
     }
+
+    public Aluno(String nome, String senha,String email, long cpf){
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+    }
     public Aluno( String senha, String email){
         this.senha = senha;
         this.email = email;

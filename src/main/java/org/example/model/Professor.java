@@ -39,6 +39,14 @@ public class Professor {
         this.cpf = cpf;
     }
 
+    public Professor(String nome,String senha, String email, long cpf){
+        this.email = email;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.nome = nome;
+
+    }
+
     // Geterrs
 
 

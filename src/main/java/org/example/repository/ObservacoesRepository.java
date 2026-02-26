@@ -25,7 +25,7 @@ public class ObservacoesRepository {
 
             pstmt.setString(1, Observacoes.getObservacao ());
             pstmt.setLong (2, Observacoes.getId_professor ());
-            pstmt.setLong (3, Observacoes.getMatricula ());
+            pstmt.setString (3, Observacoes.getMatricula ());
             pstmt.setLong (4, Observacoes.getId_disciplina ());
             ResultSet rs = pstmt.executeQuery();
 

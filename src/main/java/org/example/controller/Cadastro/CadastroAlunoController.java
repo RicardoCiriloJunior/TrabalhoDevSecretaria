@@ -25,7 +25,9 @@ public class CadastroAlunoController extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Aluno aluno = new Aluno(nome, senha,email, cpf);
+        long cpfLong = Long.parseLong(cpf);
+
+        Aluno aluno = new Aluno(nome, senha,email, cpfLong);
 
         try{
             alunoService.adicionaAluno(aluno);
