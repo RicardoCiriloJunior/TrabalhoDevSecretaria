@@ -18,7 +18,7 @@ public class DisciplinaRepository {
         this.connectionFactory = connectionFactory;
     }
     public Long save(Disciplina disciplina){
-        String sql = "INSERT INTO disciplina (discplina) VALUES (?) RETURNING id";
+        String sql = "INSERT INTO disciplina (disciplina) VALUES (?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -46,7 +46,7 @@ public class DisciplinaRepository {
         }
     }
     public boolean update(Disciplina disciplina){
-        String sql = "UPDATE disciplina SET nome = ? WHERE id = ?";
+        String sql = "UPDATE disciplina SET disciplina = ? WHERE id = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
