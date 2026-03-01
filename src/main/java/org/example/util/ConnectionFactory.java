@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    private final static Dotenv dotenv = Dotenv.configure().load();
+    private final static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
     private final static String DB_PASSWORD = dotenv.get("DB_PASSWORD");
     private final static String DB_USER = dotenv.get("DB_USER");
     private final static String DB_URL = dotenv.get("DB_URL");

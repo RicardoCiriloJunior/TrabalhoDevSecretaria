@@ -3,13 +3,16 @@ package org.example.service;
 import org.example.model.Notas;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.NotasRepository;
+import org.example.util.ConnectionFactory;
 
 import java.util.List;
 
 public class NotasService {
 
-    private NotasRepository notasRepository;
-    private DisciplinaRepository disciplinaRepository;
+    private ConnectionFactory connectionFactory = new ConnectionFactory ();
+
+    private NotasRepository notasRepository = new NotasRepository (connectionFactory);
+    private DisciplinaRepository disciplinaRepository = new DisciplinaRepository (connectionFactory);
 
 
     public List<Notas> listarTodas (){return notasRepository.findAll ();}
