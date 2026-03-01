@@ -2,12 +2,15 @@ package org.example.service;
 
 import org.example.model.Disciplina;
 import org.example.repository.DisciplinaRepository;
+import org.example.util.ConnectionFactory;
 
 import java.util.List;
 
 public class DisciplinaService {
 
-    private DisciplinaRepository disciplinaRepository;
+    private ConnectionFactory connectionFactory = new ConnectionFactory ();
+
+    private DisciplinaRepository disciplinaRepository = new DisciplinaRepository (connectionFactory);
 
     public List<Disciplina> listarTodas () { return disciplinaRepository.findAll (); }
 
