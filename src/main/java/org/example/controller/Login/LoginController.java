@@ -34,7 +34,7 @@ public class LoginController {
 
                 if(aluno !=  null){
                     System.out.println("Aluno logado!");
-                    session.setAttribute("aluno", aluno.getNome());
+                    session.setAttribute("alunoNome", aluno.getNome());
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
                 }else{
                     System.out.println("Credenciais invalidas!");
@@ -46,7 +46,7 @@ public class LoginController {
                 if( professor != null){
 
                     System.out.println("Professor logado!");
-                    session.setAttribute("professor", professor.getNome());
+                    session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
                 }else{
                     System.out.println("Credenciais invalidas");
