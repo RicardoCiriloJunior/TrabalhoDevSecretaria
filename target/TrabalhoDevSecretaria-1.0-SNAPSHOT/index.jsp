@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Monsters University</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
         <button type="submit">Login</button>
 
         <div class="links">
-            <a href="cadastro.jsp">Não possuo login</a>
+            <a href="cadastro.jsp">Crie uma conta</a>
         </div>
     </form>
 
