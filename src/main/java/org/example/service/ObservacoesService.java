@@ -39,7 +39,12 @@ public class ObservacoesService {
 
     public boolean adicionarObservacao(Observacoes observacao) { return observacoesRepository.save (observacao) != 0; }
 
+    public int countObsEnviadas(long id_professor){
+        return observacoesRepository.countObsEnviadas(id_professor);
+    }
 
+    public List<Observacoes> listarObsEnviadas(long id_professor) { return observacoesRepository.listarObsEnviadas(id_professor); }
 
+    public List<Observacoes> listarObsRecebidas(String matricula) { return observacoesRepository.listarObsRecebidas(matricula); }
 
 }

@@ -164,5 +164,55 @@ public class AlunoRepository {
             throw new RuntimeException(e);
         }
     }
+    public int countAluno() {
+        String sql = "SELECT COUNT(*) FROM aluno";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Aluno> buscarAluno(String busca) {
+
+        String sql = """
+        SELECT*FROM aluno 
+        WHERE email ILIKE ?
+           OR  nome ILIKE ?
+           OR mtricula ILIKE ?
+        """;
+
+        List<Aluno> lista = new ArrayList<>();
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String termo = "%" + busca + "%";
+
+            pstmt.setString(1, termo);
+            pstmt.setString(2, termo);
+            pstmt.setString(3, termo);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Aluno aluno = mapper.map(rs);
+                lista.add(aluno);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

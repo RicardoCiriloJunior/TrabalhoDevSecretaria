@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Media;
 import org.example.model.Notas;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.NotasRepository;
@@ -33,5 +34,8 @@ public class NotasService {
     public List<Notas> filtrarPorDisciplina (String disciplina){
         long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
         return notasRepository.findByIdDisciplina (idDisciplina);
+    }
+    public List<Media> media(long idDisciplina){
+        return notasRepository.calcularMediaPorDisciplina(idDisciplina);
     }
 }

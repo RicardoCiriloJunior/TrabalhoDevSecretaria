@@ -69,5 +69,12 @@ public class AlunoService {
         boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
         return formatoValido && !email.endsWith("@monstrossa.com");
     }
+    public int countAluno(){
+        return alunoRepository.countAluno();
+    }
+
+    public List<Aluno> buscaAluno(String busca){
+        return alunoRepository.buscarAluno(busca);
+    }
 
 }
