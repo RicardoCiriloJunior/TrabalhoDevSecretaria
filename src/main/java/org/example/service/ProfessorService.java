@@ -4,15 +4,18 @@ import org.example.model.Aluno;
 import org.example.model.Professor;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.ProfessorRepository;
+import org.example.util.ConnectionFactory;
 import org.example.util.Senhas;
 
 import java.util.List;
 
 public class ProfessorService {
 
-    private ProfessorRepository professorRepository;
+    private ConnectionFactory connectionFactory = new ConnectionFactory ();
 
-    private DisciplinaRepository disciplinaRepository;
+    private ProfessorRepository professorRepository = new ProfessorRepository (connectionFactory);
+
+    private DisciplinaRepository disciplinaRepository = new DisciplinaRepository (connectionFactory);
 
     public Professor encontrarProfessorPorEmail(String email) {
         if (email.matches("^.*@monstrossa\\.com")) {

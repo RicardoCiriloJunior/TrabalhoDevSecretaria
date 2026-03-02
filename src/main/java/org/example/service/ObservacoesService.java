@@ -3,15 +3,18 @@ package org.example.service;
 import org.example.repository.AlunoRepository;
 import org.example.repository.ObservacoesRepository;
 import org.example.model.Observacoes;
+import org.example.util.ConnectionFactory;
 
 import java.util.List;
 
 
 public class ObservacoesService {
 
-    private ObservacoesRepository observacoesRepository;
+    private ConnectionFactory connectionFactory = new ConnectionFactory ();
 
-    private AlunoRepository alunoRepository;
+    private ObservacoesRepository observacoesRepository = new ObservacoesRepository (connectionFactory);
+
+    private AlunoRepository alunoRepository = new AlunoRepository (connectionFactory);
 
     public List<Observacoes> listarTodos() { return observacoesRepository.findAll (); }
 

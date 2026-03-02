@@ -2,13 +2,16 @@ package org.example.service;
 
 import org.example.model.Aluno;
 import org.example.repository.AlunoRepository;
+import org.example.util.ConnectionFactory;
 import org.example.util.Senhas;
 
 import java.util.List;
 
 public class AlunoService {
 
-    private AlunoRepository alunoRepository;
+    private ConnectionFactory connection = new ConnectionFactory ();
+
+    private AlunoRepository alunoRepository = new AlunoRepository (connection);
 
     private Senhas senhas;
 
@@ -18,7 +21,7 @@ public class AlunoService {
 
     public Aluno loginAluno(String email, String senha) {
         String senhaCripto = Senhas.gerarHash(senha);
-        if (email.matches ("^.*@.*\\.com")) {
+        if (emailValidoParaAluno (email)) {
             return alunoRepository.findByLogin (email, senhaCripto);
         }
         return null;

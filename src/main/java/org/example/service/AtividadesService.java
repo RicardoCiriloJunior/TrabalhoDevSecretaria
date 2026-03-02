@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.example.model.Atividades;
 import org.example.repository.AtividadesRepository;
+import org.example.util.ConnectionFactory;
 
 public class AtividadesService {
-    private final AtividadesRepository repository;
 
-    public AtividadesService(AtividadesRepository repository) {
-        this.repository = repository;
-    }
+    private ConnectionFactory connectionFactory = new ConnectionFactory ();
+    private final AtividadesRepository repository = new AtividadesRepository (connectionFactory);
 
-    public Long AdicionarAtividade(Atividades atividade) {
+    public Long adicionarAtividade(Atividades atividade) {
         return repository.save(atividade);
     }
 
-    public List<Atividades> ListarAtividadesPorAluno(String matricula) {
+    public List<Atividades> listarAtividadesPorAluno(String matricula) {
         return repository.findByMatr_aluno (matricula);
     }
 
