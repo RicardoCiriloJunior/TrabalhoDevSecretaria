@@ -2,3 +2,8 @@
 
 ./src/main/resources/.env
 *.env
+
+target/
+*.class
+*.jar
+*.war
