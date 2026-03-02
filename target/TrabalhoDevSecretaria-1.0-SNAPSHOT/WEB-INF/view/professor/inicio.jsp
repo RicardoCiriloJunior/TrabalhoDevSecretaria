@@ -11,7 +11,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Painel do Professor</title>
-  <link rel="stylesheet" href="assets/inicio.css">
+  <link rel="stylesheet" href="../../../assets/css/inicio.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>

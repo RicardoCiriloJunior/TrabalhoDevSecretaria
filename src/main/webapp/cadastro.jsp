@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro - Monsters University</title>
-    <link rel="stylesheet" href="assets/cadastro.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
 <body>
 
