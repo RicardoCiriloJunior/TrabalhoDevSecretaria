@@ -20,7 +20,7 @@
         </div>
 
         <nav class="nav">
-            <a class="active", href="inicio.html">Início</a>
+            <a class="active", href="inicio.jsp">Início</a>
             <a class="active", href="boletim.html" >Boletim</a>
             <a class="active", href="tarefas.html" >Tarefas</a>
             <a class="active", href="" >Matérias</a>

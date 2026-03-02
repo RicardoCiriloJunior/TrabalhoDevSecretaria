@@ -1,18 +1,41 @@
 <!DOCTYPE html>
+<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %> -->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades!</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/menu-atividades.css">
+<!--    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">-->
+<!--    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/menu-atividades.css">-->
+    <link rel="stylesheet" href="../../../assets/css/atividades/style.css">
+    <link rel="stylesheet" href="../../../assets/css/atividades/menu-atividades.css">
+    <link rel="stylesheet" href="../../../assets/css/sidebarAluno.css">
     <script src="../../../assets/js/menu-atividades.js"></script>
 </head>
 
 <body>
-    <aside></aside>
-    <main>
+<aside class="sidebar">
+    <h1 class="aluno">Aluno</h1>
+
+    <hr class="hr">
+
+    <div class="user">
+        <div class="avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <span>Aluno</span>
+    </div>
+
+    <nav class="nav">
+        <a class="sidebar-link " href="<%=redirectPath%>inicioAluno">Início</a>
+        <a class="sidebar-link " href="<%=redirectPath%>boletimAluno" >Boletim</a>
+        <a class="sidebar-link " href="<%=redirectPath%>tarefasAluno" >Tarefas</a>
+        <a class="sidebar-link active" href="<%=redirectPath%>materiasAluno" >Matérias</a>
+    </nav>
+</aside>
+
+<main>
         <h2 class="title">Matérias</h2>
         <div id="materias-container">
             <div class="materia" id="psicologia" data-pagina="psicologia-medo.html">
