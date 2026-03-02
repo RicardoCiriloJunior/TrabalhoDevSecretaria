@@ -64,7 +64,7 @@
 .peca {
     width: 140px;
     height: 87px;
-    background-image: url("../../../../assets/imgs/quebra-cabeca.png");
+    background-image: url("../../imgs/quebra-cabeca.png");
     background-size: 420px 261px;
     background-repeat: no-repeat;
     border: 1px solid #000;

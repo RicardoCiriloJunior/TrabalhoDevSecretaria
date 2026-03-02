@@ -28,7 +28,7 @@
         <input type="password" name="senha" placeholder="Senha" required>
 
 
-        <a href="inicio.jsp"><button type="submit">Login</button></a>
+        <button type="submit">Login</button>
 
         <div class="links">
             <a href="cadastro.jsp">Não possuo login</a>

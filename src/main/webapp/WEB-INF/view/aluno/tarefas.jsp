@@ -1,31 +1,19 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/tarefas.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/aluno/tarefas.css">
     <title>Tarefas - Aluno</title>
 </head>
 <body>
 
-<aside class="sidebar">
-        <h1 class="aluno">Aluno</h1>
+<jsp:include page="../components/sidebarAluno.jsp" >
+    <jsp:param name="tabActive" value="tarefas"/>
+</jsp:include>
 
-        <hr class="hr">
-
-        <div class="user">
-            <div class="avatar">
-            </div>
-            <span>Aluno</span>
-        </div>
-
-        <nav class="nav">
-            <a class="active", href="inicio.jsp">Início</a>
-            <a class="active", href="boletim.html" >Boletim</a>
-            <a class="active", href="tarefas.html" >Tarefas</a>
-            <a class="active", href="" >Matérias</a>
-        </nav>
-    </aside>
 
 <div class="main">
 
