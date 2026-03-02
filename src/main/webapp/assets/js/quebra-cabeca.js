@@ -300,9 +300,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const [minutos, segundos] = tempo.split(":").map(Number);
     const totalSegundos = minutos * 60 + segundos;
 
-    if (totalSegundos <= 12) {
+    if (totalSegundos <= 16) {
       return 10;
-    } else {
+    } else if (totalSegundos <= 0){
+      return 0;
+    } 
+    else {
       return 10 - Math.round((totalSegundos - 12) / 2);
     }
   }

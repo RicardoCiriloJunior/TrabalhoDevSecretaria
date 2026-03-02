@@ -19,15 +19,14 @@ public class AtribuirNotasController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
-        String nota = req.getParameter("nota");
         String matricula = req.getParameter("matricula");
+
+        double nota = Double.parseDouble(req.getParameter("nota"));
 
         HttpSession session = req.getSession();
         long id_Disciplina = (Long) session.getAttribute("idDisciplina");
 
-        double notaDouble = Double.parseDouble(nota);
-
-        Notas notas = new Notas(notaDouble, matricula, id_Disciplina);
+        Notas notas = new Notas(nota, matricula, id_Disciplina);
 
         try {
             notasService.atribuirNota(notas);

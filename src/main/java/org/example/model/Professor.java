@@ -49,7 +49,6 @@ public class Professor {
 
     // Geterrs
 
-
     public long getId() {
         return this.id;
     }
@@ -73,6 +72,7 @@ public class Professor {
     public long getCpf() { return this.cpf; }
 
     // Setters
+
 
 
     public void setId(long id) {
