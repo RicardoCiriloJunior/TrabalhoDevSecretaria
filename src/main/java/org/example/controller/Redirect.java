@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -21,6 +20,7 @@ public class Redirect extends HttpServlet {
             case "tarefasAluno" -> redirecionar("WEB-INF/view/aluno/tarefas.jsp", req, resp);
             case "materiasAluno" -> redirecionar("WEB-INF/view/atividades/menu-atividades.jsp", req, resp);
             case "expressividadeAtividade" -> redirecionar("WEB-INF/view/atividades/expressividade-vocal.jsp", req, resp);
+            case "engenhariaAtividade" -> redirecionar("WEB-INF/view/atividades/engenharia-sustos.jsp", req, resp);
         }
     }
     public static void redirecionar(String path, HttpServletRequest req, HttpServletResponse resp ) throws IOException, ServletException{

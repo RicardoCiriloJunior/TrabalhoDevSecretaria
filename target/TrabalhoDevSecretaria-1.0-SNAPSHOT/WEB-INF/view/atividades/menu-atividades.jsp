@@ -1,3 +1,4 @@
+<%@ page import="java.sql.Time" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/menu-atividades.css">
-    <script src="<%=request.getContextPath()%>/assets/js/menu-atividades.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/menu-atividades.js?<%=System.currentTimeMillis()%>"></script>
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                             class="imagem-materia"></div>
                 </div>
             </div>
-            <div class="materia" id="engenharia" data-pagina="sla">
+            <div class="materia" id="engenharia" data-pagina="<%=request.getContextPath()%>/redirecionar?page=engenhariaAtividade">
                 <h3 class="titulo-materia">Engenharia de Sustos e Rendimento Energético </h3>
                 <div class="descricao-imagem">
                     <p class="descricao-materia">Teste seus conhecimentos sobre o rendimento de energia nos gritos!</p>

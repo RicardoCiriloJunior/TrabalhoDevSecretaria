@@ -1,17 +1,21 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engenharia de Sustos e Rendimento Energético</title>
-    <link rel="stylesheet" href="../../../assets/css/atividades/style.css">
-    <link rel="stylesheet" href="css/engenharia-sustos.css">
-    <script src="../../../assets/js/engenharia-sustos.js" defer></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/engenharia-sustos.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
+    <script src="<%=request.getContextPath()%>/assets/js/engenharia-sustos.js" defer></script>
 </head>
 
 <body>
-    <aside>Aside</aside>
+<jsp:include page="../components/sidebarAluno.jsp">
+    <jsp:param name="tabActive" value="materias"/>
+</jsp:include>
     <main>
         <h1 class="title">Engenharia de Sustos e Rendimento Energético</h1>
         <section class="atividade-engenharia-container">

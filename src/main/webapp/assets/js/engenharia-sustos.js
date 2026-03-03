@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const respostasCorretas = [450, 96, 30, 7, 310];
     const btnFinalizar = document.getElementById("btn-finalizar");
     const nota = document.getElementById("nota");
+    let finalizado = false;
 
     resposta.addEventListener("input", () => {
         if (resposta.value.trim() !== "") {
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     btnFinalizar.addEventListener("click", () => {
+        if (finalizado) return;
         let valorResposta = resposta.value.trim();
         if (valorResposta === "") return;
 
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let notaFinal = (acertos / respostasCorretas.length) * 10;
 
         nota.textContent = `Nota: ${notaFinal.toFixed(2)}`;
+        finalizado = true;
+        btnFinalizar.disabled = true;
     })
 
     function validarAcertos(respostasUsuario) {
