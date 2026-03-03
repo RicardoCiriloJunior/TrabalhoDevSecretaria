@@ -166,4 +166,28 @@ public class NotasRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public double calcularMediaGeral(long idDisciplina) {
+
+        String sql = """
+        SELECT AVG(nota) AS media
+        FROM notas
+        WHERE id_disciplina = ?
+        """;
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, idDisciplina);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

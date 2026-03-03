@@ -41,4 +41,8 @@ public class NotasService {
     public List<Media> media(long idDisciplina){
         return notasRepository.calcularMediaPorDisciplina(idDisciplina);
     }
+
+    public double mediaGeral(long idDisciplina){
+        return notasRepository.calcularMediaGeral(idDisciplina);
+    }
 }

@@ -17,7 +17,7 @@ public class AlunoRepository {
 
     public AlunoRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
-    public Long save (Aluno aluno) {
+    public String save (Aluno aluno) {
         String sql = "INSERT INTO aluno (matricula, nome, senha, email, cpf) VALUES (?, ?, ?, ?, ?) RETURNING matricula";
 
         try (Connection conn = connectionFactory.connect();
@@ -30,7 +30,7 @@ public class AlunoRepository {
             pstmt.setLong (5, aluno.getCpf ());
             ResultSet rs = pstmt.executeQuery();
 
-            return rs.next() ? rs.getLong("matricula") : null;
+            return rs.next() ? rs.getString("matricula") : null;
         } catch (SQLException e) {
             throw new RuntimeException (e);
         }
@@ -187,7 +187,7 @@ public class AlunoRepository {
         SELECT*FROM aluno 
         WHERE email ILIKE ?
            OR  nome ILIKE ?
-           OR mtricula ILIKE ?
+           OR matricula ILIKE ?
         """;
 
         List<Aluno> lista = new ArrayList<>();
