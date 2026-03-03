@@ -24,7 +24,7 @@
     <p class="subtitle">Insira suas credenciais para criar sua conta.</p>
 
 
-    <form action="cadastroServlet" method="post">
+    <form action="cadastro" method="post">
         <input type="text" name="nome" placeholder="Nome Completo" required>
         <input type="text" name="cpf" placeholder="CPF" required>
         <input type="email" name="email" placeholder="Endereço de email" required>
