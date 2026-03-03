@@ -66,7 +66,7 @@ public class AlunoService {
     public boolean adicionaAluno (Aluno aluno){
         String senhaCripto = Senhas.gerarHash(aluno.getSenha());
         aluno.setSenha(senhaCripto);
-        return alunoRepository.save (aluno) != 0; }
+        return alunoRepository.save (aluno) != null; }
 
     public boolean emailValidoParaAluno(String email) {
         boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
