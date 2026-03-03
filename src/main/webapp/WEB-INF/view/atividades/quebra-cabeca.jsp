@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
     <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/quebra-cabeca.css">
-    <script src="<%=request.getContextPath()%>/assets/js/quebra-cabeca.js"></script>
+    <script type="module" src="<%=request.getContextPath()%>/assets/js/quebra-cabeca.js"></script>
 
 </head>
 

@@ -1,4 +1,9 @@
+import {finalizarAtividade, validarAtividade} from "./gerenciarAtividadeFeita.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  const atividade = "Tecnologia de Portais Interdimensionais"
+  validarAtividade(atividade);
+
   const pecasContainer = document.getElementById("pecas-container");
   const resolucaoContainer = document.getElementById("resolucao-container");
   const btnIniciar = document.getElementById("btn-iniciar");
@@ -290,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const notaFinal = calcularNota(cronometro.textContent);
     notaContainer.textContent = `${notaFinal}`;
     alert("Sua nota para esta atividade é: " + notaFinal);
+    finalizarAtividade(atividade, notaFinal, false);
   });
 
   function calcularNota(tempo) {
@@ -300,13 +306,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const [minutos, segundos] = tempo.split(":").map(Number);
     const totalSegundos = minutos * 60 + segundos;
 
-    if (totalSegundos <= 14) {
+    if (totalSegundos <= 20) {
       return 10;
     } else if (totalSegundos <= 0){
       return 0;
     } 
     else {
-      return 10 - Math.round((totalSegundos - 14) / 2);
+      return 10 - Math.round((totalSegundos - 20) / 2);
     }
   }
 });

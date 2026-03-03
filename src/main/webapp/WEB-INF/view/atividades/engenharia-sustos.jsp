@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/engenharia-sustos.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
-    <script src="<%=request.getContextPath()%>/assets/js/engenharia-sustos.js" defer></script>
+    <script type="module" src="<%=request.getContextPath()%>/assets/js/engenharia-sustos.js" defer></script>
 </head>
 
 <body>
