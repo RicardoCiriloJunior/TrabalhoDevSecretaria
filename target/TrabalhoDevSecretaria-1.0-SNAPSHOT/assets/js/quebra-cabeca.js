@@ -306,8 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return 0;
     } 
     else {
-      return 10 - Math.round((totalSegundos - 12) / 2);
+      return 10 - Math.round((totalSegundos - 16) / 2);
     }
   }
-  console.log(calcularNota("00:18"));
 });
