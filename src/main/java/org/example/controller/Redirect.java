@@ -21,6 +21,7 @@ public class Redirect extends HttpServlet {
             case "materiasAluno" -> redirecionar("WEB-INF/view/atividades/menu-atividades.jsp", req, resp);
             case "expressividadeAtividade" -> redirecionar("WEB-INF/view/atividades/expressividade-vocal.jsp", req, resp);
             case "engenhariaAtividade" -> redirecionar("WEB-INF/view/atividades/engenharia-sustos.jsp", req, resp);
+            case "psicologiaAtividade" -> redirecionar("WEB-INF/view/atividades/psicologia-medo.jsp", req, resp);
         }
     }
     public static void redirecionar(String path, HttpServletRequest req, HttpServletResponse resp ) throws IOException, ServletException{

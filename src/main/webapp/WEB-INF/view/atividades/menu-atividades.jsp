@@ -21,7 +21,7 @@
 <main>
         <h2 class="title">Matérias</h2>
         <div id="materias-container">
-            <div class="materia" id="psicologia" data-pagina="psicologia-medo.html">
+            <div class="materia" id="psicologia" data-pagina="<%=request.getContextPath()%>/redirecionar?page=psicologiaAtividade">
                 <h3 class="titulo-materia">Psicologia do Medo Infantil</h3>
                 <div class="descricao-imagem">
                     <p class="descricao-materia">Coloque em dia seus aprendizados de psicologia de medo infantil!</p>

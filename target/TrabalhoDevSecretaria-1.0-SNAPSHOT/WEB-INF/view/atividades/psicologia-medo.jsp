@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
@@ -8,14 +9,17 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/atividades/style.css">
-    <link rel="stylesheet" href="./css/psicologia-medo.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/psicologia-medo.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
     <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
-    <script type="module" src="../../../assets/js/quiz-psicologia.js"></script>
+    <script type="module" src="<%=request.getContextPath()%>/assets/js/quiz-psicologia.js"></script>
 </head>
 
 <body>
-    <aside>aside</aside>
+<jsp:include page="../components/sidebarAluno.jsp">
+    <jsp:param name="tabActive" value="materias"/>
+</jsp:include>
     <main>
         <h1 class="title">Psicologia do Medo Infantil</h1>
         <section class="atividade-quiz-container">
