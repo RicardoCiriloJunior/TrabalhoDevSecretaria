@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => stop(), 1000 * 10);
     });
 
-    btnStop.addEventListener("click", () => {
+    btnStop.addEventListener("click", async () => {
         if (attempts >= 2) return;
         stop();
 
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
-        finalizarAtividade(atividade, finalGrade)
+        await finalizarAtividade(atividade, finalGrade)
     });
     function stop() {
         if (!mediaRecorder) return;

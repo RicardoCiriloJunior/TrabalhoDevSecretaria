@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnFinalizar.disabled = resposta.value.trim() === "";
     })
 
-    btnFinalizar.addEventListener("click", () => {
+    btnFinalizar.addEventListener("click", async () => {
         if (finalizado) return;
         let valorResposta = resposta.value.trim();
         if (valorResposta === "") return;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         finalizado = true;
         btnFinalizar.disabled = true;
         alert(`Sua nota nessa atividade foi: ${notaFinal}`)
-        finalizarAtividade(atividade, notaFinal, false);
+        await finalizarAtividade(atividade, notaFinal, false);
     })
 
     function validarAcertos(respostasUsuario) {

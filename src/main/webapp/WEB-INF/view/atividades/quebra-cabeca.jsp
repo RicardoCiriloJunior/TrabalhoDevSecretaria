@@ -21,6 +21,9 @@
 <jsp:include page="../components/sidebarAluno.jsp">
     <jsp:param name="tabActive" value="materias"/>
 </jsp:include>
+<jsp:include page="../components/informacoesAtividade.jsp">
+    <jsp:param name="idDisciplina" value=""/>
+</jsp:include>
     <main>
         <h1 class="title">Tecnologia de Portais Interdimensionais</h1>
         <section class="atividade-puzzle-container">

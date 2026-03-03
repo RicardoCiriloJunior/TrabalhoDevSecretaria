@@ -24,12 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     btnVoltar.addEventListener("click", () => {
         atualizarTudo(indiceAtual - 1)
     })
-    btnFinalizar.addEventListener("click", () => {
+    btnFinalizar.addEventListener("click", async () => {
         atribuirNota();
         perguntaContainer.textContent = `Sua nota final é: ${Math.floor(nota).toFixed(2)}`;
         document.getElementById("alternativas-container").remove();
         document.getElementById("trocar-pergunta-container").remove();
-        finalizarAtividade(atividade, nota, false)
+        await finalizarAtividade(atividade, nota, false)
     })
 
     btnsAlternativa.forEach((btn) => {

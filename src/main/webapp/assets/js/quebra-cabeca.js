@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarBotoes();
   });
 
-  btnFinalizar.addEventListener("click", () => {
+  btnFinalizar.addEventListener("click",  async () => {
     if (jogoFinalizado || !jogoResolvido) {
       return;
     }
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const notaFinal = calcularNota(cronometro.textContent);
     notaContainer.textContent = `${notaFinal}`;
     alert("Sua nota para esta atividade é: " + notaFinal);
-    finalizarAtividade(atividade, notaFinal, false);
+    await finalizarAtividade(atividade, notaFinal, false);
   });
 
   function calcularNota(tempo) {
