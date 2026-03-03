@@ -1,0 +1,133 @@
+:root {
+    --fundo: #FAFACC;
+    --secundario: #FDFF6B;
+    --primario: rgb(217, 221, 7);
+}
+
+.atividade-quiz-container {
+    background-color: var(--fundo);
+    width: 70%;
+    height: 65%;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#atividade-quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+#titulo-quiz {
+    font-size: 3.2rem;
+    position: relative;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+#pergunta-atual {
+    position: relative;
+    background-color: var(--secundario);
+    font-size: 2.6rem;
+    padding: 5px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    z-index: 2;
+}
+#pergunta-atual::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: -12.5px;
+    background-color: var(--secundario);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+#quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid var(--primario);
+    background-color: var(--secundario);
+    border-radius: 20px;
+    padding: 20px;
+    height: 60%;
+    width: 100%;
+    font-size: 2.6rem;
+    font-weight: 550;
+    text-align: center;
+}
+#alternativas-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+.btn-alternativa {
+    font-size: 2rem;
+    text-align: start;
+    background-color: transparent;
+    border: none;
+    padding: 0 20px 0 10px;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.3s ease;
+}
+.btn-alternativa:hover {
+     
+    background-color: var(--primario);
+}
+.btn-selecionado {
+    background-color: var(--primario);
+}
+
+#trocar-pergunta-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    margin-top: 10px;
+}
+.btn-trocar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--secundario);
+    width: 130px;
+    height: 50px;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+}
+.btn-trocar:disabled {
+    cursor: auto;
+}
+
+#bichinho-quiz {
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    width: 300px;
+}
+
+#btn-finalizar {
+    display: none;
+    background-color: red;
+}

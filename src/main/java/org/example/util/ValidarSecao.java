@@ -13,7 +13,7 @@ public class ValidarSecao {
         Object matricula = session.getAttribute("matriculaAluno");
         if (matricula == null || matricula.equals("")) {
             req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
-        };
+        }
     }
     public static void validarProfessorLogado(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -21,6 +21,6 @@ public class ValidarSecao {
         Object matricula = session.getAttribute("idProfesor");
         if (matricula == null || matricula.equals("")) {
             req.getRequestDispatcher(req.getContextPath()).forward(req, resp);
-        };
+        }
     }
 }

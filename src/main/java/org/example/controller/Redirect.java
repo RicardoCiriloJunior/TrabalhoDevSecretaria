@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -15,10 +16,14 @@ public class Redirect extends HttpServlet {
         String page = req.getParameter("page");
 
         switch (page) {
-            case "inicioAluno" -> req.getRequestDispatcher("/WEB-INF/view/aluno/inicio.jsp").forward(req, resp);
-            case "boletimAluno" -> req.getRequestDispatcher("WEB-INF/view/aluno/boletim.jsp").forward(req, resp);
-            case "tarefasAluno" -> req.getRequestDispatcher("WEB-INF/view/aluno/tarefas.jsp").forward(req, resp);
-            case "materiasAluno" -> req.getRequestDispatcher("WEB-INF/view/atividades/menu-atividades.jsp").forward(req, resp);
+            case "inicioAluno" -> redirecionar("/WEB-INF/view/aluno/inicio.jsp", req, resp);
+            case "boletimAluno" -> redirecionar("WEB-INF/view/aluno/boletim.jsp", req, resp);
+            case "tarefasAluno" -> redirecionar("WEB-INF/view/aluno/tarefas.jsp", req, resp);
+            case "materiasAluno" -> redirecionar("WEB-INF/view/atividades/menu-atividades.jsp", req, resp);
+            case "expressividadeAtividade" -> redirecionar("WEB-INF/view/atividades/expressividade-vocal.jsp", req, resp);
         }
+    }
+    public static void redirecionar(String path, HttpServletRequest req, HttpServletResponse resp ) throws IOException, ServletException{
+           req.getRequestDispatcher(path).forward(req, resp);
     }
 }
