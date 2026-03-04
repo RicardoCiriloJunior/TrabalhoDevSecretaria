@@ -1,5 +1,6 @@
 package org.example.controller.Cadastro;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,10 +14,12 @@ public class CadastroProfessorController extends HttpServlet {
     private ProfessorService professorService;
 
     //Construtor
-    public CadastroProfessorController(ProfessorService professorService){
-        this.professorService = professorService;    }
 
 
+    @Override
+    public void init() throws ServletException {
+        professorService = new ProfessorService();
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp){
 

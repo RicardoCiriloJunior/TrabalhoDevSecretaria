@@ -9,7 +9,7 @@ import org.example.service.AlunoService;
 
 import java.io.IOException;
 
-@WebServlet("/Alunoes")
+@WebServlet("/Aluno")
 public class ContarAlunoController extends HttpServlet {
 
     private AlunoService alunoService;

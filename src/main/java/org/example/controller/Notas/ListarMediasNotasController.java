@@ -17,8 +17,10 @@ public class ListarMediasNotasController extends HttpServlet {
 
 
     // Construtor
-    public ListarMediasNotasController(NotasService notasService){
-        this.notasService = notasService;
+
+    @Override
+    public void init() throws ServletException {
+        notasService = new NotasService();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -13,9 +13,8 @@ import java.io.IOException;
 public class MediaGeralController {
     private NotasService notasService;
 
-    public MediaGeralController(NotasService notasService){
-        this.notasService = notasService;
-    }
+
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -1,4 +1,5 @@
 package org.example.controller.Notas;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,11 +11,13 @@ import org.example.service.NotasService;
 @WebServlet("/atribuir-nota")
 public class AtribuirNotasController extends HttpServlet {
 
-    private final NotasService notasService = new NotasService();
+    private  NotasService notasService = new NotasService();
 
 
-    // Construtor
-
+    @Override
+    public void init() throws ServletException {
+        notasService = new NotasService();
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String matricula = req.getParameter("matricula");

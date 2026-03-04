@@ -13,13 +13,12 @@ import java.io.IOException;
 @WebServlet(name = "admLogin", urlPatterns = {"/admLogin"})
 public class LoginAdministradorController extends HttpServlet {
 
-    private final AdministradorService administradorService;
+    private  AdministradorService administradorService;
 
-    //Construtor
-    public LoginAdministradorController(AdministradorService administradorService) {
-        this.administradorService = administradorService;
+    @Override
+    public void init() throws ServletException {
+        administradorService = new AdministradorService();
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

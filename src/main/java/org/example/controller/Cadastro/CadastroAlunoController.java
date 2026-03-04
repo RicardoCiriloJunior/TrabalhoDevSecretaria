@@ -17,14 +17,9 @@ public class CadastroAlunoController extends HttpServlet {
     private AlunoService alunoService;
     private GeradorUUID geradorUUID;
 
-    public CadastroAlunoController(AlunoService alunoService) {
-        this.alunoService = alunoService;
-        this.geradorUUID = new GeradorUUID();
-    }
-
-    public CadastroAlunoController() {
-        this.alunoService = new AlunoService();
-        this.geradorUUID = new GeradorUUID();
+    @Override
+    public void init() throws ServletException {
+        alunoService = new AlunoService();
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

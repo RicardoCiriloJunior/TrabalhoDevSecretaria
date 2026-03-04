@@ -19,14 +19,10 @@ public class LoginController extends HttpServlet {
     private AlunoService alunoService;
     private ProfessorService professorService;
 
-    public LoginController() {
-        this.alunoService = new AlunoService();
-        this.professorService = new ProfessorService();
-    }
-
-    public LoginController(AlunoService alunoService, ProfessorService professorService) {
-        this.alunoService = alunoService;
-        this.professorService = professorService;
+    @Override
+    public void init() throws ServletException {
+        alunoService = new AlunoService();
+        professorService = new ProfessorService();
     }
 
     @Override

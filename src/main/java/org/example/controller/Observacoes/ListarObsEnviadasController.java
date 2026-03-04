@@ -20,12 +20,11 @@ public class ListarObsEnviadasController extends HttpServlet {
     private ObservacoesService observacoesService;
     private ProfessorService professorService;
 
-    //Construtor
-    public ListarObsEnviadasController(ObservacoesService observacoesService, ProfessorService professorService) {
-        this.observacoesService = observacoesService;
-        this.professorService = professorService;
+    @Override
+    public void init() throws ServletException {
+        observacoesService = new ObservacoesService();
+        professorService = new ProfessorService();
     }
-
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

@@ -22,12 +22,11 @@ public class ListarObsRecebidasController extends HttpServlet {
     private ObservacoesService observacoesService;
     private AlunoService alunoService;
 
-    //Construtor
-        public ListarObsRecebidasController(ObservacoesService observacoesService, AlunoService alunoService) {
-        this.observacoesService = observacoesService;
-        this.alunoService = alunoService;
+    @Override
+    public void init() throws ServletException {
+        observacoesService = new ObservacoesService();
+        alunoService = new AlunoService();
     }
-
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
