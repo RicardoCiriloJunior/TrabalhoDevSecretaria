@@ -1,0 +1,93 @@
+:root {
+    --psicologia-fundo: #FDFF6B;
+    --psicologia-borda: #D9DD07;
+    --psicologia-descricao: #FAFACC;
+    --expressividade-fundo: #43E260;
+    --expressividade-borda: #31A245;
+    --expressividade-descricao: #78FF91;
+    --tecnologia-fundo: #4696C5;
+    --tecnologia-borda: #2D6281;
+    --tecnologia-descricao: #61B5E6;
+    --engenharia-fundo: #9947CC;
+    --engenharia-borda: #692E8D;
+    --engenharia-descricao: #BF67F6;
+}
+
+#materias-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.materia {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 40%;
+    height: 45%;
+    padding: 20px;
+    border: 5px solid;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.titulo-materia {
+    font-size: 3.2rem;
+    height: 100px;
+    width: 100%;
+}
+.descricao-imagem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descricao-materia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+    height: 80%;
+    width: 60%;
+    border-radius: 20px;
+    font-size: 2rem;
+}
+.imagem-materia {
+    height: 150px;
+}
+
+#psicologia {
+    background-color: var(--psicologia-fundo);
+    border-color: var(--psicologia-borda);
+}
+#psicologia .descricao-materia {
+    background-color: var(--psicologia-descricao);
+}
+
+#expressividade {
+    background-color: var(--expressividade-fundo);
+    border-color: var(--expressividade-borda);
+}
+#expressividade .descricao-materia {
+    background-color: var(--expressividade-descricao);
+}
+
+#tecnologia {
+    background-color: var(--tecnologia-fundo);
+    border-color: var(--tecnologia-borda);
+}
+#tecnologia .descricao-materia {
+    background-color: var(--tecnologia-descricao);
+}
+
+#engenharia {
+    background-color: var(--engenharia-fundo);
+    border-color: var(--engenharia-borda);
+}
+#engenharia .descricao-materia {
+    background-color: var(--engenharia-descricao);
+}

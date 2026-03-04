@@ -3,6 +3,7 @@ package org.example.repository;
 import org.example.mapper.AlunoMapper;
 import org.example.model.Aluno;
 import org.example.util.ConnectionFactory;
+import org.example.util.Senhas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class AlunoRepository {
 
     public AlunoRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
-    public Long save (Aluno aluno) {
+    public String save (Aluno aluno) {
         String sql = "INSERT INTO aluno (matricula, nome, senha, email, cpf) VALUES (?, ?, ?, ?, ?) RETURNING matricula";
 
         try (Connection conn = connectionFactory.connect();
@@ -30,7 +31,7 @@ public class AlunoRepository {
             pstmt.setLong (5, aluno.getCpf ());
             ResultSet rs = pstmt.executeQuery();
 
-            return rs.next() ? rs.getLong("matricula") : null;
+            return rs.next() ? rs.getString("matricula") : null;
         } catch (SQLException e) {
             throw new RuntimeException (e);
         }
@@ -130,39 +131,75 @@ public class AlunoRepository {
         }
     }
 
-    public Aluno findByLogin (String email, String senha){
-        String sql = "SELECT * FROM aluno WHERE email = ? AND senha = ? LIMIT 1";
+    public List<Aluno> findAll () {
+            String sql = "SELECT * FROM aluno";
+            List<Aluno> alunos = new ArrayList<>();
+
+            try (Connection conn = connectionFactory.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    alunos.add(mapper.map(rs));
+                }
+
+                return alunos;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        public int countAluno () {
+            String sql = "SELECT COUNT(*) FROM aluno";
+
+            try (Connection conn = connectionFactory.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+
+                return 0;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        public List<Aluno> buscarAluno (String busca){
+
+            String sql = """
+        
+                    SELECT*FROM aluno 
+        WHERE email ILIKE ?
+           OR  nome ILIKE ?
+           OR matricula ILIKE ?
+        """;
+
+        List<Aluno> lista = new ArrayList<>();
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, email);
-            pstmt.setString(2, senha);
+            String termo = "%" + busca + "%";
+
+            pstmt.setString(1, termo);
+            pstmt.setString(2, termo);
+            pstmt.setString(3, termo);
 
             ResultSet rs = pstmt.executeQuery();
 
-            return rs.next() ? mapper.map(rs) : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<Aluno> findAll() {
-        String sql = "SELECT * FROM aluno";
-        List<Aluno> alunos = new ArrayList<> ();
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()){
-                alunos.add(mapper.map(rs));
+            while (rs.next()) {
+                Aluno aluno = mapper.map(rs);
+                lista.add(aluno);
             }
 
-            return alunos;
+            return lista;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+
+    }
     }
 
 }
+

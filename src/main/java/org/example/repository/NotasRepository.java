@@ -2,6 +2,7 @@ package org.example.repository;
 
 import org.example.mapper.NotasMapper;
 import org.example.model.Notas;
+import org.example.model.Media;
 import org.example.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -84,6 +85,7 @@ public class NotasRepository {
             throw new RuntimeException(e);
         }
     }
+
     public boolean deleteByMatricula(String matricula){
         String sql = "DELETE FROM notas WHERE matricula = ?";
 
@@ -131,4 +133,61 @@ public class NotasRepository {
         }
     }
 
+
+    public List<Media> calcularMediaPorDisciplina(long idDisciplina) {
+
+        String sql = """
+        SELECT matricula, AVG(nota) AS media
+        FROM notas
+        WHERE id_disciplina = ?
+        GROUP BY matricula
+        """;
+
+        List<Media> medias = new ArrayList<>();
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, idDisciplina);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                String matricula = rs.getString("matricula");
+                double media = rs.getDouble("media");
+
+                medias.add(new Media(matricula, media));
+            }
+
+            return medias;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double calcularMediaGeral(long idDisciplina) {
+
+        String sql = """
+        SELECT AVG(nota) AS media
+        FROM notas
+        WHERE id_disciplina = ?
+        """;
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, idDisciplina);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

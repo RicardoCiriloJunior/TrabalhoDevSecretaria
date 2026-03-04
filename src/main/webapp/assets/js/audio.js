@@ -1,7 +1,10 @@
 import { startTimer, stopTimer } from "./timer.js";
+import {finalizarAtividade, validarAtividade} from "./gerenciarAtividadeFeita.js";
 import { calculateGrade } from "./CalculoNota.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const atividade = "Expressividade Vocal Avançada";
+    validarAtividade(atividade);
 
     const btnPlay = document.getElementById("play");
     const btnStop = document.getElementById("stop");
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => stop(), 1000 * 10);
     });
 
-    btnStop.addEventListener("click", () => {
+    btnStop.addEventListener("click", async () => {
         if (attempts >= 2) return;
         stop();
 
@@ -93,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+        await finalizarAtividade(atividade, finalGrade)
     });
     function stop() {
         if (!mediaRecorder) return;
@@ -111,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Score", score)
         console.log("Total medidas", totalMeasurements);
         console.log("Nota final", finalGrade)
+
     }
 
     function measureVolume() {

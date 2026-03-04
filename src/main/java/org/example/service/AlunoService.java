@@ -2,13 +2,16 @@ package org.example.service;
 
 import org.example.model.Aluno;
 import org.example.repository.AlunoRepository;
+import org.example.util.ConnectionFactory;
 import org.example.util.Senhas;
 
 import java.util.List;
 
 public class AlunoService {
 
-    private AlunoRepository alunoRepository;
+    private ConnectionFactory connection = new ConnectionFactory ();
+
+    private AlunoRepository alunoRepository = new AlunoRepository (connection);
 
     private Senhas senhas;
 
@@ -17,11 +20,11 @@ public class AlunoService {
     }
 
     public Aluno loginAluno(String email, String senha) {
-        String senhaCripto = Senhas.gerarHash(senha);
-        if (email.matches ("^.*@.*\\.com")) {
-            return alunoRepository.findByLogin (email, senhaCripto);
-        }
-        return null;
+            Aluno aluno = alunoRepository.findByEmail (email);
+            if (Senhas.verificar(senha,aluno.getSenha()) || aluno != null){
+                return aluno;
+            }
+            return null;
     }
 
     public Aluno encontrarAlunoPorCpf(String cpf){
@@ -63,11 +66,18 @@ public class AlunoService {
     public boolean adicionaAluno (Aluno aluno){
         String senhaCripto = Senhas.gerarHash(aluno.getSenha());
         aluno.setSenha(senhaCripto);
-        return alunoRepository.save (aluno) != 0; }
+        return alunoRepository.save (aluno) != null; }
 
     public boolean emailValidoParaAluno(String email) {
         boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
         return formatoValido && !email.endsWith("@monstrossa.com");
+    }
+    public int countAluno(){
+        return alunoRepository.countAluno();
+    }
+
+    public List<Aluno> buscaAluno(String busca){
+        return alunoRepository.buscarAluno(busca);
     }
 
 }

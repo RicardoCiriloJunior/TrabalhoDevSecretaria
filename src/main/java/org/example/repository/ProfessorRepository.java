@@ -178,6 +178,55 @@ public class ProfessorRepository {
             throw new RuntimeException(e);
         }
     }
+    public int countProfessor() {
+        String sql = "SELECT COUNT(*) FROM professor";
 
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
 
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Professor> buscarProfessor(String busca) {
+
+        String sql = """
+        SELECT p.* FROM professor p
+        JOIN disciplina d ON p.id_disciplina = d.id
+        WHERE p.email ILIKE ?
+           OR p.nome ILIKE ?
+           OR d.nome ILIKE ?
+        """;
+
+        List<Professor> lista = new ArrayList<>();
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String termo = "%" + busca + "%";
+
+            pstmt.setString(1, termo);
+            pstmt.setString(2, termo);
+            pstmt.setString(3, termo);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Professor professor = mapper.map(rs);
+                lista.add(professor);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

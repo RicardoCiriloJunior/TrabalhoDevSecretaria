@@ -95,5 +95,59 @@ public class ObservacoesRepository {
             throw new RuntimeException(e);
         }
     }
+    public int countObsEnviadas(long id_professor) {
+        String sql = "SELECT COUNT(*) FROM observacoes WHERE id_professor = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id_professor);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Observacoes> listarObsEnviadas(long id_professor) {
+        List<Observacoes> Observacoes = new ArrayList<> ();
+
+        String sql = "SELECT * FROM observacoes WHERE id_professor = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id_professor);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                Observacoes.add(mapper.map(rs));
+            }
+
+            return Observacoes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Observacoes> listarObsRecebidas(String matricula) {
+        List<Observacoes> Observacoes = new ArrayList<> ();
+
+        String sql = "SELECT * FROM observacoes WHERE matricula = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, matricula);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                Observacoes.add(mapper.map(rs));
+            }
+            return Observacoes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

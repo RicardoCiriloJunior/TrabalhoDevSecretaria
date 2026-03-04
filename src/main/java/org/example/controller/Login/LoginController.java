@@ -1,5 +1,8 @@
 package org.example.controller.Login;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -8,54 +11,62 @@ import org.example.model.Professor;
 import org.example.service.ProfessorService;
 import org.example.service.AlunoService;
 
-public class LoginController {
+import java.io.IOException;
+
+@WebServlet(name = "loginServlet" , urlPatterns = {"/login"})
+public class LoginController extends HttpServlet {
 
     private AlunoService alunoService;
     private ProfessorService professorService;
 
-    //Construtor
-    public LoginController(AlunoService alunoService, ProfessorService professorService){
-        this.alunoService = alunoService;
-        this.professorService = professorService;
+    @Override
+    public void init() throws ServletException {
+        alunoService = new AlunoService();
+        professorService = new ProfessorService();
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
-
-        String email = req.getParameter("nome");
+        String email = req.getParameter("email");
         String senha = req.getParameter("senha");
+
+        System.out.println(email + senha);
 
         HttpSession session = req.getSession();
 
-        try{
-            if(alunoService.emailValidoParaAluno(email)){
+        try {
+            if (alunoService.emailValidoParaAluno(email)) {
 
                 Aluno aluno = alunoService.loginAluno(email, senha);
 
-                if(aluno !=  null){
+                if (aluno != null) {
                     System.out.println("Aluno logado!");
-                    session.setAttribute("aluno", aluno.getNome());
+                    session.setAttribute("alunoNome", aluno.getNome());
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
-                }else{
-                    System.out.println("Credenciais invalidas!");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
+                } else {
+                    System.out.println("Deu erro");
+                    req.setAttribute("erro", "Credenciais inválidas!");
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
 
-            }else{
-                Professor professor =  professorService.loginProfessor(email,senha);
+            } else {
+                Professor professor = professorService.loginProfessor(email, senha);
 
-                if( professor != null){
-
+                if (professor != null) {
                     System.out.println("Professor logado!");
-                    session.setAttribute("professor", professor.getNome());
+                    session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
-                }else{
-                    System.out.println("Credenciais invalidas");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
+                } else {
+                    req.setAttribute("erro", "Credenciais inválidas!");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
