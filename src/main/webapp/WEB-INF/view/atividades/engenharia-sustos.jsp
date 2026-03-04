@@ -17,7 +17,7 @@
     <jsp:param name="tabActive" value="materias"/>
 </jsp:include>
 <jsp:include page="../components/informacoesAtividade.jsp">
-    <jsp:param name="idDisciplina" value=""/>
+    <jsp:param name="idDisciplina" value="4"/>
 </jsp:include>
     <main>
         <h1 class="title">Engenharia de Sustos e Rendimento Energético</h1>

@@ -299,20 +299,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function calcularNota(tempo) {
-    if (tentativasUsadas > tentativasMaximas) {
-      return 0;
-    }
 
     const [minutos, segundos] = tempo.split(":").map(Number);
     const totalSegundos = minutos * 60 + segundos;
 
     if (totalSegundos <= 20) {
       return 10;
-    } else if (totalSegundos <= 0){
-      return 0;
-    } 
-    else {
-      return 10 - Math.round((totalSegundos - 20) / 2);
+    } else {
+      let nota = 10 - Math.floor((totalSegundos - 20) / 3)
+      return nota >= 0 ? nota : 0;
     }
   }
 });
