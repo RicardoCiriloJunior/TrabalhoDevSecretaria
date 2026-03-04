@@ -20,11 +20,11 @@ public class AlunoService {
     }
 
     public Aluno loginAluno(String email, String senha) {
-        String senhaCripto = Senhas.gerarHash(senha);
-        if (emailValidoParaAluno (email)) {
-            return alunoRepository.findByLogin (email, senhaCripto);
-        }
-        return null;
+            Aluno aluno = alunoRepository.findByEmail (email);
+            if (Senhas.verificar(senha,aluno.getSenha()) || aluno != null){
+                return aluno;
+            }
+            return null;
     }
 
     public Aluno encontrarAlunoPorCpf(String cpf){

@@ -20,6 +20,7 @@ public class CadastroAlunoController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         alunoService = new AlunoService();
+        geradorUUID = new GeradorUUID();
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +50,7 @@ public class CadastroAlunoController extends HttpServlet {
         try {
             alunoService.adicionaAluno(aluno);
             System.out.println("Aluno cadastrado com matrícula: " + matricula);
-            resp.sendRedirect(req.getContextPath() + "/login");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }

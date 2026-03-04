@@ -3,6 +3,7 @@ package org.example.repository;
 import org.example.mapper.AlunoMapper;
 import org.example.model.Aluno;
 import org.example.util.ConnectionFactory;
+import org.example.util.Senhas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,61 +131,45 @@ public class AlunoRepository {
         }
     }
 
-    public Aluno findByLogin (String email, String senha){
-        String sql = "SELECT * FROM aluno WHERE email = ? AND senha = ? LIMIT 1";
+    public List<Aluno> findAll () {
+            String sql = "SELECT * FROM aluno";
+            List<Aluno> alunos = new ArrayList<>();
 
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (Connection conn = connectionFactory.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
 
-            pstmt.setString(1, email);
-            pstmt.setString(2, senha);
+                while (rs.next()) {
+                    alunos.add(mapper.map(rs));
+                }
 
-            ResultSet rs = pstmt.executeQuery();
-
-            return rs.next() ? mapper.map(rs) : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<Aluno> findAll() {
-        String sql = "SELECT * FROM aluno";
-        List<Aluno> alunos = new ArrayList<> ();
-
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()){
-                alunos.add(mapper.map(rs));
+                return alunos;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-
-            return alunos;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-    }
-    public int countAluno() {
-        String sql = "SELECT COUNT(*) FROM aluno";
+        public int countAluno () {
+            String sql = "SELECT COUNT(*) FROM aluno";
 
-        try (Connection conn = connectionFactory.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+            try (Connection conn = connectionFactory.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
 
-            if (rs.next()) {
-                return rs.getInt(1);
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+
+                return 0;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-
-            return 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-    }
 
-    public List<Aluno> buscarAluno(String busca) {
+        public List<Aluno> buscarAluno (String busca){
 
-        String sql = """
-        SELECT*FROM aluno 
+            String sql = """
+        
+                    SELECT*FROM aluno 
         WHERE email ILIKE ?
            OR  nome ILIKE ?
            OR matricula ILIKE ?
@@ -212,7 +197,9 @@ public class AlunoRepository {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+
+    }
     }
 
 }
+

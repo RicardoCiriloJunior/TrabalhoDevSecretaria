@@ -13,7 +13,7 @@ import org.example.service.AlunoService;
 
 import java.io.IOException;
 
-@WebServlet(name = "loginServlet", urlPatterns = {"/login"})
+@WebServlet(name = "loginServlet" , urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
     private AlunoService alunoService;
@@ -28,8 +28,10 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String email = req.getParameter("nome");
+        String email = req.getParameter("email");
         String senha = req.getParameter("senha");
+
+        System.out.println(email + senha);
 
         HttpSession session = req.getSession();
 
@@ -42,8 +44,9 @@ public class LoginController extends HttpServlet {
                     System.out.println("Aluno logado!");
                     session.setAttribute("alunoNome", aluno.getNome());
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
-                    resp.sendRedirect(req.getContextPath() + "/aluno/inicio");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
+                    System.out.println("Deu erro");
                     req.setAttribute("erro", "Credenciais inválidas!");
                     req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
@@ -55,10 +58,10 @@ public class LoginController extends HttpServlet {
                     System.out.println("Professor logado!");
                     session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
-                    resp.sendRedirect(req.getContextPath() + "/home");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
                     req.setAttribute("erro", "Credenciais inválidas!");
-                    req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 }
             }
 
