@@ -1,4 +1,9 @@
+import {finalizarAtividade, validarAtividade} from "./gerenciarAtividadeFeita.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+    const atividade = "Engenharia de Sustos e Rendimento Energético";
+    validarAtividade(atividade);
+
     const resposta = document.getElementById("resposta");
     const respostasCorretas = [450, 96, 30, 7, 310];
     const btnFinalizar = document.getElementById("btn-finalizar");
@@ -6,14 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let finalizado = false;
 
     resposta.addEventListener("input", () => {
-        if (resposta.value.trim() !== "") {
-            btnFinalizar.disabled = false;
-        } else {
-            btnFinalizar.disabled = true;
-        }
+        btnFinalizar.disabled = resposta.value.trim() === "";
     })
 
-    btnFinalizar.addEventListener("click", () => {
+    btnFinalizar.addEventListener("click", async () => {
         if (finalizado) return;
         let valorResposta = resposta.value.trim();
         if (valorResposta === "") return;
@@ -21,10 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let respostasUsuario = valorResposta.split(";").map(num => parseInt(num.trim()));
         let acertos = validarAcertos(respostasUsuario);
         let notaFinal = (acertos / respostasCorretas.length) * 10;
+        notaFinal = notaFinal.toFixed(2)
 
-        nota.textContent = `Nota: ${notaFinal.toFixed(2)}`;
+        nota.textContent = `Nota: ${notaFinal}`;
         finalizado = true;
         btnFinalizar.disabled = true;
+        alert(`Sua nota nessa atividade foi: ${notaFinal}`)
+        await finalizarAtividade(atividade, notaFinal, false);
     })
 
     function validarAcertos(respostasUsuario) {

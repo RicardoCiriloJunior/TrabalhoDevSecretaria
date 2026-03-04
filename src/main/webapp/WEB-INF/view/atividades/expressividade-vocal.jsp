@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Expressividade Vocal Avançada</title>
-    <script src="<%=request.getContextPath()%>/assets/js/timer.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/CalculoNota.js"></script>
+    <script type="module" src="<%=request.getContextPath()%>/assets/js/timer.js"></script>
+    <script type="module" src="<%=request.getContextPath()%>/assets/js/CalculoNota.js"></script>
     <script type="module" src="<%=request.getContextPath()%>/assets/js/audio.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/atividades/expressividade-vocal.css">
@@ -21,6 +21,9 @@
 <body>
 <jsp:include page="../components/sidebarAluno.jsp">
     <jsp:param name="tabActive" value="materias"/>
+</jsp:include>
+<jsp:include page="../components/informacoesAtividade.jsp">
+    <jsp:param name="idDisciplina" value=""/>
 </jsp:include>
     <main>
         <h1 class="title">Expressividade Vocal Avançada</h1>

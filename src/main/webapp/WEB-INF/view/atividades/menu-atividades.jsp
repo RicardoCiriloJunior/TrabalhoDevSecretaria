@@ -1,4 +1,3 @@
-<%@ page import="java.sql.Time" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
@@ -37,7 +36,7 @@
                             alt="bichinho-gritando" class="imagem-materia"></div>
                 </div>
             </div>
-            <div class="materia" id="tecnologia" data-pagina="quebra-cabeca.html">
+            <div class="materia" id="tecnologia" data-pagina="<%=request.getContextPath()%>/redirecionar?page=tecnologiaAtividade">
                 <h3 class="titulo-materia">Tecnologia de Portais Interdimensionais</h3>
                 <div class="descricao-imagem">
                     <p class="descricao-materia">Monte sua própria porta interdimensional!</p>

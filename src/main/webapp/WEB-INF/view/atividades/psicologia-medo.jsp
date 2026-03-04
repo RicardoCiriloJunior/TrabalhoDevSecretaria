@@ -20,6 +20,9 @@
 <jsp:include page="../components/sidebarAluno.jsp">
     <jsp:param name="tabActive" value="materias"/>
 </jsp:include>
+<jsp:include page="../components/informacoesAtividade.jsp">
+    <jsp:param name="idDisciplina" value=""/>
+</jsp:include>
     <main>
         <h1 class="title">Psicologia do Medo Infantil</h1>
         <section class="atividade-quiz-container">
@@ -28,9 +31,7 @@
                 <h2 id="titulo-quiz">QUIZ</h2>
             </div>
             <div id="quiz-container">
-                <p id="pergunta">Na psicologia do desenvolvimento, como é chamado o fenômeno comum entre os 3 e 6 anos
-                    em que a criança tem dificuldade de distinguir entre fantasia e realidade, acreditando que monstros
-                    de filmes ou histórias podem realmente aparecer no seu quarto?</p>
+                <p id="pergunta">Quais dessas fobias NÃO são comuns em crianças?</p>
                 <div id="alternativas-container">
                     <button class="btn-alternativa" value="a">A) <span class="alternativa">Realismo Nominal</span></button>
                     <button class="btn-alternativa" value="b">B) <span class="alternativa">Pensamento Mágico</span></button>

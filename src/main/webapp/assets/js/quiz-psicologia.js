@@ -1,6 +1,9 @@
 import { perguntas } from "./perguntas-quiz-psicologia.js";
+import {validarAtividade, finalizarAtividade} from "./gerenciarAtividadeFeita.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const atividade = "Psicologia do Medo Infantil";
+    validarAtividade(atividade);
 
     const perguntaContainer = document.getElementById("pergunta");
     const perguntaAtualContainer = document.getElementById("pergunta-atual");
@@ -21,13 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     btnVoltar.addEventListener("click", () => {
         atualizarTudo(indiceAtual - 1)
     })
-    btnFinalizar.addEventListener("click", () => {
+    btnFinalizar.addEventListener("click", async () => {
         atribuirNota();
         perguntaContainer.textContent = `Sua nota final é: ${Math.floor(nota).toFixed(2)}`;
-        console.log(alternativasSelecionadas);
-        console.log(alternativasCorretas);
         document.getElementById("alternativas-container").remove();
         document.getElementById("trocar-pergunta-container").remove();
+        await finalizarAtividade(atividade, nota, false)
     })
 
     btnsAlternativa.forEach((btn) => {

@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String redirectPath = request.getContextPath() + "/redirecionar?page="; %>
+<html>
+<header>
+    <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
+</header>
 <aside class="sidebar">
     <h1 class="aluno">Aluno</h1>
 
@@ -26,3 +30,4 @@
         <a class="sidebar-link ${param.tabActive == 'materias' ? "active" : ""}" href="<%=redirectPath%>materiasAluno" >Matérias</a>
     </nav>
 </aside>
+</html>
