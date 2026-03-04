@@ -46,10 +46,10 @@ public class LoginController extends HttpServlet {
                     System.out.println("Aluno logado!");
                     session.setAttribute("alunoNome", aluno.getNome());
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
-                    resp.sendRedirect(req.getContextPath() + "/home");  // ✅ redireciona
+                    resp.sendRedirect(req.getContextPath() + "/aluno/inicio");
                 } else {
                     req.setAttribute("erro", "Credenciais inválidas!");
-                    req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
 
             } else {

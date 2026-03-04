@@ -21,9 +21,9 @@
          alt="Monsters University Logo" class="logo">
 
     <h1>Bem-Vindo(a)!</h1>
-    <p class="subtitle">Insira suas credenciais para acessar sua conta.</p>
+    <p class="subtitle">Administrador</p>
 
-    <form action="login" method="post">
+    <form action="admLogin" method="post">
         <input type="email" name="email" placeholder="Endereço de email" required>
         <input type="password" name="senha" placeholder="Senha" required>
 
@@ -32,7 +32,7 @@
 
         <div class="links">
             <a href="cadastro.jsp">Crie uma conta</a>
-            <a href="admLogin.jsp">É um administrador?</a>
+            <a href="index.jsp">Não é um administrador?</a>
         </div>
     </form>
 

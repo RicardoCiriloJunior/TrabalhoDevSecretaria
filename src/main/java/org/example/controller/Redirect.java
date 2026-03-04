@@ -15,7 +15,7 @@ public class Redirect extends HttpServlet {
         String page = req.getParameter("page");
 
         switch (page) {
-            case "inicioAluno" -> redirecionar("/WEB-INF/view/aluno/inicio.jsp", req, resp);
+            case "inicioAluno" -> redirecionar("WEB-INF/view/aluno/inicio.jsp", req, resp);
             case "boletimAluno" -> redirecionar("WEB-INF/view/aluno/boletim.jsp", req, resp);
             case "tarefasAluno" -> redirecionar("WEB-INF/view/aluno/tarefas.jsp", req, resp);
             case "materiasAluno" -> redirecionar("WEB-INF/view/atividades/menu-atividades.jsp", req, resp);
