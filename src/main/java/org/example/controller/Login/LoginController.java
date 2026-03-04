@@ -13,22 +13,24 @@ import org.example.service.AlunoService;
 
 import java.io.IOException;
 
-@WebServlet(name = "loginServlet", urlPatterns = {"/login"})
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
 
     private AlunoService alunoService;
     private ProfessorService professorService;
 
+
+
     @Override
-    public void init() throws ServletException {
-        alunoService = new AlunoService();
-        professorService = new ProfessorService();
+    public void init () throws ServletException {
+        this.alunoService = new AlunoService();
+        this.professorService = new ProfessorService();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String email = req.getParameter("nome");
+        String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
         HttpSession session = req.getSession();
@@ -39,10 +41,9 @@ public class LoginController extends HttpServlet {
                 Aluno aluno = alunoService.loginAluno(email, senha);
 
                 if (aluno != null) {
-                    System.out.println("Aluno logado!");
                     session.setAttribute("alunoNome", aluno.getNome());
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
-                    resp.sendRedirect(req.getContextPath() + "/aluno/inicio");
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
                     req.setAttribute("erro", "Credenciais inválidas!");
                     req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -52,13 +53,12 @@ public class LoginController extends HttpServlet {
                 Professor professor = professorService.loginProfessor(email, senha);
 
                 if (professor != null) {
-                    System.out.println("Professor logado!");
                     session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
-                    resp.sendRedirect(req.getContextPath() + "/home");
+                    resp.sendRedirect (req.getContextPath () + "/redirecionar?page=inicioProfessor");
                 } else {
                     req.setAttribute("erro", "Credenciais inválidas!");
-                    req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
             }
 

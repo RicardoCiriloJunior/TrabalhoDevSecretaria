@@ -23,7 +23,7 @@
     <h1>Bem-Vindo(a)!</h1>
     <p class="subtitle">Insira suas credenciais para acessar sua conta.</p>
 
-    <form action="login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <input type="email" name="email" placeholder="Endereço de email" required>
         <input type="password" name="senha" placeholder="Senha" required>
 
@@ -32,7 +32,6 @@
 
         <div class="links">
             <a href="cadastro.jsp">Crie uma conta</a>
-            <a href="admLogin.jsp">É um administrador?</a>
         </div>
     </form>
 
