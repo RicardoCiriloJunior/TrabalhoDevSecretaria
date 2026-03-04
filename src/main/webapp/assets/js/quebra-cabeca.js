@@ -312,7 +312,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return 0;
     } 
     else {
-      return 10 - Math.round((totalSegundos - 20) / 2);
+      let nota = 10 - Math.round((totalSegundos - 20) / 2)
+      return nota >= 0 ? nota : 0;
     }
   }
 });
