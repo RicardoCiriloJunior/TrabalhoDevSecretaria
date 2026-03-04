@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Enviar Observação</title>
-    <link rel="stylesheet" href="assets/css/professor/enviarObs.css">
+    <link rel="stylesheet" href="../../../assets/css/professor/enviarObs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>

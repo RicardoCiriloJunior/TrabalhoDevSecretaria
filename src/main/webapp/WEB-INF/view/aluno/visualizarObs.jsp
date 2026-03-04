@@ -20,8 +20,8 @@
 
 <div class="layout">
 
-    <jsp:include page="WEB-INF/view/components/sidebarAluno.jsp" >
-        <jsp:param name="tabActive" value="Observações"/>
+    <jsp:include page="../components/sidebarAluno.jsp" >
+        <jsp:param name="tabActive" value="visualizarObs"/>
     </jsp:include>
     <!-- CONTENT -->
     <main class="content">
@@ -99,6 +99,6 @@
     </main>
 </div>
 
-<script src="obs.js"></script>
+<script src="/assets/js/obs.js"></script>
 </body>
 </html>
