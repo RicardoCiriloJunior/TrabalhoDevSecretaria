@@ -68,10 +68,7 @@ public class AlunoService {
         aluno.setSenha(senhaCripto);
         return alunoRepository.save (aluno) != null; }
 
-    public boolean emailValidoParaAluno(String email) {
-        boolean formatoValido = email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
-        return formatoValido && !email.endsWith("@monstrossa.com");
-    }
+
     public int countAluno(){
         return alunoRepository.countAluno();
     }
