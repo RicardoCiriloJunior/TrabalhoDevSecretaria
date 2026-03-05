@@ -36,7 +36,7 @@ public class CadastroAlunoController extends HttpServlet {
 
         if (!Verificacao.validarCpf(cpf)) {
             System.out.println("O cpf está incorreto!");
-            req.setAttribute("erroCpf", "Ops! O cpf está incorreto!");
+            req.setAttribute("erroCpf", "Precisa ser um cpf válido!");
             req.setAttribute("nome", nome);
             req.setAttribute("email", email);
             req.setAttribute("senha", senha);
@@ -44,7 +44,7 @@ public class CadastroAlunoController extends HttpServlet {
             return;
         } else if (!Verificacao.validarEmail(email)) {
             System.out.println("O email está incorreto!");
-            req.setAttribute("erroEmail", "Ops! O email está incorreto!");
+            req.setAttribute("erroEmail", "Precisa ser um email válido!");
             req.setAttribute("nome", nome);
             req.setAttribute("cpf", cpf);
             req.setAttribute("email", email);
