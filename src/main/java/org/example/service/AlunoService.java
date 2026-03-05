@@ -21,7 +21,7 @@ public class AlunoService {
 
     public Aluno loginAluno(String email, String senha) {
             Aluno aluno = alunoRepository.findByEmail (email);
-            if (Senhas.verificar(senha,aluno.getSenha()) || aluno != null){
+            if ( aluno != null && Senhas.verificar(senha,aluno.getSenha())){
                 return aluno;
             }
             return null;
