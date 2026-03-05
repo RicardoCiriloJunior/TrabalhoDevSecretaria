@@ -11,8 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Monsters University</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css"></head>
 <body>
 
 <div class="container">
@@ -26,6 +25,12 @@
     <form action="admLogin" method="post">
         <input type="email" name="email" placeholder="Endereço de email" required>
         <input type="password" name="senha" placeholder="Senha" required>
+
+        <% if (request.getAttribute("erroLogin") != null) { %>
+        <div class="erro-mensagem">
+            <%= request.getAttribute("erroLogin") %>
+        </div>
+        <% } %>
 
 
         <button type="submit">Login</button>

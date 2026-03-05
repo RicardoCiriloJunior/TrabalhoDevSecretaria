@@ -10,6 +10,7 @@ import org.example.model.Aluno;
 import org.example.model.Professor;
 import org.example.service.ProfessorService;
 import org.example.service.AlunoService;
+import org.example.util.Verificacao;
 
 import java.io.IOException;
 
@@ -36,7 +37,7 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession();
 
         try {
-            if (alunoService.emailValidoParaAluno(email)) {
+            if (Verificacao.validarEmail(email)) {
 
                 Aluno aluno = alunoService.loginAluno(email, senha);
 
@@ -46,8 +47,7 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("matriculaAluno", aluno.getMatricula());
                     resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
-                    System.out.println("Deu erro");
-                    req.setAttribute("erro", "Credenciais inválidas!");
+                    req.setAttribute("erroLogin", "Credenciais inválidas!");
                     req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
 
@@ -60,12 +60,14 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
                     resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
-                    req.setAttribute("erro", "Credenciais inválidas!");
-                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
+                    req.setAttribute("erroLogin", "Credenciais inválidas!");
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
                 }
             }
 
         } catch (Exception e) {
+            req.setAttribute("erroLogin", "Credenciais inválidas!");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
             e.printStackTrace();
         }
     }

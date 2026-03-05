@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.example.model.Aluno;
 import org.example.util.GeradorUUID;
 import org.example.service.AlunoService;
+import org.example.util.Verificacao;
 
 import java.io.IOException;
 
@@ -16,11 +17,13 @@ public class CadastroAlunoController extends HttpServlet {
 
     private AlunoService alunoService;
     private GeradorUUID geradorUUID;
+    private Verificacao verificacao;
 
     @Override
     public void init() throws ServletException {
         alunoService = new AlunoService();
         geradorUUID = new GeradorUUID();
+        verificacao =  new Verificacao();
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,13 +34,40 @@ public class CadastroAlunoController extends HttpServlet {
         String senha = req.getParameter("senha");
         String confirmaSenha = req.getParameter("confirmarSenha");
 
-        if (!senha.equals(confirmaSenha)) {
-            req.setAttribute("erro", "Confirmar senha está incorreto!");
-            req.getRequestDispatcher("/WEB-INF/view/cadastro.jsp").forward(req, resp);
+        if (!Verificacao.validarCpf(cpf)) {
+            System.out.println("O cpf está incorreto!");
+            req.setAttribute("erroCpf", "Ops! O cpf está incorreto!");
+            req.setAttribute("nome", nome);
+            req.setAttribute("email", email);
+            req.setAttribute("senha", senha);
+            req.getRequestDispatcher("/cadastro.jsp").forward(req, resp);
             return;
-        } else if (!alunoService.emailValidoParaAluno(email)) {
-            req.setAttribute("erro", "O email está incorreto!");
-            req.getRequestDispatcher("/WEB-INF/view/cadastro.jsp").forward(req, resp);
+        } else if (!Verificacao.validarEmail(email)) {
+            System.out.println("O email está incorreto!");
+            req.setAttribute("erroEmail", "Ops! O email está incorreto!");
+            req.setAttribute("nome", nome);
+            req.setAttribute("cpf", cpf);
+            req.setAttribute("email", email);
+            req.setAttribute("senha", senha);
+            req.getRequestDispatcher("/cadastro.jsp").forward(req, resp);
+            return;
+        } else if (!Verificacao.validarSenha(senha)){
+            System.out.println("A senha está incorreta!");
+            req.setAttribute("erroSenha", "Ops! A senha está incorreta! Ela precisa ter no mínimo 8 dígitos e um número");
+            req.setAttribute("nome", nome);
+            req.setAttribute("cpf", cpf);
+            req.setAttribute("email", email);
+            req.setAttribute("senha", senha);
+            req.getRequestDispatcher("/cadastro.jsp").forward(req, resp);
+            return;
+        } else if (!senha.equals(confirmaSenha)) {
+            System.out.println("A senha está incorreta!");
+            req.setAttribute("erroSenha", "Ops! A senha está incorreta!");
+            req.setAttribute("nome", nome);
+            req.setAttribute("cpf", cpf);
+            req.setAttribute("email", email);
+            req.setAttribute("senha", senha);
+            req.getRequestDispatcher("/cadastro.jsp").forward(req, resp);
             return;
         }
 

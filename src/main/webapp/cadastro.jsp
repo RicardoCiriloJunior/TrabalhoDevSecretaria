@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Cadastro - Monsters University</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/cadastro.css">
-</head
+</head>
 <body>
 
 <div class="container">
@@ -25,10 +25,46 @@
 
 
     <form action="cadastro" method="post">
-        <input type="text" name="nome" placeholder="Nome Completo" required>
-        <input type="text" name="cpf" placeholder="CPF" required>
-        <input type="email" name="email" placeholder="Endereço de email" required>
-        <input type="password" name="senha" placeholder="Senha" required>
+        <input type="text" name="nome" placeholder="Nome Completo"
+               value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>"
+               required />
+        <input
+                type="text"
+                name="cpf"
+                placeholder="CPF"
+                class="<%= request.getAttribute("erroCpf") != null ? "input-erro" : "" %>"
+                value="<%= request.getAttribute("cpf") != null ? request.getAttribute("cpf") : "" %>"
+                required />
+        <% if (request.getAttribute("erroCpf") != null) { %>
+        <div class="erro-mensagem">
+            <%= request.getAttribute("erroCpf") %>
+        </div>
+        <% } %>
+        <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="<%= request.getAttribute("erroEmail") != null ? "input-erro" : "" %>"
+                value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"
+                required />
+        <% if (request.getAttribute("erroEmail") != null) { %>
+        <div class="erro-mensagem">
+            <%= request.getAttribute("erroEmail") %>
+
+        </div>
+        <% } %>
+        <input
+                type="password"
+                name="senha"
+                placeholder="Digite sua senha: "
+                class="<%= request.getAttribute("erroSenha") != null ? "input-erro" : "" %>"
+                value="<%= request.getAttribute("senha") != null ? request.getAttribute("senha") : "" %>"
+                required />
+        <% if (request.getAttribute("erroSenha") != null) { %>
+        <div class="erro-mensagem">
+            <%= request.getAttribute("erroSenha") %>
+        </div>
+        <% } %>
         <input type="password" name="confirmarSenha" placeholder="Confirmar Senha" required>
 
         <button type="submit">Cadastre-se</button>

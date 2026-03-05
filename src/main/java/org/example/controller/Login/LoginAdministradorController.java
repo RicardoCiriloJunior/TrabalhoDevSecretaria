@@ -27,8 +27,8 @@ public class LoginAdministradorController extends HttpServlet {
         String senha = req.getParameter("senha");
 
         if(nome.isEmpty() || nome == null || senha.isEmpty() || senha == null){
-            req.setAttribute("erro", "Preencha todos os campos!");
-            return;
+            req.setAttribute("erroLogin", "Credenciais inválidas!");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
 
         Administrador adm = new Administrador(nome, senha);
@@ -39,6 +39,8 @@ public class LoginAdministradorController extends HttpServlet {
 
 
         }catch (Exception e){
+            req.setAttribute("erroLogin", "Credenciais inválidas!");
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
             e.printStackTrace();
         }
     }
