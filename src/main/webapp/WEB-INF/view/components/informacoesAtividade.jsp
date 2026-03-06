@@ -13,7 +13,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="<%=request.getContextPath()%>/assets/js/gerenciarAtividadeFeita.js"></script>
+    <script defer type="module" src="<%=request.getContextPath()%>/assets/js/gerenciarAtividadeFeita.js"></script>
 </head>
 <body>
     <div id="informacoes"

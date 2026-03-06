@@ -2,7 +2,6 @@ const informacoes = document.getElementById('informacoes');
 const matricula = informacoes.getAttribute('data-matricula');
 const idDisciplina = Number(informacoes.getAttribute('data-idDisciplina'));
 
-const BASE_URL = "http"
 export function validarAtividade(atividade) {
     const notaAtividade = localStorage.getItem(atividade) ?? "";
     if (notaAtividade.trim().length > 0) {

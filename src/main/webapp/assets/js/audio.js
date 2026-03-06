@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function measureVolume() {
         if (!isMeasuring || !analyser) return;
-
         analyser.getByteTimeDomainData(dataArray);
 
         let sum = 0;
@@ -128,10 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const value = (dataArray[i] - 128) / 128;
             sum += value * value;
         }
-
         const rms = Math.sqrt(sum / bufferLength);
         totalMeasurements++;
-        if (rms >= 0.35) score++;
+        if (rms >= 0.25) score++;
 
         requestAnimationFrame(measureVolume);
     }

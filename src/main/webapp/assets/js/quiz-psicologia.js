@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     function atualizarTudo(indice){
-        console.log(indice);
         if (indice >= perguntas.length || indice < 0) {
             return
         } else if (indice == 0) {
