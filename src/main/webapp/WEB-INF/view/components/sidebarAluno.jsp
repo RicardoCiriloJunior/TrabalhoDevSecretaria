@@ -25,7 +25,7 @@
 
     <nav class="nav">
         <a class="sidebar-link ${param.tabActive == 'inicio' ? "active" : ""}" href="<%=redirectPath%>inicioAluno">Início</a>
-        <a class="sidebar-link ${param.tabActive == 'boletim' ? "active" : ""}" href="<%=redirectPath%>boletimAluno" >Boletim</a>
+        <a class="sidebar-link ${param.tabActive == 'boletim' ? "active" : ""}" href="<%=request.getContextPath()%>/aluno/boletim" >Boletim</a>
         <a class="sidebar-link ${param.tabActive == 'tarefas' ? "active" : ""}" href="<%=redirectPath%>tarefasAluno" >Tarefas</a>
         <a class="sidebar-link ${param.tabActive == 'materias' ? "active" : ""}" href="<%=redirectPath%>materiasAluno" >Matérias</a>
         <a class="sidebar-link ${param.tabActive == 'visualizarObs' ? "active" : ""}" href="<%=redirectPath%>visualizarObsAluno" >Observações</a>

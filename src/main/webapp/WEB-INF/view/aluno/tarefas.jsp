@@ -113,13 +113,13 @@
     <div class="modal-content">
         <h3>Nova Tarefa</h3>
         <div class="custom-select" id="select-materia">
-            <div class="select-selected">Selecione a Matéria ˇ</div>
-            <div class="select-items select-hide">
-                <div>Psicologia do Medo Infantil</div>
-                <div>Expressividade Vocal Avançada</div>
-                <div>Engenharia de Sustos e Rendimento Energético</div>
-                <div>Tecnologia de Portais Interdimensionais</div>
-            </div>
+            <select class="select-items select-hide" id="selecao-materia">
+                <option value="" disabled selected>Selecione um curso</option>
+                <option value="Psicologia do Medo Infantil">Psicologia do Medo Infantil</option>
+                <option value="Expressividade Vocal Avançada">Expressividade Vocal Avançada</option>
+                <option value="Engenharia de Sustos e Rendimento Energético">Engenharia de Sustos e Rendimento Energético</option>
+                <option value="Tecnologia de Portais Interdimensionais">Tecnologia de Portais Interdimensionais</option>
+            </select>
         </div>
         <input type="text" id="input-titulo" placeholder="Título: Lição de susto">
         <input type="date" id="input-data">

@@ -20,12 +20,11 @@
 
     <div class="info-aluno">
         <div class="col-esquerda">
-            <p><strong>ALUNO(A):</strong> Gabriella Rodrigues Reis Silva</p>
-            <p><strong>TURMA:</strong> 2ª Série I Tech</p>
+            <p><strong>ALUNO(A):</strong> <%= request.getAttribute ("nome") %>> </p>
         </div>
         <div class="col-direita">
             <p><strong>ANO LETIVO:</strong> 2026</p>
-            <p><strong>SITUAÇÃO FINAL:</strong> <span class="status-destaque">Aprovado</span></p>
+            <p><strong>SITUAÇÃO FINAL:</strong> <span class="status-destaque"><%= request.getAttribute("situacaoFinal") %></span></p>
         </div>
     </div>
 
@@ -43,34 +42,34 @@
         <tbody>
             <tr>
                 <td>Psicologia do Medo Infantil</td>
-                <td>7.5</td>
-                <td>8.35</td>
-                <td>8.06</td>
-                <td><span class="status-aprovado">Aprovado</span></td>
+                <td><%= request.getAttribute("nota1M1") %></td>
+                <td><%= request.getAttribute("nota2M1") %></td>
+                <td><%= request.getAttribute("media1") %></td>
+                <td><span class="status-aprovado"><%= request.getAttribute("situacao1") %></span></td>
             </tr>
 
             <tr>
                 <td>Expressividade Vocal Avançada</td>
-                <td>9.75</td>
-                <td>9.15</td>
-                <td>9.35</td>
-                <td><span class="status-aprovado">Aprovado</span></td>
+                <td><%= request.getAttribute("nota1M2") %></td>
+                <td><%= request.getAttribute("nota2M2") %></td>
+                <td><%= request.getAttribute("media2") %></td>
+                <td><span class="status-aprovado"><%= request.getAttribute("situacao2") %></span></td>
             </tr>
 
             <tr>
                 <td>Engenharia de Sustos e Rendimento Energético</td>
-                <td>8.62</td>
-                <td>8.27</td>
-                <td>8.38</td>
-                <td><span class="status-aprovado">Aprovado</span></td>
+                <td><%= request.getAttribute("nota1M3") %></td>
+                <td><%= request.getAttribute("nota2M3") %></td>
+                <td><%= request.getAttribute("media3") %></td>
+                <td><span class="status-aprovado"><%= request.getAttribute("situacao3") %></span></td>
             </tr>
 
             <tr>
                 <td>Tecnologia de Portais Interdimensionais</td>
-                <td>8.0</td>
-                <td>8.15</td>
-                <td>8.76</td>
-                <td><span class="status-aprovado">Aprovado</span></td>
+                <td><%= request.getAttribute("nota1M4") %></td>
+                <td><%= request.getAttribute("nota2M4") %></td>
+                <td><%= request.getAttribute("media4") %></td>
+                <td><span class="status-aprovado"><%= request.getAttribute("situacao4") %></span></td>
             </tr>
         </tbody>
     </table>
