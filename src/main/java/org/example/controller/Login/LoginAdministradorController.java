@@ -23,26 +23,24 @@ public class LoginAdministradorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nome = req.getParameter("nome");
+        String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        if(nome.isEmpty() || nome == null || senha.isEmpty() || senha == null){
+        if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            return;
         }
 
-        Administrador adm = new Administrador(nome, senha);
+        Administrador adm = new Administrador(email, senha);
 
-        try{
+        try {
             administradorService.entrarNaConta(adm);
-            resp.sendRedirect(req.getContextPath() + "");
-
-
-        }catch (Exception e){
+            System.out.println("deu certo");
+            req.getRequestDispatcher("/WEB-INF/view/administrador/addProfessor.jsp").forward(req, resp);
+        } catch (Exception e) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
             e.printStackTrace();
         }
-    }
-}
-
+    }}

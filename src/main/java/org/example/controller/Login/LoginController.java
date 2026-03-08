@@ -52,13 +52,13 @@ public class LoginController extends HttpServlet {
                 }
 
             } else {
-                Professor professor = professorService.loginProfessor(email, senha);
+                Professor professor = professorService.loginprofessor(email, senha);
 
                 if (professor != null) {
                     System.out.println("Professor logado!");
                     session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
-                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
+                    req.getRequestDispatcher("/WEB-INF/view/professor/inicio.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("erroLogin", "Credenciais inválidas!");
                     req.getRequestDispatcher("/index.jsp").forward(req, resp);

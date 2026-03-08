@@ -22,7 +22,7 @@
     <h1>Bem-Vindo(a)!</h1>
     <p class="subtitle">Administrador</p>
 
-    <form action="admLogin" method="post">
+    <form action="<%=request.getContextPath()%>/admLogin" method="post">
         <input type="email" name="email" placeholder="Endereço de email" required>
         <input type="password" name="senha" placeholder="Senha" required>
 

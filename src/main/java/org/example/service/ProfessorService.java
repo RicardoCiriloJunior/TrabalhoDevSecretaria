@@ -71,10 +71,10 @@ public class ProfessorService {
         return professorRepository.update(professor);
     }
 
-    public Professor loginProfessor(String email, String senha) {
-        String senhaCripto = Senhas.gerarHash(senha);
-        if (email.matches("^.*@.*\\.com")) {
-            return professorRepository.findByLogin(email, senhaCripto);
+    public Professor loginprofessor(String email, String senha) {
+        Professor professor = professorRepository.findByEmail (email);
+        if ( professor != null && Senhas.verificar(senha,professor.getSenha())){
+            return professor;
         }
         return null;
     }

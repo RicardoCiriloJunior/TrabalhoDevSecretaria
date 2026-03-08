@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
         </div>
         <nav class="navegacao-admin">
             <a href="WEB-INF\view\aluno\inicio.jsp">Alunos</a>
-            <a href="WEB-INF\view\professor\inicio.jsp" class="item-ativo">Professores</a>
+            <a href=" <%=request.getContextPath()%>/WEB-INF/view/administrador/addProfessor.jsp" class="item-ativo">Professores</a>
         </nav>
     </header>
 
