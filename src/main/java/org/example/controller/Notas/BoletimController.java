@@ -91,7 +91,7 @@ public class BoletimController extends HttpServlet {
                 req.setAttribute ("situacaoFinal", "Reprovado");
             }
 
-            req.getRequestDispatcher("WEB-INF/view/aluno/boletim.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/view/aluno/boletim.jsp").forward(req, resp);
         }
 
 

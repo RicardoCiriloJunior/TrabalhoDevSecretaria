@@ -20,7 +20,7 @@
 
     <div class="info-aluno">
         <div class="col-esquerda">
-            <p><strong>ALUNO(A):</strong> <%= request.getAttribute ("nome") %>> </p>
+            <p><strong>ALUNO(A):</strong> <%= request.getAttribute ("nome") %> </p>
         </div>
         <div class="col-direita">
             <p><strong>ANO LETIVO:</strong> 2026</p>
