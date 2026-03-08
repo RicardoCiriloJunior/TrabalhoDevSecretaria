@@ -6,8 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.example.controller.Redirect;
-import org.example.model.Aluno;
+import org.example.model.Notas;
 import org.example.service.AlunoService;
 import org.example.service.NotasService;
 
@@ -28,20 +27,31 @@ public class BoletimController extends HttpServlet {
 
         if (aluno == null){
             resp.sendRedirect (req.getContextPath ());
-        }else {
+        }
+        else {
             req.setAttribute ("nome", alunoService.encontrarAlunoPorMatricula (aluno).getNome ());
 
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,2) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,2).getNota () : 0);
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,2) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,2).getNota2 () : 0);
+            Notas nota1 = notasService.encontrarPoridDisciplinaMatricula (aluno,2);
 
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,3) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,3).getNota () : 0);
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,3) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,3).getNota2 () : 0);
+            Notas nota2 = notasService.encontrarPoridDisciplinaMatricula (aluno,3);
 
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,4) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,4).getNota () : 0);
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,4) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,4).getNota2 () : 0);
+            Notas nota3 = notasService.encontrarPoridDisciplinaMatricula (aluno,4);
 
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,1) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,1).getNota () : 0);
-            req.setAttribute ("nota1M1", notasService.encontrarPoridDisciplinaMatricula (aluno,1) != null ? notasService.encontrarPoridDisciplinaMatricula (aluno,1).getNota2 () : 0);
+            Notas nota4 = notasService.encontrarPoridDisciplinaMatricula (aluno,1);
+
+
+
+            req.setAttribute ("nota1M1", nota1 != null ? nota1.getNota () : 0);
+            req.setAttribute ("nota2M1", nota1 != null ? nota1.getNota2 () : 0);
+
+            req.setAttribute ("nota1M2", nota2 != null ? nota2.getNota () : 0);
+            req.setAttribute ("nota2M2", nota2 != null ? nota2.getNota2 () : 0);
+
+            req.setAttribute ("nota1M3", nota3 != null ? nota3.getNota () : 0);
+            req.setAttribute ("nota2M3", nota3 != null ? nota3.getNota2 () : 0);
+
+            req.setAttribute ("nota1M4", nota4 != null ? nota4.getNota () : 0);
+            req.setAttribute ("nota2M4", nota4 != null ? nota4.getNota2 () : 0);
 
 
             int cont = 0;
@@ -80,6 +90,8 @@ public class BoletimController extends HttpServlet {
             }else {
                 req.setAttribute ("situacaoFinal", "Reprovado");
             }
+
+            req.getRequestDispatcher("WEB-INF/view/aluno/boletim.jsp").forward(req, resp);
         }
 
 
