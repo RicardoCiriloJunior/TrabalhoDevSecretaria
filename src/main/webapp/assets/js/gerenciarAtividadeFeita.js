@@ -1,6 +1,10 @@
 const informacoes = document.getElementById('informacoes');
 const matricula = informacoes.getAttribute('data-matricula');
-const idDisciplina = Number(informacoes.getAttribute('data-idDisciplina'));
+console.log(matricula)
+console.log(informacoes.getAttribute('data-id_disciplina'));
+const idDisciplina = Number(informacoes.getAttribute('data-id_disciplina'));
+console.log(idDisciplina);
+console.log(informacoes.dataset.id_disciplina);
 
 export function validarAtividade(atividade) {
     const notaAtividade = localStorage.getItem(atividade) ?? "";

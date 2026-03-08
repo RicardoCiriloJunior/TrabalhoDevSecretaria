@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -12,6 +13,12 @@ import java.io.IOException;
 public class Redirect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Object matriculaAlunoObject = session.getAttribute("matriculaAluno");
+        if (matriculaAlunoObject == null) {
+            resp.sendRedirect("/");
+            return;
+        }
         String page = req.getParameter("page");
 
         switch (page) {
