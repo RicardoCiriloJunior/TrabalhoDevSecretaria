@@ -18,7 +18,7 @@ public class NotasRepository {
 
     public NotasRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
     public Long save (Notas notas) {
-        String sql = "INSERT INTO notas (nota,nota2, matricula, id_disciplina) VALUES (?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO notas (nota,nota2, matricula, id_disciplina) VALUES (?, ?, ?, ?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement (sql)){
