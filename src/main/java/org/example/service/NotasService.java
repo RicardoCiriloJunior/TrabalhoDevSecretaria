@@ -37,21 +37,11 @@ public class NotasService {
         return notasRepository.update (nota);
     }
 
-//    public boolean deletarNota(String matricula, long idDiscplina){
-//
-//    }
-
-//    public List<Notas> filtrarPorNota (double nota){
-//        return notasRepository.findByNota (nota);
-//    }
 
     public List<Notas> filtrarPorDisciplina (String disciplina){
         long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
         return notasRepository.findByIdDisciplina (idDisciplina);
     }
-//    public Nota filtrarPorMatriculaEDisciplina(String matricula, long idDisciplina) {
-//
-//    }
     public List<Media> media(long idDisciplina){
         return notasRepository.calcularMediaPorDisciplina(idDisciplina);
     }
