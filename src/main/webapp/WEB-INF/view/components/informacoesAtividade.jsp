@@ -19,6 +19,6 @@
     <div id="informacoes"
          style="position: fixed; right: 0; top: 0; opacity: 100%"
          data-matricula="<%=matricula%>"
-         data-idDiscplina="${param.idDisciplina}"></div>
+         data-id_disciplina="${param.idDisciplina}"></div>
 </body>
 </html>
