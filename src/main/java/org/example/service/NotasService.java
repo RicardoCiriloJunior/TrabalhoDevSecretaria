@@ -18,26 +18,40 @@ public class NotasService {
 
     public List<Notas> listarTodas (){return notasRepository.findAll ();}
 
-    public boolean atribuirNota(Notas nota){return notasRepository.save (nota) != 0;}
+    public boolean atribuirNota(double nota, String matricula, long idDisciplina){
+        Notas notasExistentes = notasRepository.findByMatriculaAndDisciplina(matricula, idDisciplina);
+        if (notasExistentes == null) {
+            Notas notas = new Notas(0, nota, matricula, idDisciplina);
+            return notasRepository.save(notas) != null;
+        } else if (nota != notasExistentes.getNota2()) {
+            notasExistentes.setNota2(nota);
+            return notasRepository.update(notasExistentes);
+        } else if (nota == notasExistentes.getNota2()) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean alterarNota(Notas nota, double valor){
         nota.setNota (valor);
         return notasRepository.update (nota);
     }
 
-    public boolean deletarNota(String matricula){
-        String aluno = notasRepository.findByMatricula (matricula).getMatricula ();
-        return notasRepository.deleteByMatricula (aluno);
-    }
+//    public boolean deletarNota(String matricula, long idDiscplina){
+//
+//    }
 
-    public List<Notas> filtrarPorNota (double nota){
-        return notasRepository.findByNota (nota);
-    }
+//    public List<Notas> filtrarPorNota (double nota){
+//        return notasRepository.findByNota (nota);
+//    }
 
     public List<Notas> filtrarPorDisciplina (String disciplina){
         long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
         return notasRepository.findByIdDisciplina (idDisciplina);
     }
+//    public Nota filtrarPorMatriculaEDisciplina(String matricula, long idDisciplina) {
+//
+//    }
     public List<Media> media(long idDisciplina){
         return notasRepository.calcularMediaPorDisciplina(idDisciplina);
     }
