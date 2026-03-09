@@ -32,7 +32,7 @@
         <!-- CARD QUANTIDADE -->
         <div class="info-card">
             <p>Quantidade de alunos</p>
-            <h2>30</h2>
+            <h2>${totalAlunos}</h2>
         </div>
 
         <!-- TÍTULO + BUSCA -->
