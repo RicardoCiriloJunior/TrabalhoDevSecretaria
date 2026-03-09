@@ -35,10 +35,10 @@
         <!-- TÍTULO + BUSCA -->
         <div class="top-table">
             <h3>Alunos</h3>
-            <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar">
-            </div>
+            <form class="search" action="<%=request.getContextPath()%>/professor/lancarNotas" method="get">
+                <button class="fa-solid fa-magnifying-glass" type="submit"></button>
+                <input type="text" name="busca" placeholder="Buscar">
+            </form>
         </div>
 
         <!-- TABELA -->
@@ -98,6 +98,6 @@
     </main>
 </div>
 
-<script src="/assets/js/popup.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/popup.js"></script>
 </body>
 </html>
