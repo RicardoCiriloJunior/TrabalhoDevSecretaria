@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
                     System.out.println("Professor logado!");
                     session.setAttribute("professorNome", professor.getNome());
                     session.setAttribute("idDisciplina", professor.getId_disciplina());
-                    req.getRequestDispatcher("/WEB-INF/view/professor/inicio.jsp").forward(req, resp);
+                    resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioProfessor");
                 } else {
                     req.setAttribute("erroLogin", "Credenciais inválidas!");
                     req.getRequestDispatcher("/index.jsp").forward(req, resp);

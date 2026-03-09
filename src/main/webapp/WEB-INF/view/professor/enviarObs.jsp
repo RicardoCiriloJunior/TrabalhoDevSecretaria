@@ -19,25 +19,9 @@
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <h1 class="teacher">Professor</h1>
-
-        <hr class="hr">
-
-        <div class="user">
-            <div class="avatar">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <span>Administrador</span>
-        </div>
-
-        <nav class="nav">
-            <a class="active"><i class="fa-solid fa-house"></i> Início</a>
-            <a class="active"><i class="fa-solid fa-pen"></i> Lançar notas</a>
-            <a class="active"><i class="fa-solid fa-envelope"></i> Enviar Observações</a>
-        </nav>
-    </aside>
+    <jsp:include page="../components/sidebarProfessor.jsp">
+        <jsp:param name="tabActive" value="enviarObs"/>
+    </jsp:include>
 
     <!-- CONTEÚDO -->
     <main class="content">

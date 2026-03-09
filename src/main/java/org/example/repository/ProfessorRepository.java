@@ -19,7 +19,7 @@ public class ProfessorRepository {
     public ProfessorRepository (ConnectionFactory connectionFactory) {this.connectionFactory = connectionFactory;}
 
     public boolean update(Professor professor){
-        String sql = "UPDATE professor SET nome = ?, usuario = ?, senha = ?, id_disciplina = ?, cpf= ? WHERE id = ?";
+        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, id_disciplina = ?, cpf= ? WHERE id = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -39,7 +39,7 @@ public class ProfessorRepository {
     }
 
     public Long save (Professor professor) {
-        String sql = "INSERT INTO professor (nome, senha, usuario, id_disciplina, cpf) VALUES (?, ?, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO professor (nome, senha, email, id_disciplina, cpf) VALUES (?, ?, ?, ?, ?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement (sql)){
@@ -116,7 +116,7 @@ public class ProfessorRepository {
     }
 
     public Professor findByEmail (String email){
-        String sql = "SELECT * FROM professor WHERE usuario = ? LIMIT 1";
+        String sql = "SELECT * FROM professor WHERE email = ? LIMIT 1";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -164,7 +164,7 @@ public class ProfessorRepository {
     }
 
     public Professor findByLogin (String email, String senha){
-        String sql = "SELECT * FROM professor WHERE usuario = ? AND senha = ? LIMIT 1";
+        String sql = "SELECT * FROM professor WHERE email = ? AND senha = ? LIMIT 1";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -200,7 +200,7 @@ public class ProfessorRepository {
         String sql = """
         SELECT p.* FROM professor p
         JOIN disciplina d ON p.id_disciplina = d.id
-        WHERE p.usuario ILIKE ?
+        WHERE p.email ILIKE ?
            OR p.nome ILIKE ?
            OR d.disciplina ILIKE ?
         """;
