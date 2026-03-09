@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Title</title>
-  <link rel="stylesheet" href="../../../assets/css/professor/sidebarProfessor.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/professor/sidebarProfessor.css">
 </head>
 <body>
 <!-- SIDEBAR -->

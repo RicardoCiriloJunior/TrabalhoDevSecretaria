@@ -1,6 +1,7 @@
 <%@ page import="org.example.model.Observacoes" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.example.service.AlunoService" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: giovannaveloso-ieg
@@ -10,7 +11,6 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="../components/sidebarProfessor.jsp"%>
-<%  AlunoService alunoService = null;%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -79,7 +79,7 @@
                 <% } else {
                     for (Observacoes obs : observacoes) { %>
                 <div class="obs-card">
-                    <h4><%= alunoService.findByMatricula(obs.getMatricula())%></h4>
+                    <h4><%= ((Map<String, String>) request.getAttribute("nomesAlunos")).get(obs.getMatricula()) %></h4>
                     <p><i class="fa-solid fa-comment"></i> <%= obs.getObservacao() %></p>
                 </div>
                 <%  }

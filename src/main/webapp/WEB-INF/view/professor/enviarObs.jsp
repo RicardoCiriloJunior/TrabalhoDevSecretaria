@@ -37,18 +37,19 @@
 
             <!-- CARD -->
             <div class="card">
+
+                <form action="<%=request.getContextPath()%>/enviarObs" method="post">
                 <h2>Observação</h2>
-                <form action="/enviarObs" method="post">
 
                 <label>Nome</label>
-                <input type="text" placeholder="Digite o nome do aluno">
+                <input type="text" name="nome" placeholder="Digite o nome do aluno" required>
 
 
 
                 <label>Observação</label>
-                <textarea placeholder=""></textarea>
+                <textarea name="observacao" placeholder="" required></textarea>
 
-                <button>Enviar</button>
+                <button type="submit">Enviar</button>
                 </form>
             </div>
 

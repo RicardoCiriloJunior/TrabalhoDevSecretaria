@@ -14,7 +14,9 @@ import org.example.service.ProfessorService;
 import org.example.service.AlunoService;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/professor/inicio")
 public class InicioProfessorController extends HttpServlet {
@@ -48,8 +50,15 @@ public class InicioProfessorController extends HttpServlet {
         long totalRecuperacoes  = notasService.countRecuperacoes(id_disciplina);
         List<Observacoes> observacoes = observacoesService.listarObsEnviadas(id_professor);
 
+        Map<String, String> nomesAlunos = new HashMap<>();
+        for (Observacoes obs : observacoes) {
+            String nome = alunoService.findByMatricula(obs.getMatricula()).getNome();
+            nomesAlunos.put(obs.getMatricula(), nome);
+        }
+
         req.setAttribute("nomeProfessor",professor.getNome());
         req.setAttribute("totalObsEnviadas",totalObsEnviadas);
+        req.setAttribute("nomesAlunos", nomesAlunos);
         req.setAttribute("totalAlunos",totalAlunos);
         req.setAttribute("mediaGeral",mediaGeral);
         req.setAttribute("totalRecuperacoes",totalRecuperacoes);

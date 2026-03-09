@@ -18,16 +18,12 @@ public class Observacoes {
         this.observacao = observacao;
     }
 
-    public Observacoes(String matricula, String observacao) {
-        this.matricula = matricula;
-        this.observacao = observacao;
-    }
 
     public Observacoes(long id) {
         this.id = id;
     }
 
-    public Observacoes(long id_disciplina, long id_professor, String matricula, String observacao){
+    public Observacoes(long id_professor, long id_disciplina, String matricula, String observacao){
         this.id_disciplina = id_disciplina;
         this.id_professor = id_professor;
         this.matricula = matricula;
