@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.example.model.Notas;
 import org.example.service.NotasService;
 
 @WebServlet("/atribuir-nota")
@@ -21,13 +20,22 @@ public class AtribuirNotasController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String matricula = req.getParameter("matricula");
+        String tipo = req.getParameter("tipo");
         long idDisciplina = getIdDisciplina(req);
+        boolean atribuida;
 
 
         double nota = Double.parseDouble(req.getParameter("nota"));
 
+
         try {
-            boolean atribuida = notasService.atribuirNota(nota, matricula, idDisciplina);
+            if (tipo.equals("n2")) {
+                atribuida = notasService.atribuirNota2(nota, matricula, idDisciplina);
+            } else if (tipo.equals("n1")) {
+                atribuida = notasService.atribuirNota1(nota, matricula, idDisciplina);
+            } else {
+                return;
+            }
             System.out.println(atribuida ? "Nota atribuida!" : "A nota não foi atribuída");
         } catch (Exception e) {
             e.printStackTrace();

@@ -24,7 +24,7 @@ export async function finalizarAtividade(atividade, nota, redirect = true) {
 }
 
 async function fetchAtribuirNota(nota) {
-    await fetch(`/atribuir-nota?matricula=${matricula}&id_Disciplina=${idDisciplina}&nota=${nota}`, {
+    await fetch(`/atribuir-nota?matricula=${matricula}&id_Disciplina=${idDisciplina}&nota=${nota}&tipo=n2`, {
         method: "POST",
     })
 }

@@ -17,7 +17,7 @@ public class NotasService {
 
     public List<Notas> listarTodas (){return notasRepository.findAll ();}
 
-    public boolean atribuirNota(double nota, String matricula, long idDisciplina){
+    public boolean atribuirNota2(double nota, String matricula, long idDisciplina){
         Notas notasExistentes = notasRepository.findByMatriculaAndDisciplina(matricula, idDisciplina);
         if (notasExistentes == null) {
             Notas notas = new Notas(0, nota, matricula, idDisciplina);
@@ -26,6 +26,19 @@ public class NotasService {
             notasExistentes.setNota2(nota);
             return notasRepository.update(notasExistentes);
         } else if (nota == notasExistentes.getNota2()) {
+            return true;
+        }
+        return false;
+    }
+    public boolean atribuirNota1(double nota, String matricula, long idDisciplina){
+        Notas notasExistentes = notasRepository.findByMatriculaAndDisciplina(matricula, idDisciplina);
+        if (notasExistentes == null) {
+            Notas notas = new Notas(nota, 0, matricula, idDisciplina);
+            return notasRepository.save(notas) != null;
+        } else if (nota != notasExistentes.getNota2()) {
+            notasExistentes.setNota(nota);
+            return notasRepository.update(notasExistentes);
+        } else if (nota == notasExistentes.getNota()) {
             return true;
         }
         return false;
