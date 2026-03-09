@@ -96,7 +96,7 @@ public class ObservacoesRepository {
         }
     }
     public int countObsEnviadas(long id_professor) {
-        String sql = "SELECT COUNT(*) FROM observacoes WHERE id_professor = ?";
+        String sql = "SELECT COUNT(*) FROM observacoes WHERE id_prof = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -113,7 +113,7 @@ public class ObservacoesRepository {
     public List<Observacoes> listarObsEnviadas(long id_professor) {
         List<Observacoes> Observacoes = new ArrayList<> ();
 
-        String sql = "SELECT * FROM observacoes WHERE id_professor = ?";
+        String sql = "SELECT * FROM observacoes WHERE id_prof = ?";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

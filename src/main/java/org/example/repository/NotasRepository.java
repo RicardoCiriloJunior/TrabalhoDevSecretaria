@@ -171,6 +171,37 @@ public class NotasRepository {
         }
     }
 
+    public int countRecuperacoes(long idDisciplina) {
+
+        String sql = """
+        SELECT COUNT(*) AS total
+        FROM (
+            SELECT matricula
+            FROM notas
+            WHERE id_disciplina = ?
+            GROUP BY matricula
+            HAVING AVG(nota) <= 7
+        ) AS recuperacoes
+        """;
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, idDisciplina);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public double calcularMediaGeral(long idDisciplina) {
 
         String sql = """

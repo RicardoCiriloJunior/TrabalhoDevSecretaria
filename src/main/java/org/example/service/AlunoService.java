@@ -77,4 +77,8 @@ public class AlunoService {
         return alunoRepository.buscarAluno(busca);
     }
 
+    public Aluno findByMatricula(String matricula){
+        return alunoRepository.findByMatricula(matricula);
+    }
+
 }

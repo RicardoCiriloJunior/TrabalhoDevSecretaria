@@ -49,4 +49,6 @@ public class NotasService {
     public double mediaGeral(long idDisciplina){
         return notasRepository.calcularMediaGeral(idDisciplina);
     }
+
+    public int countRecuperacoes(long idDisciplina){return notasRepository.countRecuperacoes(idDisciplina);}
 }
