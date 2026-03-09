@@ -57,6 +57,9 @@ public class NotasService {
         long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
         return notasRepository.findByIdDisciplina (idDisciplina);
     }
+    public List<Notas> filtrarMatricula (String matricula){
+        return notasRepository.findByMatricula (matricula);
+    }
     public double media(long idDisciplina, String matricula){
         return notasRepository.calcularMediaPorDisciplina(idDisciplina, matricula);
     }

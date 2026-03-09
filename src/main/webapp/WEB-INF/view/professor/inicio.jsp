@@ -1,6 +1,5 @@
 <%@ page import="org.example.model.Observacoes" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.example.service.AlunoService" %>
 <%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.

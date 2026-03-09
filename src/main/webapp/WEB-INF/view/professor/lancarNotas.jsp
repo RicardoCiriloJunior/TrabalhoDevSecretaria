@@ -1,10 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: giovannaveloso-ieg
-  Date: 04/03/2026
-  Time: 07:41
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="org.example.model.Aluno" %>
+<%@ page import="org.example.model.Notas" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -38,7 +35,6 @@
         <!-- TÍTULO + BUSCA -->
         <div class="top-table">
             <h3>Alunos</h3>
-
             <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Buscar">
@@ -47,52 +43,59 @@
 
         <!-- TABELA -->
         <div class="table">
-
             <div class="table-header">
-                <span>Matrícula</span>
                 <span>Nome do aluno</span>
                 <span>Email do Usuário</span>
+                <span>Nota 1</span>
+                <span>Nota 2</span>
                 <span>Média</span>
                 <span>Ações</span>
             </div>
 
-            <!-- Exemplo estático (igual seu HTML original) -->
+            <%
+                List<Aluno> alunoList = (List<Aluno>) request.getAttribute("alunoList");
+                Map<String, Notas> notasAlunos = (Map<String, Notas>) request.getAttribute("notasAlunos");
+
+                if (alunoList == null || alunoList.isEmpty()) {
+            %>
             <div class="table-row">
-                <span>iwxsbuwb7ge3zge78ws9h9dsh29hd</span>
-                <span>Giovanna Medeiros Veloso</span>
-                <span>giovanna.veloso@gmail.com</span>
-                <span>10</span>
+                <span>Não tem alunos cadastrados</span>
+            </div>
+            <%
+            } else {
+                for (Aluno aluno : alunoList) {
+                    Notas notas = notasAlunos != null ? notasAlunos.get(aluno.getMatricula()) : null;
+                    double nota1 = notas != null ? notas.getNota() : 0;
+                    double nota2 = notas != null ? notas.getNota2() : 0;
+                    double media = (nota1 + nota2) / 2;
+            %>
+            <div class="table-row">
+                <span><%=aluno.getNome()%></span>
+                <span><%=aluno.getEmail()%></span>
+                <span><%=notas != null ? nota1 : "-"%></span>
+                <span><%=notas != null ? nota2 : "-"%></span>
+                <span><%=notas != null ? media : "-"%></span>
                 <span class="edit"><i class="fa-solid fa-pen"></i></span>
             </div>
-
-            <div class="table-row">
-                <span>iwxsbuwb7ge3zge78ws9h9dsh29hd</span>
-                <span>Davi Dias</span>
-                <span>davi.dias@gmail.com</span>
-                <span>7</span>
-                <span class="edit"><i class="fa-solid fa-pen"></i></span>
-            </div>
-
+            <%
+                    }
+                }
+            %>
         </div>
 
         <!-- MODAL -->
         <div class="modal" id="gradeModal">
-
             <div class="modal-content">
                 <h2>Lançar Nota</h2>
-
                 <input type="number" id="gradeInput" placeholder="Digite a nota" min="0" max="10">
-
                 <div class="modal-buttons">
                     <button class="cancel" id="cancelBtn">Cancelar</button>
                     <button class="save" id="saveBtn">Salvar</button>
                 </div>
             </div>
-
         </div>
 
     </main>
-
 </div>
 
 <script src="/assets/js/popup.js"></script>

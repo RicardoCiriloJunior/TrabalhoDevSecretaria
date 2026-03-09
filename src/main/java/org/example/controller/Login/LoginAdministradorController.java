@@ -36,7 +36,6 @@ public class LoginAdministradorController extends HttpServlet {
 
         try {
             administradorService.entrarNaConta(adm);
-            System.out.println("deu certo");
             req.getRequestDispatcher("/WEB-INF/view/administrador/addProfessor.jsp").forward(req, resp);
         } catch (Exception e) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
