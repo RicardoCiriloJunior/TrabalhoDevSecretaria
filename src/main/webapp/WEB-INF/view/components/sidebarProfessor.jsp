@@ -30,7 +30,7 @@
 
   <nav class="nav">
     <a class="nav-item ${param.tabActive == 'inicio' ? "active" : ""}" href="<%=request.getContextPath()%>/professor/inicio"><i class="fa-solid fa-house"></i> Início</a>
-    <a class="nav-item ${param.tabActive == 'lancarNotas' ? "active" : ""}" href="<%=path%>lancarNotasProfessor"><i class="fa-solid fa-pen"></i> Lançar notas</a>
+    <a class="nav-item ${param.tabActive == 'lancarNotas' ? "active" : ""}" href="<%=request.getContextPath()%>/professor/lancarNotas"><i class="fa-solid fa-pen"></i> Lançar notas</a>
     <a class="nav-item ${param.tabActive == 'enviarObs' ? "active" : ""}" href="<%=path%>enviarObsProfessor"><i class="fa-solid fa-envelope"></i> Enviar Observações</a>
   </nav>
 </aside>
