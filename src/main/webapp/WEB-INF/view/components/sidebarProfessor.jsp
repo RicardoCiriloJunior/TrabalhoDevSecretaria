@@ -5,6 +5,7 @@
   Time: 20:13
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String path = request.getContextPath() + "/redirecionar?page=";
     String nome = (String) request.getAttribute("nomeProfessor");
 %>
@@ -24,11 +25,11 @@
     <div class="avatar">
       <i class="fa-solid fa-user"></i>
     </div>
-    <span><%=nome%></span>
+    <span>${professorNome}</span>
   </div>
 
   <nav class="nav">
-    <a class="nav-item ${param.tabActive == 'inicio' ? "active" : ""}" href="<%=path%>inicioProfessor"><i class="fa-solid fa-house"></i> Início</a>
+    <a class="nav-item ${param.tabActive == 'inicio' ? "active" : ""}" href="<%=request.getContextPath()%>/professor/inicio"><i class="fa-solid fa-house"></i> Início</a>
     <a class="nav-item ${param.tabActive == 'lancarNotas' ? "active" : ""}" href="<%=path%>lancarNotasProfessor"><i class="fa-solid fa-pen"></i> Lançar notas</a>
     <a class="nav-item ${param.tabActive == 'enviarObs' ? "active" : ""}" href="<%=path%>enviarObsProfessor"><i class="fa-solid fa-envelope"></i> Enviar Observações</a>
   </nav>
