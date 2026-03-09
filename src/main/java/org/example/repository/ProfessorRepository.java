@@ -39,7 +39,7 @@ public class ProfessorRepository {
     }
 
     public Long save (Professor professor) {
-        String sql = "INSERT INTO professor (nome, senha, usuario, id_disciplina, cpf) VALUES (?, ?, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO professor (nome, senha, email, id_disciplina, cpf) VALUES (?, ?, ?, ?, ?) RETURNING id";
 
         try (Connection conn = connectionFactory.connect();
              PreparedStatement pstmt = conn.prepareStatement (sql)){
@@ -202,7 +202,7 @@ public class ProfessorRepository {
         JOIN disciplina d ON p.id_disciplina = d.id
         WHERE p.email ILIKE ?
            OR p.nome ILIKE ?
-           OR d.nome ILIKE ?
+           OR d.disciplina ILIKE ?
         """;
 
         List<Professor> lista = new ArrayList<>();

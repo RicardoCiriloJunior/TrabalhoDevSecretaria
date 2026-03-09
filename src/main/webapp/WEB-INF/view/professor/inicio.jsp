@@ -1,6 +1,3 @@
-<%@ page import="org.example.model.Observacoes" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.example.service.AlunoService" %>
 <%--
   Created by IntelliJ IDEA.
   User: giovannaveloso-ieg
@@ -9,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%  AlunoService alunoService = null;%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,11 +21,14 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <h1 class="teacher">Professor</h1>
+
+    <hr class="@WebServlet("/Alunoes")hr">
+
     <div class="user">
       <div class="avatar">
         <i class="fa-solid fa-user"></i>
       </div>
-      <span>${nomeProfessor}</span>
+      <span>Administrador</span>
     </div>
 
     <nav class="nav">
@@ -53,7 +52,7 @@
           <i class="fa-solid fa-graduation-cap"></i>
           <span>Alunos</span>
         </div>
-        <h2>${totalAlunos}</h2>
+        <h2>30</h2>
       </div>
 
       <div class="card green">
@@ -61,7 +60,7 @@
           <i class="fa-solid fa-book"></i>
           <span>Obs enviadas</span>
         </div>
-        <h2>${totalObsEnviadas}</h2>
+        <h2>3</h2>
       </div>
 
       <div class="card yellow">
@@ -69,7 +68,7 @@
           <i class="fa-solid fa-star"></i>
           <span>Média Geral</span>
         </div>
-        <h2>${mediaGeral}</h2>
+        <h2>7.6</h2>
       </div>
 
       <div class="card red">
@@ -77,33 +76,54 @@
           <i class="fa-solid fa-file"></i>
           <span>Recuperações</span>
         </div>
-        <h2>${totalRecuperacoes}</h2>
+        <h2>2</h2>
       </div>
 
     </div>
 
-      <div class="bottom">
-          <h2 class="section">Visualizar observações</h2>
+    <!-- OBSERVAÇÕES + CALENDÁRIO -->
+    <div class="bottom">
 
-          <div class="observations">
-              <%
-                  List<Observacoes> observacoes = (List<Observacoes>) request.getAttribute("observacoes");
-                  if (observacoes == null || observacoes.isEmpty()) {
-              %>
-              <div class="obs-card">
-                  <h4>Nenhuma observação enviada.</h4>
-              </div>
-              <% } else {
-                  for (Observacoes obs : observacoes) { %>
-              <div class="obs-card">
-                  <h4><%= alunoService.findByMatricula(obs.getMatricula())%></h4>
-                  <p><i class="fa-solid fa-comment"></i> <%= obs.getObservacao() %></p>
-              </div>
-              <%  }
-              } %>
-          </div>
+      <h2 class="section">Visualizar observações</h2>
+
+      <div class="observations">
+
+        <div class="obs-card">
+          <h4>Giovanna Medeiros Veloso</h4>
+          <p><i class="fa-solid fa-comment"></i> Participação ativa em sala de aula</p>
+          <small><i class="fa-solid fa-calendar"></i> 08/02/2026 - 08:00</small>
+        </div>
+
+        <div class="obs-card">
+          <h4>Luis Henrique Medeiros</h4>
+          <p><i class="fa-solid fa-comment"></i> Participação ativa em sala de aula</p>
+          <small><i class="fa-solid fa-calendar"></i> 08/02/2026 - 08:00</small>
+        </div>
+
+        <div class="obs-card">
+          <h4>Luis Henrique Medeiros</h4>
+          <p><i class="fa-solid fa-comment"></i> Participação ativa em sala de aula</p>
+          <small><i class="fa-solid fa-calendar"></i> 08/02/2026 - 08:00</small>
+        </div>
+
+        <div class="obs-card">
+          <h4>Luis Henrique Medeiros</h4>
+          <p><i class="fa-solid fa-comment"></i> Participação ativa em sala de aula</p>
+          <small><i class="fa-solid fa-calendar"></i> 08/02/2026 - 08:00</small>
+        </div>
+
+        <div class="obs-card">
+          <h4>Luis Henrique Medeiros</h4>
+          <p><i class="fa-solid fa-comment"></i> Participação ativa em sala de aula</p>
+          <small><i class="fa-solid fa-calendar"></i> 08/02/2026 - 08:00</small>
+        </div>
+
       </div>
+
+    </div>
+
   </main>
+
 </div>
 
 </body>

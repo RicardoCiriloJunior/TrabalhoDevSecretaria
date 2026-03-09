@@ -1,0 +1,65 @@
+/* SIDEBAR */
+.teacher{
+    font-family: "kodchasan", sans-serif;
+    text-align: center;
+    font-size: 1.5rem ;
+    color: #1b3b6f;
+}
+
+.hr {
+    border: 1px solid #ffffff;
+    width: 100%;
+    margin-top: 1.2rem;
+}
+
+.sidebar{
+    background-color: #f2f2f2;
+    max-width: 100%;
+    width: 15%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sidebar h2{
+    color:#1b3b6f;
+    margin-bottom:30px;
+}
+
+.user{
+    display: flex;
+    margin-top: 3.5rem;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    background:#ddd;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav{
+    margin-top: 3.5rem;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+nav a{
+    padding:10px;
+    border-radius:6px;
+    color: black;
+    cursor:pointer;
+    text-decoration: none;
+}
+.active {
+    background:#1b3b6f;
+    color:white;
+}

@@ -27,18 +27,9 @@ public class AlunoService {
             return null;
     }
 
-    public Aluno encontrarAlunoPorCpf(String cpf){
-        cpf = cpf.replace (".", "");
-        cpf = cpf.replace ("-","");
-        cpf = cpf.replace (" ", "");
-
-        long cpfFormatado = Long.parseLong (cpf);
-
-        return alunoRepository.findByCpf (cpfFormatado);
-
-    }
-
     public Aluno encontrarAlunoPorNome(String nome){ return alunoRepository.findByNome (nome);}
+
+    public Aluno encontrarAlunoPorMatricula(String matricula){ return alunoRepository.findByMatricula (matricula);}
 
     public boolean deletarAluno(String matricula) {
         Aluno aluno = alunoRepository.findByMatricula (matricula);

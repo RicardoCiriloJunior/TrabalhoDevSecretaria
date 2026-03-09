@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.model.Media;
 import org.example.model.Notas;
 import org.example.repository.DisciplinaRepository;
 import org.example.repository.NotasRepository;
@@ -37,13 +36,16 @@ public class NotasService {
         return notasRepository.update (nota);
     }
 
+    public Notas encontrarPoridDisciplinaMatricula(String matricula, long idDisciplina){
+        return notasRepository.findByMatriculaAndDisciplina(matricula, idDisciplina);
+    }
 
     public List<Notas> filtrarPorDisciplina (String disciplina){
         long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
         return notasRepository.findByIdDisciplina (idDisciplina);
     }
-    public List<Media> media(long idDisciplina){
-        return notasRepository.calcularMediaPorDisciplina(idDisciplina);
+    public double media(long idDisciplina, String matricula){
+        return notasRepository.calcularMediaPorDisciplina(idDisciplina, matricula);
     }
 
     public double mediaGeral(long idDisciplina){
