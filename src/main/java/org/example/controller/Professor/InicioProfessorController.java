@@ -59,7 +59,7 @@ public class InicioProfessorController extends HttpServlet {
         req.setAttribute("nomeProfessor",professor.getNome());
         req.setAttribute("totalObsEnviadas",totalObsEnviadas);
         req.setAttribute("nomesAlunos", nomesAlunos);
-        req.setAttribute("totalAlunos",totalAlunos);
+        session.setAttribute("totalAlunos",totalAlunos);
         req.setAttribute("mediaGeral",mediaGeral);
         req.setAttribute("totalRecuperacoes",totalRecuperacoes);
         req.setAttribute("observacoes",observacoes);

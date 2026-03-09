@@ -36,9 +36,7 @@
         <div class="container">
 
             <!-- CARD -->
-            <div class="card">
-
-                <form action="<%=request.getContextPath()%>/enviarObs" method="post">
+            <form class="card" action="<%=request.getContextPath()%>/enviarObs" method="post">
                 <h2>Observação</h2>
 
                 <label>Nome</label>
@@ -50,8 +48,7 @@
                 <textarea name="observacao" placeholder="" required></textarea>
 
                 <button type="submit">Enviar</button>
-                </form>
-            </div>
+            </form>
 
             <!-- IMAGEM -->
             <div class="image-area">
