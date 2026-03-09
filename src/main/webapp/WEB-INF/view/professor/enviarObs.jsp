@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Enviar Observação</title>
-    <link rel="stylesheet" href="../../../assets/css/professor/enviarObs.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/professor/enviarObs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -38,6 +38,7 @@
             <!-- CARD -->
             <div class="card">
                 <h2>Observação</h2>
+                <form action="/enviarObs" method="post">
 
                 <label>Nome</label>
                 <input type="text" placeholder="Digite o nome do aluno">
@@ -48,6 +49,7 @@
                 <textarea placeholder=""></textarea>
 
                 <button>Enviar</button>
+                </form>
             </div>
 
             <!-- IMAGEM -->

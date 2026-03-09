@@ -5,8 +5,9 @@
   Time: 20:13
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%String path = request.getContextPath() + "/redirecionar?page=";%>
+<%String path = request.getContextPath() + "/redirecionar?page=";
+    String nome = (String) request.getAttribute("nomeProfessor");
+%>
 <html>
 <head>
     <title>Title</title>
@@ -23,7 +24,7 @@
     <div class="avatar">
       <i class="fa-solid fa-user"></i>
     </div>
-    <span>Administrador</span>
+    <span><%=nome%></span>
   </div>
 
   <nav class="nav">
