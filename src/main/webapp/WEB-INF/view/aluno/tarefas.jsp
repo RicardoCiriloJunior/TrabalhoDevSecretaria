@@ -1,3 +1,5 @@
+<%@ page import="org.example.model.Atividades" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="pt-br">
@@ -39,53 +41,75 @@
                 <td>Tecnologia <br>de Portais<br> Interdimensionais</td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
+
                 <td>
-                    <div class="card-verde">
-                        <strong>FAZER PROVA <br>DE MATEMÁTICA</strong><br>
-                        Entregar até dia: 05/02
+                    <%
+                        List<Atividades> psicologia = (List<Atividades>) request.getAttribute("psicologia");
+
+                        if(psicologia != null){
+                            for(Atividades a : psicologia){
+                    %>
+                    <div>
+                        <p><strong><%= a.getTitulo() %></strong></p>
+                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
                     </div>
+                    <%
+                            }
+                        }
+                    %>
                 </td>
-                <td></td>
-            </tr>
-            <tr>
+
                 <td>
-                    <div class="card-vermelho">
-                        <strong>FAZER QUIZ DE <br>PSICOLOGIA</strong><br>
-                        Entregar até dia: 06/02
+                    <%
+                        List<Atividades> expressividade = (List<Atividades>) request.getAttribute("expressividade");
+
+                        if(expressividade != null){
+                            for(Atividades a : expressividade){
+                    %>
+                    <div>
+                        <p><strong><%= a.getTitulo() %></strong></p>
+                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
                     </div>
+                    <%
+                            }
+                        }
+                    %>
                 </td>
-                <td></td>
+
                 <td>
-                    <div class="card-verde">
-                        <strong>EXERCÍCIOS DO LIVRO</strong><br>
-                        Entregar até dia: 04/02
+                    <%
+                        List<Atividades> engenharia = (List<Atividades>) request.getAttribute("engenharia");
+
+                        if(engenharia != null){
+                            for(Atividades a : engenharia){
+                    %>
+                    <div>
+                        <p><strong><%= a.getTitulo() %></strong></p>
+                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
                     </div>
+                    <%
+                            }
+                        }
+                    %>
                 </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
+
                 <td>
-                    <div class="card-amarelo">
-                        <strong>GRAVAR ÁUDIO</strong><br>
-                        Entregar até dia: 11/02
+                    <%
+                        List<Atividades> tecnologia = (List<Atividades>) request.getAttribute("tecnologia");
+
+                        if(tecnologia != null){
+                            for(Atividades a : tecnologia){
+                    %>
+                    <div>
+                        <p><strong><%= a.getTitulo() %></strong></p>
+                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
                     </div>
+                    <%
+                            }
+                        }
+                    %>
                 </td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="card-amarelo">
-                        <strong>FAZER <br>QUEBRA-CABEÇA</strong><br>
-                        Entregar até dia: 15/02
-                    </div>
-                </td>
+
             </tr>
             <tr>
                 <td></td>
