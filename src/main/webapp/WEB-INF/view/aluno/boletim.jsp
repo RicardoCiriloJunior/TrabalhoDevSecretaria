@@ -24,7 +24,8 @@
         </div>
         <div class="col-direita">
             <p><strong>ANO LETIVO:</strong> 2026</p>
-            <p><strong>SITUAÇÃO FINAL:</strong> <span class="status-destaque"><%= request.getAttribute("situacaoFinal") %></span></p>
+            <%String situacaoFinal = (String) request.getAttribute("situacaoFinal");%>
+            <p><strong>SITUAÇÃO FINAL:</strong> <span class="status-destaque <%=situacaoFinal.toLowerCase()%>"><%= situacaoFinal %></span></p>
         </div>
     </div>
 
@@ -40,36 +41,40 @@
         </thead>
 
         <tbody>
+        <%String situacao1 = (String) request.getAttribute("situacao1");%>
             <tr>
                 <td>Psicologia do Medo Infantil</td>
                 <td><%= request.getAttribute("nota1M1") %></td>
                 <td><%= request.getAttribute("nota2M1") %></td>
                 <td><%= request.getAttribute("media1") %></td>
-                <td><span class="status-aprovado"><%= request.getAttribute("situacao1") %></span></td>
+                <td><span class="status-aprovado <%=situacao1.toLowerCase().equals("reprovado") ? "reprovado" : ""%>"><%= situacao1 %></span></td>
             </tr>
 
             <tr>
+                <%String situacao2 = (String) request.getAttribute("situacao2");%>
                 <td>Expressividade Vocal Avançada</td>
                 <td><%= request.getAttribute("nota1M2") %></td>
                 <td><%= request.getAttribute("nota2M2") %></td>
                 <td><%= request.getAttribute("media2") %></td>
-                <td><span class="status-aprovado"><%= request.getAttribute("situacao2") %></span></td>
+                <td><span class="status-aprovado <%=situacao2.toLowerCase().equals("reprovado") ? "reprovado" : ""%>"><%= situacao2 %></span></td>
             </tr>
 
             <tr>
+                <%String situacao3 = (String) request.getAttribute("situacao2");%>
                 <td>Engenharia de Sustos e Rendimento Energético</td>
                 <td><%= request.getAttribute("nota1M3") %></td>
                 <td><%= request.getAttribute("nota2M3") %></td>
                 <td><%= request.getAttribute("media3") %></td>
-                <td><span class="status-aprovado"><%= request.getAttribute("situacao3") %></span></td>
+                <td><span class="status-aprovado <%=situacao3.toLowerCase().equals("reprovado") ? "reprovado" : ""%>"><%= situacao3 %></span></td>
             </tr>
 
             <tr>
+                <%String situacao4 = (String) request.getAttribute("situacao2");%>
                 <td>Tecnologia de Portais Interdimensionais</td>
                 <td><%= request.getAttribute("nota1M4") %></td>
                 <td><%= request.getAttribute("nota2M4") %></td>
                 <td><%= request.getAttribute("media4") %></td>
-                <td><span class="status-aprovado"><%= request.getAttribute("situacao4") %></span></td>
+                <td><span class="status-aprovado <%=situacao4.toLowerCase().equals("reprovado") ? "reprovado" : ""%>"><%= situacao4 %></span></td>
             </tr>
         </tbody>
     </table>
