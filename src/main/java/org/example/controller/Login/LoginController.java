@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
                 if (aluno != null) {
                     System.out.println("Aluno logado!");
                     session.setAttribute("alunoNome", aluno.getNome());
-                    session.setAttribute("matriculaAluno", aluno.getMatricula());
+                    session.setAttribute("matricula", aluno.getMatricula());
                     resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
                     req.setAttribute("erroLogin", "Credenciais inválidas!");
