@@ -41,6 +41,6 @@ public class ListarObsRecebidasController extends HttpServlet {
 
         req.setAttribute("observacoesRecebidas", observacoesRecebidas);
 
-        req.getRequestDispatcher("/.jsp").forward(req, resp);
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }

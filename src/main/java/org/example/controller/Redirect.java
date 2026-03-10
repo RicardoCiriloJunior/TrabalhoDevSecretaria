@@ -15,7 +15,7 @@ public class Redirect extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session == null) {
-            resp.sendRedirect("/");
+            resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
 
@@ -25,13 +25,13 @@ public class Redirect extends HttpServlet {
 
         if (matriculaAlunoObject == null && professorNomeObject == null && emailAdmin == null) {
             System.out.println("Aluno e professor não logados");
-            resp.sendRedirect(req.getContextPath());
+            resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
         String page = req.getParameter("page");
 
         if (page == null) {
-            resp.sendRedirect(req.getContextPath());
+            resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
 

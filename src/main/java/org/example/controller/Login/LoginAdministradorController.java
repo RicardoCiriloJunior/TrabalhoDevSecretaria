@@ -30,7 +30,7 @@ public class LoginAdministradorController extends HttpServlet {
 
         if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
         }
 
@@ -42,7 +42,7 @@ public class LoginAdministradorController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/admin/professores");
         } catch (Exception e) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/login");
             e.printStackTrace();
         }
     }}

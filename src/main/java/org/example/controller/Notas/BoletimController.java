@@ -26,7 +26,7 @@ public class BoletimController extends HttpServlet {
         String aluno = (String) session.getAttribute("matriculaAluno");
 
         if (aluno == null){
-            resp.sendRedirect (req.getContextPath ());
+            resp.sendRedirect (req.getContextPath () + "/login");
         }
         else {
             req.setAttribute ("nome", alunoService.encontrarAlunoPorMatricula (aluno).getNome ());
