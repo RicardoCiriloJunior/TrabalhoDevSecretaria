@@ -61,7 +61,12 @@
                             <td><%=aluno.getCpf()%></td>
                             <td>
                                 <span class="delete-button">🗑️</span>
-                                <span class="edit-button">✏️</span>
+                                <span class="edit-button"
+                                      data-matricula="<%=aluno.getMatricula()%>"
+                                      data-nome="<%=aluno.getNome()%>"
+                                      data-email="<%=aluno.getEmail()%>">
+                                      ✏️
+                                </span>
                             </td>
                         </tr>
                     <%}%>
@@ -69,6 +74,31 @@
             </table>
         </div>
     </main>
+<div id="modalEditarAluno" class="modal">
+    <div class="modal-content">
 
+        <h2>Editar Aluno</h2>
+
+        <form id="formEditarAluno" method="post"
+              action="<%=request.getContextPath()%>/admin/atualizar-aluno">
+
+            <input type="hidden" name="matricula" id="edit_matricula">
+
+            <label for="edit_nome">Nome</label>
+            <input id="edit_nome" type="text" name="nome" required>
+
+            <label for="edit_email">Email</label>
+            <input id="edit_email" type="email" name="email" required>
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelEditAluno">Cancelar</button>
+                <button type="submit">Atualizar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<script src="<%=request.getContextPath()%>/assets/js/editAlunoPopup.js"></script>
 </body>
 </html>

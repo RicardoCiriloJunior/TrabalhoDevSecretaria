@@ -47,6 +47,9 @@ public class AlunoService {
 
         return alunoRepository.update (aluno);
     }
+    public boolean alterarAluno(Aluno aluno){
+        return alunoRepository.update (aluno);
+    }
 
     public boolean alterarRecuperarSenha(Aluno aluno, String recupSenha){
         aluno.setRecSenha (recupSenha);
