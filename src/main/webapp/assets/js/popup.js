@@ -36,8 +36,8 @@ saveBtn.addEventListener("click", async () => {
         return;
     }
     currentRow.children[2].innerText = newGrade;
-    atualizarMedia();
     modal.style.display = "none";
+    atualizarMedia(currentRow);
 });
 
 async function fetchAtribuirNota(matricula, nota) {
@@ -46,7 +46,7 @@ async function fetchAtribuirNota(matricula, nota) {
     })
 }
 function atualizarMedia(currentRow) {
-    const n1 = currentRow.children[2].innerText
-    const n2 = currentRow.children[3].innerText
-    currentRow.children[4].innerText = n1 * n2 / 2
+    const n1 = Number(currentRow.children[2].innerText);
+    const n2 = Number(currentRow.children[3].innerText)
+    currentRow.children[4].innerText = (n1 + n2) / 2
 }

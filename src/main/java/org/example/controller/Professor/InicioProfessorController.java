@@ -38,7 +38,12 @@ public class InicioProfessorController extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String nomeProfessor = (String) session.getAttribute("professorNome");
+        Object nomeProfessorOjb = session.getAttribute("professorNome");
+        if (nomeProfessorOjb == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        String nomeProfessor = (String) nomeProfessorOjb;
         Professor professor = professorService.encontrarProfessorPorNome(nomeProfessor);
 
         long id_professor = professor.getId();
