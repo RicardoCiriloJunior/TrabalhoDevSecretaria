@@ -54,7 +54,8 @@ nav{
 
 nav a{
     padding:10px;
-    border-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-right-radius:6px;
     color: black;
     cursor:pointer;
     text-decoration: none;

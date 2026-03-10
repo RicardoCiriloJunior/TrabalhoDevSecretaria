@@ -9,7 +9,7 @@
     flex-direction: column;
     height: 100vh;
 }
-.sidebar .active{
+.sidebar .nav a.active{
     background:#1b3b6f;
     color:white;
 }
@@ -63,7 +63,8 @@
 
 .sidebar .nav a{
     padding:10px;
-    border-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-right-radius:6px;
     cursor:pointer;
     text-decoration: none;
     color: black;

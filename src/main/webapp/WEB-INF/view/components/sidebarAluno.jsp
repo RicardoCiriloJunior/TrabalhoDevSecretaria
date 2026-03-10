@@ -14,6 +14,7 @@
 <html>
 <header>
     <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/sidebarAluno.css">
 </header>
 <aside class="sidebar">
     <h1 class="aluno">Aluno</h1>
