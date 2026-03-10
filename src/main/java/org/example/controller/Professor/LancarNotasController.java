@@ -40,10 +40,15 @@ public class LancarNotasController extends HttpServlet {
         List<Aluno> alunosList = alunoService.listarTodos();
 
         Map<String, Notas> notasAlunos = new HashMap<>();
+        List<Notas> todasNotas = notasService.filtrarPorDisciplina(id_discplina);
+
         for (Aluno aluno : alunosList) {
-            Notas todasNotas = notasService.encontrarPoridDisciplinaMatricula(aluno.getMatricula(), id_discplina);
-            if (todasNotas != null) {
-                notasAlunos.put(aluno.getMatricula(), todasNotas);
+            String matriculaAluno = aluno.getMatricula();
+            for (Notas notas : todasNotas) {
+                String matriculaNota = notas.getMatricula();
+                if (matriculaAluno.equals(matriculaNota)) {
+                    notasAlunos.put(matriculaAluno, notas);
+                }
             }
         }
 

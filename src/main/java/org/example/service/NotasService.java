@@ -53,8 +53,7 @@ public class NotasService {
         return notasRepository.findByMatriculaAndDisciplina(matricula, idDisciplina);
     }
 
-    public List<Notas> filtrarPorDisciplina (String disciplina){
-        long idDisciplina = disciplinaRepository.findByDisciplina (disciplina).getId ();
+    public List<Notas> filtrarPorDisciplina (long idDisciplina){
         return notasRepository.findByIdDisciplina (idDisciplina);
     }
     public List<Notas> filtrarMatricula (String matricula){

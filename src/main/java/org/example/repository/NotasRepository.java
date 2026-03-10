@@ -52,6 +52,7 @@ public class NotasRepository {
             throw new RuntimeException(e);
         }
     }
+
     public Notas findByMatriculaAndDisciplina(String matricula, long idDisciplna){
         String sql = "SELECT * FROM notas WHERE matricula = ? and id_disciplina = ?";
 
