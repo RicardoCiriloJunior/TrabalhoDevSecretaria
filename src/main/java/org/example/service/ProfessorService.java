@@ -74,6 +74,11 @@ public class ProfessorService {
 
         return professorRepository.update(professor);
     }
+    public boolean alterarProfessor(Professor professor) {
+
+        return professorRepository.update(professor);
+    }
+
 
     public Professor loginprofessor(String email, String senha) {
         Professor professor = professorRepository.findByEmail (email);

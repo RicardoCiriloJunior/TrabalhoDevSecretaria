@@ -62,8 +62,14 @@
                         <td><%=professor.getEmail()%></td>
                         <td><%=professor.getId_disciplina()%></td>
                         <td>
-                            <span class="delete-button">🗑️</span>
-                            <span class="edit-button">✏️</span>
+                            <span class="delete-button" data-id="<%=professor.getId()%>">🗑️</span>
+                            <span class="edit-button"
+                                  data-id="<%=professor.getId()%>"
+                                  data-nome="<%=professor.getNome()%>"
+                                  data-email="<%=professor.getEmail()%>"
+                                  data-disciplina="<%=professor.getId_disciplina()%>">
+                                ✏️
+                            </span>
                         </td>
                     </tr>
                     <%}%>
@@ -78,19 +84,51 @@
 
         <form id="formProfessor">
 
-            <input type="text" name="nome" placeholder="Nome" required>
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" name="nome" placeholder="Nome" required>
 
-            <input type="email" name="email" placeholder="Email" required>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="Email" required>
 
-            <input type="password" name="senha" placeholder="Senha" required>
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" name="senha" placeholder="Senha" required>
 
-            <input type="text" name="cpf" placeholder="CPF" required>
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text" name="cpf" placeholder="CPF" required>
 
-            <input type="number" name="id_disciplina" placeholder="ID Disciplina" required>
+            <label for="id_disciplina">ID da Disciplina</label>
+            <input id="id_disciplina" type="number" name="id_disciplina" placeholder="ID Disciplina" required>
 
             <div class="modal-buttons">
                 <button type="button" id="cancelProfessor">Cancelar</button>
                 <button type="submit" id="saveProfessor">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div id="modalEditarProfessor" class="modal">
+    <div class="modal-content">
+
+        <h2>Editar Professor</h2>
+
+        <form id="formEditarProfessor">
+
+            <input type="hidden" name="id" id="edit_id">
+
+            <label for="edit_nome">Nome</label>
+            <input id="edit_nome" type="text" name="nome" placeholder="Nome" required>
+
+            <label for="edit_email">Email</label>
+            <input id="edit_email" type="email" name="email" placeholder="Email" required>
+
+            <label for="edit_disciplina">ID da Disciplina</label>
+            <input id="edit_disciplina" type="number" name="id_disciplina" placeholder="ID Disciplina" required>
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelEditProfessor">Cancelar</button>
+                <button type="submit">Atualizar</button>
             </div>
 
         </form>
