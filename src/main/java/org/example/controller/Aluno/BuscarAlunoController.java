@@ -29,7 +29,7 @@ public class BuscarAlunoController extends HttpServlet {
 
 
         req.setAttribute("Alunos", alunoBusca);
-        req.getRequestDispatcher(".jsp").forward(req, resp);
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
 
 
     }

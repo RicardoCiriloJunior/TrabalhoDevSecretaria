@@ -80,7 +80,7 @@ public class CadastroAlunoController extends HttpServlet {
         try {
             alunoService.adicionaAluno(aluno);
             System.out.println("Aluno cadastrado com matrícula: " + matricula);
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }

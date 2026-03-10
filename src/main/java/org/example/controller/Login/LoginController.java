@@ -27,6 +27,11 @@ public class LoginController extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String email = req.getParameter("email");
@@ -48,7 +53,7 @@ public class LoginController extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/redirecionar?page=inicioAluno");
                 } else {
                     req.setAttribute("erroLogin", "Credenciais inválidas!");
-                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/login.jsp").forward(req, resp);
                 }
 
             } else {
@@ -61,13 +66,13 @@ public class LoginController extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/professor/inicio");
                 } else {
                     req.setAttribute("erroLogin", "Credenciais inválidas!");
-                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/login.jsp").forward(req, resp);
                 }
             }
 
         } catch (Exception e) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
             e.printStackTrace();
         }
     }

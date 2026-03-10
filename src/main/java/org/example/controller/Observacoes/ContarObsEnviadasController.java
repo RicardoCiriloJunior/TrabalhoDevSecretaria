@@ -39,6 +39,6 @@ public class ContarObsEnviadasController extends HttpServlet {
 
         req.setAttribute("totalObsEnviadas", total);
 
-        req.getRequestDispatcher("/.jsp").forward(req, resp);
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
 }

@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.model.Administrador;
 import org.example.service.AdministradorService;
 
@@ -22,13 +23,14 @@ public class LoginAdministradorController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
 
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
         if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
         }
 
@@ -36,10 +38,11 @@ public class LoginAdministradorController extends HttpServlet {
 
         try {
             administradorService.entrarNaConta(adm);
-            req.getRequestDispatcher("/WEB-INF/view/administrador/addProfessor.jsp").forward(req, resp);
+            session.setAttribute("emailAdmin", email);
+            resp.sendRedirect(req.getContextPath() + "/admin/professores");
         } catch (Exception e) {
             req.setAttribute("erroLogin", "Credenciais inválidas!");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/login");
             e.printStackTrace();
         }
     }}

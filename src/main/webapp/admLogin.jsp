@@ -37,7 +37,7 @@
 
         <div class="links">
             <a href="cadastro.jsp">Crie uma conta</a>
-            <a href="index.jsp">Não é um administrador?</a>
+            <a href="login.jsp">Não é um administrador?</a>
         </div>
     </form>
 

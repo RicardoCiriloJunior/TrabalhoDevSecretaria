@@ -27,6 +27,6 @@ public class ContarProfessorController extends HttpServlet {
 
         req.setAttribute("totalProfessores", total);
 
-        req.getRequestDispatcher("/.jsp").forward(req, resp);
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }

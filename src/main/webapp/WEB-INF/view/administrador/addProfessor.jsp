@@ -1,20 +1,26 @@
+<%@ page import="org.example.model.Professor" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin - Professores</title>
-    <link rel="stylesheet" href="assets/css/addProfessor.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/addProfessor.css">
+    <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%
+    List<Professor> professores = (List<Professor>) request.getAttribute("professores");
+%>
 
     <header class="cabecalho-admin">
         <div class="logo">
             <img src="assets/imgs/MmonstrosSA.png" alt="Logo Monstros" class="logo-redonda">
         </div>
         <nav class="navegacao-admin">
-            <a href="WEB-INF\view\aluno\inicio.jsp">Alunos</a>
-            <a href="WEB-INF\view\professor\inicio.jsp" class="item-ativo">Professores</a>
+            <a href="<%=request.getContextPath()%>/redirecionar?page=addAlunoAdmin" class="item-ativo">Alunos</a>
+            <a href="<%=request.getContextPath()%>/admin/professores">Professores</a>
         </nav>
     </header>
 
@@ -23,14 +29,15 @@
 
         <div class="quadro-quantidade">
             <span class="legenda-quantidade">Quantidade de professores</span>
-            <h2 class="numero-professores">30</h2>
+            <h2 class="numero-professores"><%=professores.size()%></h2>
         </div>
 
         <div class="barra-ferramentas">
-            <div class="caixa-pesquisa">
+            <form action="/admin/professores" class="caixa-pesquisa" method="get">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar">
-            </div>
+                <button hidden="hidden" type="submit"></button>
+                <input type="text" name="busca" placeholder="Buscar">
+            </form>
             <button class="botao-adicionar">+ Adicionar novo professor</button>
         </div>
 
@@ -41,47 +48,27 @@
                         <th>ID</th>
                         <th>Nome do professores</th>
                         <th>Email do professor</th>
-                        <th>Disciplina</th>
+                        <th>ID da Disciplina</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        for (Professor professor : professores) {
+                    %>
                     <tr>
-                        <td>1</td>
-                        <td>Giovanna Medeiros Veloso</td>
-                        <td>giovanna.veloso@gmail.com</td>
-                        <td>Psicologia do Medo Infantil</td>
-                        <td>🗑️</td> <td>✏️</td>
+                        <td><%=professor.getId()%></td>
+                        <td><%=professor.getNome()%></td>
+                        <td><%=professor.getEmail()%></td>
+                        <td><%=professor.getId_disciplina()%></td>
+                        <td>
+                            <span class="delete-button">🗑️</span>
+                            <span class="edit-button">✏️</span>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Davi Dias</td>
-                        <td>davi.dias@gmail.com</td>
-                        <td>Expressividade Vocal Avançada</td>
-                        <td>🗑️</td> <td>✏️</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Daniel Zanqueta</td>
-                        <td>daniel.zanqueta@gmail.com</td>
-                        <td>Engenharia de Sustos e Rendimento Energético</td>
-                        <td>🗑️</td> <td>✏️</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Murilo Rosa</td>
-                        <td>murilo.rosa@gmail.com</td>
-                        <td>Tecnologia de Portais Interdimensionais</td>
-                        <td>🗑️</td> <td>✏️</td>
-                    </tr>
+                    <%}%>
                 </tbody>
             </table>
-        </div>
-
-        <div class="paginacao">
-            <button class="botao-pag"><</button>
-            <button class="botao-pag pagina-ativa">1</button>
-            <button class="botao-pag">></button>
         </div>
     </main>
 
