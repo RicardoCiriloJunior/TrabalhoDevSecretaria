@@ -31,9 +31,10 @@ public class Aluno {
         this.email = email;
     }
 
-    public Aluno(String matricula, String nome, String senha){
+    public Aluno(String matricula, String nome, String email){
         this.matricula = matricula;
         this.nome = nome;
+        this.email = email;
     }
 
     // Getters e Setters
@@ -64,6 +65,10 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setRecSenha(String recSenha) { this.recSenha = recSenha; }

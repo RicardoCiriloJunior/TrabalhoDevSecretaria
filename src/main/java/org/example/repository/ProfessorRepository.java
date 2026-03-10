@@ -45,7 +45,7 @@ public class ProfessorRepository {
              PreparedStatement pstmt = conn.prepareStatement (sql)){
 
             pstmt.setString(1, professor.getNome ());
-            pstmt.setString (2, professor.getNome ());
+            pstmt.setString (2, professor.getSenha ());
             pstmt.setString (3, professor.getEmail ());
             pstmt.setLong (4, professor.getId_disciplina ());
             pstmt.setLong (5, professor.getCpf ());
