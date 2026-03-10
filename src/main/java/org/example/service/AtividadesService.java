@@ -26,6 +26,10 @@ public class AtividadesService {
     public boolean deletarAtividade(long id) {
         return repository.deleteByID(id);
     }
+    public List<Atividades> findByMatricula(String matricula) {
+        return repository.findByMatricula(matricula);
+    }
+
 
     public List<Atividades> listarTodasAtividades() {
         return repository.findAll();

@@ -110,4 +110,20 @@ public class AtividadesRepository {
             throw new RuntimeException(e);
         }
     }
+    public List<Atividades> findByMatricula(String matricula) {
+        String sql = "SELECT * FROM atividades WHERE matr_aluno = ?";
+        List<Atividades> atividades = new ArrayList<>();
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                atividades.add(mapper.map(rs));
+            }
+            return atividades;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
