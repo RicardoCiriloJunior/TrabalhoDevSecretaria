@@ -78,3 +78,48 @@ editForm.addEventListener("submit", async function(e){
 
     location.reload();
 });
+
+// ==== Exclusão ====
+
+const deleteModal = document.getElementById("modalExcluirProfessor");
+const cancelDelete = document.getElementById("cancelDeleteProfessor");
+const deleteForm = document.getElementById("formExcluirProfessor");
+const textoExcluir = document.getElementById("textoExcluirProfessor");
+
+document.querySelectorAll(".delete-button").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        const id = btn.dataset.id;
+        const nome = btn.dataset.nome;
+
+        document.getElementById("delete_id").value = id;
+        textoExcluir.textContent = `Você está prestes a excluir ${nome}. Deseja prosseguir?`;
+
+        deleteModal.style.display = "flex";
+    });
+
+});
+
+cancelDelete.addEventListener("click", () => {
+    deleteModal.style.display = "none";
+});
+
+deleteForm.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const formData = new FormData(deleteForm);
+
+    const response = await fetch(contextPath + "/admin/excluir-professor", {
+        method: "POST",
+        body: formData
+    });
+
+    if(!response.ok){
+        alert("Erro ao excluir professor");
+        return;
+    }
+
+    location.reload();
+});

@@ -258,7 +258,9 @@ body {
     border: none;
     cursor: pointer;
 }
-
+#btn-excluir {
+    background: red;
+}
 #saveProfessor {
     background-color: #0b2545;
     color: white;

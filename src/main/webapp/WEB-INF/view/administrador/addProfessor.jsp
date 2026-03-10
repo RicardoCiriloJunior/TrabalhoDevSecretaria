@@ -62,7 +62,7 @@
                         <td><%=professor.getEmail()%></td>
                         <td><%=professor.getId_disciplina()%></td>
                         <td>
-                            <span class="delete-button" data-id="<%=professor.getId()%>">🗑️</span>
+                            <span class="delete-button" data-id="<%=professor.getId()%>" data-nome="<%=professor.getNome()%>">🗑️</span>
                             <span class="edit-button"
                                   data-id="<%=professor.getId()%>"
                                   data-nome="<%=professor.getNome()%>"
@@ -129,6 +129,26 @@
             <div class="modal-buttons">
                 <button type="button" id="cancelEditProfessor">Cancelar</button>
                 <button type="submit">Atualizar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div id="modalExcluirProfessor" class="modal">
+    <div class="modal-content">
+
+        <h2>Excluir Professor</h2>
+
+        <p id="textoExcluirProfessor"></p>
+
+        <form id="formExcluirProfessor">
+
+            <input type="hidden" id="delete_id" name="id">
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelDeleteProfessor">Cancelar</button>
+                <button type="submit" id="btn-excluir">Confirmar</button>
             </div>
 
         </form>
