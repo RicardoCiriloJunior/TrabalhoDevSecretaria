@@ -33,24 +33,22 @@ public class LancarNotasController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        long id_disciplina = (long) session.getAttribute("idDisciplina");
+        long id_discplina = (long) session.getAttribute("idDisciplina");
 
         int total = alunoService.countAluno();
 
-        String busca = req.getParameter("busca");
-        List<Aluno> alunosList;
-
-        if (busca != null && !busca.isEmpty()) {
-            alunosList = alunoService.buscaAluno(busca);
-        } else {
-            alunosList = alunoService.listarTodos();
-        }
+        List<Aluno> alunosList = alunoService.listarTodos();
 
         Map<String, Notas> notasAlunos = new HashMap<>();
+        List<Notas> todasNotas = notasService.filtrarPorDisciplina(id_discplina);
+
         for (Aluno aluno : alunosList) {
-            Notas notas = notasService.encontrarPoridDisciplinaMatricula(aluno.getMatricula(), id_disciplina);
-            if (notas != null) {
-                notasAlunos.put(aluno.getMatricula(), notas);
+            String matriculaAluno = aluno.getMatricula();
+            for (Notas notas : todasNotas) {
+                String matriculaNota = notas.getMatricula();
+                if (matriculaAluno.equals(matriculaNota)) {
+                    notasAlunos.put(matriculaAluno, notas);
+                }
             }
         }
 
