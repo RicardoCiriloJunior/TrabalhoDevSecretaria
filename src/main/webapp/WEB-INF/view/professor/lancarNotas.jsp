@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/professor/lancarNotas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
+<body data-id_disciplina="${idDisciplina}">
 
 <div class="layout">
 
@@ -36,8 +36,7 @@
         <div class="top-table">
             <h3>Alunos</h3>
             <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar">
+
             </div>
         </div>
 
@@ -69,7 +68,7 @@
                     double nota2 = notas != null ? notas.getNota2() : 0;
                     double media = (nota1 + nota2) / 2;
             %>
-            <div class="table-row">
+            <div class="table-row" data-matricula="<%=aluno.getMatricula()%>">
                 <span><%=aluno.getNome()%></span>
                 <span><%=aluno.getEmail()%></span>
                 <span><%=notas != null ? nota1 : "-"%></span>
