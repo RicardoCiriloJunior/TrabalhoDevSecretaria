@@ -16,10 +16,10 @@
 
     <header class="cabecalho-admin">
         <div class="logo">
-            <img src="assets/imgs/MmonstrosSA.png" alt="Logo Monstros" class="logo-redonda">
+            <img src="<%=request.getContextPath()%>/assets/imgs/MmonstrosSA.png" alt="Logo Monstros" class="logo-redonda">
         </div>
         <nav class="navegacao-admin">
-            <a href="<%=request.getContextPath()%>/redirecionar?page=addAlunoAdmin" class="item-ativo">Alunos</a>
+            <a href="<%=request.getContextPath()%>/admin/alunos" class="item-ativo">Alunos</a>
             <a href="<%=request.getContextPath()%>/admin/professores">Professores</a>
         </nav>
     </header>
