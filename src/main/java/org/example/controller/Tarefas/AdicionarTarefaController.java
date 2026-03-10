@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.model.Atividades;
 import org.example.model.Disciplina;
 import org.example.service.AtividadesService;
@@ -26,7 +27,9 @@ public class AdicionarTarefaController extends HttpServlet {
 
             String materia = (String) req.getAttribute ("materia");
             long materiaId = disciplinaService.encontrarDisciplina (materia).getId ();
-            String matricula = (String) req.getAttribute ("matriculaAluno");
+
+            HttpSession session = req.getSession();
+            String matricula = (String) session.getAttribute("matriculaAluno");
             String titulo = (String) req.getAttribute ("titulo");
             String descricao = (String) req.getAttribute ("descricao");
             String dataEntrega = (String) req.getAttribute ("data");
