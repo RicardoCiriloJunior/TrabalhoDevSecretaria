@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Atividades {
     private long id;
@@ -9,14 +10,14 @@ public class Atividades {
     private String titulo;
     private String descricao;
     private String status;
-    private Date dataEntrega;
-    private Date dataCriacao;
+    private LocalDate dataEntrega;
+    private LocalDate dataCriacao;
 
     // Constructors
     public Atividades() {}
 
     public Atividades(String matrAluno, long idDisciplina, String titulo, String descricao,
-                      String status, Date dataEntrega, Date dataCriacao) {
+                      String status, LocalDate dataEntrega, LocalDate dataCriacao) {
         this.matrAluno = matrAluno;
         this.idDisciplina = idDisciplina;
         this.titulo = titulo;
@@ -27,9 +28,18 @@ public class Atividades {
     }
 
     public Atividades(long id, String matrAluno, long idDisciplina, String titulo, String descricao,
-                      String status, Date dataEntrega, Date dataCriacao) {
+                      String status, LocalDate dataEntrega, LocalDate dataCriacao) {
         this(matrAluno, idDisciplina, titulo, descricao, status, dataEntrega, dataCriacao);
         this.id = id;
+    }
+
+    public Atividades(String matrAluno, long idDisciplina, String titulo, String descricao, String status, LocalDate dataEntrega) {
+        this.matrAluno = matrAluno;
+        this.idDisciplina = idDisciplina;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.status = status;
+        this.dataEntrega = dataEntrega;
     }
 
     // Getters and setters
@@ -57,10 +67,10 @@ public class Atividades {
         return status;
     }
 
-    public Date getDataEntrega() {
+    public LocalDate getDataEntrega() {
         return dataEntrega;
     }
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 

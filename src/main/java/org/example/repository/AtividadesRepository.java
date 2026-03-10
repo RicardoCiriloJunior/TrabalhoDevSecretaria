@@ -1,9 +1,6 @@
 package org.example.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +28,8 @@ public class AtividadesRepository {
             pstmt.setString(3, atividade.getTitulo());
             pstmt.setString(4, atividade.getDescricao());
             pstmt.setString(5, atividade.getStatus());
-            pstmt.setDate(6, atividade.getDataEntrega());
-            pstmt.setDate(7, atividade.getDataCriacao());
+            pstmt.setDate(6, Date.valueOf (atividade.getDataEntrega()));
+            pstmt.setDate(7, Date.valueOf (atividade.getDataCriacao()));
 
             ResultSet rs = pstmt.executeQuery();
             return rs.next() ? rs.getLong("id") : null;
@@ -71,8 +68,8 @@ public class AtividadesRepository {
             pstmt.setString(3, atividade.getTitulo());
             pstmt.setString(4, atividade.getDescricao());
             pstmt.setString(5, atividade.getStatus());
-            pstmt.setDate(6, atividade.getDataEntrega());
-            pstmt.setDate(7, atividade.getDataCriacao());
+            pstmt.setDate(6, Date.valueOf (atividade.getDataEntrega()) );
+            pstmt.setDate(7, Date.valueOf ( atividade.getDataCriacao()));
             pstmt.setLong(8, atividade.getId());
 
             return pstmt.executeUpdate() > 0;

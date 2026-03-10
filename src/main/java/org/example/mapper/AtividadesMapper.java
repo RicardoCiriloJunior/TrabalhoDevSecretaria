@@ -16,8 +16,8 @@ public class AtividadesMapper implements RowMapper<Atividades> {
                 rs.getString("titulo"),
                 rs.getString("descricao"),
                 rs.getString("status"),
-                rs.getDate("data_entrega"),
-                rs.getDate("data_criacao")
+                rs.getDate ("data_entrega").toLocalDate (),
+                rs.getDate("data_criacao").toLocalDate ()
         );
     }
 }
