@@ -31,7 +31,7 @@ public class ListarAtividadesController extends HttpServlet {
 
         req.setAttribute("atividades", atividades);
 
-        req.getRequestDispatcher("/admin-Atividadess.jsp").forward(req, resp);
+        req.getRequestDispatcher("/tarefas.jsp").forward(req, resp);
     }
 
 }
