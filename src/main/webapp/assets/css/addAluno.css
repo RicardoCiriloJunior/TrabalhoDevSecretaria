@@ -265,3 +265,6 @@ body {
 #cancelEditAluno {
     background-color: #ccc;
 }
+#btn-excluir {
+    background: red;
+}

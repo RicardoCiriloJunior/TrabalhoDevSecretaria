@@ -10,7 +10,7 @@ import org.example.service.ProfessorService;
 import java.io.IOException;
 @MultipartConfig
 @WebServlet("/admin/excluir-professor")
-public class ExcluirProfessor extends HttpServlet {
+public class ExcluirProfessorController extends HttpServlet {
 
     ProfessorService professorService;
 

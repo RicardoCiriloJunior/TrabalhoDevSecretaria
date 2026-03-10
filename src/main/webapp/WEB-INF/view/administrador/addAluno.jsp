@@ -60,7 +60,11 @@
                             <td><%=aluno.getEmail()%></td>
                             <td><%=aluno.getCpf()%></td>
                             <td>
-                                <span class="delete-button">🗑️</span>
+                                <span class="delete-button"
+                                      data-matricula="<%=aluno.getMatricula()%>"
+                                      data-nome="<%=aluno.getNome()%>">
+                                      🗑️
+                                </span>
                                 <span class="edit-button"
                                       data-matricula="<%=aluno.getMatricula()%>"
                                       data-nome="<%=aluno.getNome()%>"
@@ -93,6 +97,28 @@
             <div class="modal-buttons">
                 <button type="button" id="cancelEditAluno">Cancelar</button>
                 <button type="submit">Atualizar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div id="modalExcluirAluno" class="modal">
+    <div class="modal-content">
+
+        <h2>Excluir Aluno</h2>
+
+        <p id="textoExcluirAluno"></p>
+
+        <form id="formExcluirAluno"
+              method="post"
+              action="<%=request.getContextPath()%>/admin/excluir-aluno">
+
+            <input type="hidden" id="delete_matricula" name="matricula">
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelDeleteAluno">Cancelar</button>
+                <button type="submit" id="btn-excluir">Confirmar</button>
             </div>
 
         </form>
