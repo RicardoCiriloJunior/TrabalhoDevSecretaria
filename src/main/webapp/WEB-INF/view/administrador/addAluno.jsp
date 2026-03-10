@@ -13,8 +13,8 @@
             <img src="assets/imgs/MmonstrosSA.png" alt="Logo Monstros" class="logo-redonda">
         </div>
         <nav class="navegacao-admin">
-            <a href="WEB-INF\view\aluno\inicio.jsp">Alunos</a>
-            <a href=" <%=request.getContextPath()%>/WEB-INF/view/administrador/addProfessor.jsp" class="item-ativo">Professores</a>
+            <a href="<%=request.getContextPath()%>/redirecionar?page=addAlunoAdmin" class="item-ativo">Alunos</a>
+            <a href="<%=request.getContextPath()%>/redirecionar?page=addProfessor">Professores</a>
         </nav>
     </header>
 

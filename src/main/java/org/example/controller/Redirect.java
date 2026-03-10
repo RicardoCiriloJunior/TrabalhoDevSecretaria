@@ -21,8 +21,9 @@ public class Redirect extends HttpServlet {
 
         Object matriculaAlunoObject = session.getAttribute("matriculaAluno");
         Object professorNomeObject = session.getAttribute("professorNome");
+        Object emailAdmin = session.getAttribute("emailAdmin");
 
-        if (matriculaAlunoObject == null && professorNomeObject == null) {
+        if (matriculaAlunoObject == null && professorNomeObject == null && emailAdmin == null) {
             System.out.println("Aluno e professor não logados");
             resp.sendRedirect(req.getContextPath());
             return;
@@ -46,6 +47,8 @@ public class Redirect extends HttpServlet {
             case "inicioProfessor" -> redirecionar("WEB-INF/view/professor/inicio.jsp", req, resp);
             case "enviarObsProfessor" -> redirecionar("/WEB-INF/view/professor/enviarObs.jsp", req, resp);
             case "lancarNotasProfessor" -> redirecionar("/WEB-INF/view/professor/lancarNotas.jsp", req, resp);
+            case "addProfessorAdmin" -> redirecionar("/WEB-INF/view/administrador/addProfessor.jsp", req, resp);
+            case "addAlunoAdmin" -> redirecionar("/WEB-INF/view/administrador/addAluno.jsp", req, resp);
         }
     }
     public static void redirecionar(String path, HttpServletRequest req, HttpServletResponse resp ) throws IOException, ServletException{

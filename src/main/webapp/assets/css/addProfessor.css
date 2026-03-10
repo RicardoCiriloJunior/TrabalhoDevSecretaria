@@ -6,6 +6,8 @@ body {
     background-color: #f9f9f9;
 }
 
+/* HEADER */
+
 .cabecalho-admin {
     background-color: #0b2545;
     padding: 10px 50px;
@@ -14,11 +16,10 @@ body {
     justify-content: space-between;
     color: white;
     position: relative;
-    
 }
 
-.logo-redonda { 
-    height: 60px; 
+.logo-redonda {
+    height: 60px;
     width: 60px;
     border-radius: 50%;
     object-fit: cover;
@@ -44,12 +45,19 @@ body {
     border-bottom: none;
 }
 
+/* CONTEÚDO */
 
 .conteudo-principal {
     padding: 40px 10%;
 }
 
-.titulo-sessao { color: #666; font-weight: 400; margin-bottom: 30px; }
+.titulo-sessao {
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+/* CARD QUANTIDADE */
 
 .quadro-quantidade {
     background: white;
@@ -61,8 +69,18 @@ body {
     margin-bottom: 40px;
 }
 
-.legenda-quantidade { color: #999; font-size: 0.9rem; }
-.numero-professores { margin: 10px 0 0; font-size: 2rem; color: #333; }
+.legenda-quantidade {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.numero-professores {
+    margin: 10px 0 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* BARRA DE FERRAMENTAS */
 
 .barra-ferramentas {
     display: flex;
@@ -103,14 +121,29 @@ body {
     font-weight: 600;
 }
 
-.container-tabela { overflow-x: auto; }
+/* TABELA */
+
+.container-tabela {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
 .tabela-professores {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 10px;
 }
 
-.tabela-professores th {
+/* HEADER FIXO */
+
+.tabela-professores thead th {
+    position: sticky;
+    top: 0;
+    background: #f9f9f9;
+    z-index: 2;
+
     padding: 15px;
     color: #666;
     font-weight: 500;
@@ -125,18 +158,25 @@ body {
     font-size: 0.9rem;
 }
 
-.tabela-professores tr td:first-child { 
+/* BORDAS ARREDONDADAS */
+
+.tabela-professores tr td:first-child {
     border-radius: 10px 0 0 10px;
 }
+
 .tabela-professores tr td:last-child {
     border-radius: 0 10px 10px 0;
 }
 
-.acoes i { 
+/* AÇÕES */
+
+.acoes i {
     margin: 0 10px;
     cursor: pointer;
     font-size: 1.1rem;
 }
+
+/* PAGINAÇÃO */
 
 .paginacao {
     display: flex;
