@@ -41,8 +41,11 @@
 
                 <label>Nome</label>
                 <input type="text" name="nome" placeholder="Digite o nome do aluno" required>
-
-
+                <% if (request.getAttribute("erroObs") != null) { %>
+                <div class="erro-mensagem">
+                    <%= request.getAttribute("erroObs") %>
+                </div>
+                <% } %>
 
                 <label>Observação</label>
                 <textarea name="observacao" placeholder="" required></textarea>
