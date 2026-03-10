@@ -15,6 +15,8 @@ public class DisciplinaService {
     public List<Disciplina> listarTodas () { return disciplinaRepository.findAll (); }
 
     public Disciplina encontrarDisciplina(String disciplina) { return disciplinaRepository.findByDisciplina (disciplina); }
+    public Disciplina encontarDiscPorId(long id) { return disciplinaRepository.findById (id); }
+
 
     public boolean deletarDisciplinaPorNome (String disciplina){
         Disciplina verificacao = disciplinaRepository.findByDisciplina (disciplina);

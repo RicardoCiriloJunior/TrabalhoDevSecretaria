@@ -34,6 +34,10 @@ public class ProfessorService {
         return professorRepository.findByCpf(cpfFormatado);
 
     }
+    public Professor encontrarProfessorPorId(long id) {
+        return professorRepository.findById(id);
+    }
+
 
     public Professor encontrarProfessorPorNome(String nome) {
         return professorRepository.findByNome(nome);

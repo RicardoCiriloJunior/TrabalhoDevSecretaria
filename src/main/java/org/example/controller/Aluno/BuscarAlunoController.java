@@ -26,6 +26,8 @@ public class BuscarAlunoController extends HttpServlet {
         String busca = req.getParameter("busca");
         List<Aluno> alunoBusca = alunoService.buscaAluno(busca);
 
+
+
         req.setAttribute("Alunos", alunoBusca);
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
 

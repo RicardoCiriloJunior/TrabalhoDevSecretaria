@@ -49,6 +49,7 @@ public class Redirect extends HttpServlet {
             case "lancarNotasProfessor" -> redirecionar("/WEB-INF/view/professor/lancarNotas.jsp", req, resp);
             case "addProfessorAdmin" -> redirecionar("/WEB-INF/view/administrador/addProfessor.jsp", req, resp);
             case "addAlunoAdmin" -> redirecionar("/WEB-INF/view/administrador/addAluno.jsp", req, resp);
+            case "visualizarObs" -> redirecionar("WEB-INF/view/aluno/visualizarObs.jsp", req, resp);
         }
     }
     public static void redirecionar(String path, HttpServletRequest req, HttpServletResponse resp ) throws IOException, ServletException{
