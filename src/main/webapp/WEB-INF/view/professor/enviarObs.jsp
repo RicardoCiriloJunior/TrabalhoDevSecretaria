@@ -50,7 +50,7 @@
                 <button type="submit">Enviar</button>
             </form>
 
-            <!-- IMAGEM -->
+
             <div class="image-area">
                 <img src="/assets/imgs/image%208%20(1).png" alt="personagem">
             </div>

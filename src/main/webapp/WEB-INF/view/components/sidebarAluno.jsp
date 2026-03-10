@@ -6,7 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%String redirectPath = request.getContextPath() + "/redirecionar?page="; %>
+<%String redirectPath = request.getContextPath() + "/redirecionar?page=";
+
+    String nome = (String) session.getAttribute("alunoNome");
+
+%>
 <html>
 <header>
     <script src="https://kit.fontawesome.com/4148abb434.js" crossorigin="anonymous"></script>
@@ -20,7 +24,7 @@
         <div class="avatar">
             <i class="fa-solid fa-user"></i>
         </div>
-        <span>Aluno</span>
+        <span><%=nome%></span>
     </div>
 
     <nav class="nav">
