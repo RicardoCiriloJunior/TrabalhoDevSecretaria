@@ -18,9 +18,9 @@
     <h1 class="titulo">Tarefas</h1>
 
     <div class="legenda">
-        <span class="pendente"></span> Pendente
-        <span class="concluida"></span> Concluída
-        <span class="fora"></span> Fora do Prazo
+        <span class="pendente"></span> Em Andamento
+        <span class="concluida"></span> Finalizado
+        <span class="fora"></span> Não Iniciado
     </div>
 
     <div class="tabela-container">
@@ -28,7 +28,7 @@
             <thead>
             <tr>
                 <th colspan="3" class="tarefa">Tarefas</th>
-                <th class="editar">Editar ✏️</th>
+                <th class="editar">Criar ✏️</th>
             </tr>
             </thead>
             <tbody>
@@ -97,44 +97,44 @@
         </table>
     </div>
 
-    <img src="../../../assets/imgs/mike.png" alt="mike" class="mike">
+    <div id="mike-container">
+        <img src="../../../assets/imgs/mike.png" alt="mike" class="mike">
+        <div id="mike-balao" class="mike-balao select-hide">
+            <p id="mike-text"></p>
+        </div>
+    </div>
 </div>
 
 <!-- MODAL -->
 <div id="modal-tarefa" class="bloco-edicao">
-    <div class="modal-content">
+    <form class="modal-content">
         <h3>Nova Tarefa</h3>
-        <form action="<%=request.getContextPath()%>/adicionar-tarefa" method="post">
-            <select id="selecao-materia" name="materia">
-                <option value="" disabled selected>Selecione a matéria</option>
-                <option value="Psicologia do Medo Infantil">Psicologia do Medo Infantil</option>
-                <option value="Expressividade Vocal Avançada">Expressividade Vocal Avançada</option>
-                <option value="Engenharia de Sustos e Rendimento Energético">Engenharia de Sustos</option>
-                <option value="Tecnologia de Portais Interdimensionais">Tecnologia de Portais</option>
-            </select>
+        <select id="selecao-materia" name="materia">
+            <option value="" disabled selected>Selecione a matéria</option>
+            <option value="2">Psicologia do Medo Infantil</option>
+            <option value="3">Expressividade Vocal Avançada</option>
+            <option value="4">Engenharia de Sustos</option>
+            <option value="1">Tecnologia de Portais</option>
+        </select>
 
-            <select id="selecao-urgencia" name="urgencia">
-                <option value="" disabled selected>Selecione a urgência</option>
-                <option value="verde">Pouca urgência</option>
-                <option value="amarelo">Média urgência</option>
-                <option value="vermelho">Muita urgência</option>
-            </select>
+        <select id="selecao-status" name="urgencia">
+            <option value="" disabled selected>Selecione o status</option>
+            <option value="verde">Finalizado</option>
+            <option value="amarelo">Em Andamento</option>
+            <option value="vermelho">Não Iniciado</option>
+        </select>
 
-            <input type="text" id="input-titulo" placeholder="Título: Lição de susto" name="titulo">
-            <input type="text" id="input-descricao" placeholder="Descrição: praticar sustos" name="descricao">
-            <input type="date" id="input-data" name="data">
+        <input type="text" id="input-titulo" placeholder="Título: Lição de susto" name="titulo">
+        <input type="text" id="input-descricao" placeholder="Descrição: praticar sustos" name="descricao">
+        <input type="date" id="input-data" name="data">
 
-            <div class="modal-botoes">
-                <button id="btn-cancelar" type="submit" name="acao" value="cancelar">Cancelar</button>
-                <button id="btn-salvar" type="submit" name="acao" value="confirmar">Salvar</button>
-            </div>
-        </form>
-    </div>
+        <div class="modal-botoes">
+            <button id="btn-cancelar" name="acao" value="cancelar">Cancelar</button>
+            <button id="btn-salvar" type="submit" name="acao" value="confirmar">Salvar</button>
+        </div>
+    </form>
 </div>
 
-<div id="mike-balao" class="mike-balao select-hide">
-    <p id="mike-text"></p>
-</div>
-<script src="<%=request.getContextPath()%>/assets/js/popup.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/tarefas.js"></script>
 </body>
 </html>
