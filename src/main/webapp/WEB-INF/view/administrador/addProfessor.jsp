@@ -71,6 +71,35 @@
             </table>
         </div>
     </main>
+<div id="modalProfessor" class="modal">
+    <div class="modal-content">
 
+        <h2>Novo Professor</h2>
+
+        <form id="formProfessor">
+
+            <input type="text" name="nome" placeholder="Nome" required>
+
+            <input type="email" name="email" placeholder="Email" required>
+
+            <input type="password" name="senha" placeholder="Senha" required>
+
+            <input type="text" name="cpf" placeholder="CPF" required>
+
+            <input type="number" name="id_disciplina" placeholder="ID Disciplina" required>
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelProfessor">Cancelar</button>
+                <button type="submit" id="saveProfessor">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<script>
+    const contextPath = "<%=request.getContextPath()%>"
+</script>
+<script src="<%=request.getContextPath()%>/assets/js/addProfessorPopup.js"></script>
 </body>
 </html>
