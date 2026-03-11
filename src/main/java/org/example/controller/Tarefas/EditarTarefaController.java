@@ -1,6 +1,7 @@
 package org.example.controller.Tarefas;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.example.service.AtividadesService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+@MultipartConfig
 @WebServlet("/editar-tarefa")
 public class EditarTarefaController extends HttpServlet {
 
@@ -18,8 +20,14 @@ public class EditarTarefaController extends HttpServlet {
 
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        Object matricula = session.getAttribute("matriculaAluno");
+        if (session == null || matricula == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
 
-        String status = (String) req.getAttribute ("novoStatus");
+        String status = (String) req.getParameter ("novoStatus");
         String id = req.getParameter ("idAtividade");
 
         long idAtividade = Long.parseLong (id);
@@ -30,6 +38,6 @@ public class EditarTarefaController extends HttpServlet {
 
         atividadesService.atualizarAtividade (atividade);
 
-        req.getRequestDispatcher("/WEB-INF/view/aluno/tarefas.jsp").forward(req, resp);
+        resp.sendRedirect( req.getContextPath() + "/aluno/exibir-tarefas");
     }
 }

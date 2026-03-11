@@ -199,28 +199,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    selectStatus.addEventListener("change", ()=>{
+    selectStatus.addEventListener("change", async () =>{
 
         if(!tarefaSelecionada) return;
+        const idAtividade = tarefaSelecionada.dataset.id;
+        const novoStatus = selectStatus.value;
 
-        tarefaSelecionada.classList.remove(
-            "card-verde",
-            "card-amarelo",
-            "card-vermelho"
-        );
+        const formData = new FormData();
+        formData.append("idAtividade", idAtividade);
+        formData.append("novoStatus", novoStatus);
 
-        if(selectStatus.value === "Finalizado"){
-            tarefaSelecionada.classList.add("card-verde");
-        }
+        const response = await fetch(contextPath + "/editar-tarefa", {
+            method: 'POST',
+            body: formData
+        })
 
-        if(selectStatus.value === "Em Andamento"){
-            tarefaSelecionada.classList.add("card-amarelo");
-        }
-
-        if(selectStatus.value === "Não Iniciado"){
-            tarefaSelecionada.classList.add("card-vermelho");
+        if (!response.ok) {
+            alert("Erro ao alterar o status da atividade!");
+            return;
         }
 
         menu.style.display = "none";
+        window.location.reload();
     });
 });
