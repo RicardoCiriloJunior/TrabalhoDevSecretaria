@@ -42,7 +42,7 @@ public class AdicionarTarefaController extends HttpServlet {
             System.out.println(atividade);
             atividadesService.adicionarAtividade (atividade);
 
-            req.getRequestDispatcher("/WEB-INF/view/aluno/tarefas.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/aluno/exibir-tarefas");
         }
 
     }

@@ -1,14 +1,17 @@
 package org.example.controller.Tarefas;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.example.model.Atividades;
 import org.example.service.AtividadesService;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
+@WebServlet("/editar-tarefa")
 public class EditarTarefaController extends HttpServlet {
 
     private final AtividadesService atividadesService = new AtividadesService ();
@@ -16,17 +19,17 @@ public class EditarTarefaController extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String matricula = (String) req.getAttribute ("matriculaAluno");
+        String status = (String) req.getAttribute ("novoStatus");
+        String id = req.getParameter ("idAtividade");
 
-        String titulo = req.getAttribute ("titulo") != null ? (String) req.getAttribute ("titulo") : "";
+        long idAtividade = Long.parseLong (id);
 
-        String descricao = req.getAttribute ("descricao") != null ? (String) req.getAttribute ("descricao") : "";
+        Atividades atividade =   atividadesService.listarAtividadePorId (idAtividade);
 
-        String status = req.getAttribute ("status") != null ? (String) req.getAttribute ("status") : "";
+        atividade.setStatus (status);
 
-        LocalDate dataEntrega = req.getAttribute ("dataEntrega") != null ? (LocalDate) req.getAttribute ("dataEntrega") : null;
+        atividadesService.atualizarAtividade (atividade);
 
-        atividadesService.listarAtividadesPorAluno (matricula);
-
+        req.getRequestDispatcher("/WEB-INF/view/aluno/tarefas.jsp").forward(req, resp);
     }
 }

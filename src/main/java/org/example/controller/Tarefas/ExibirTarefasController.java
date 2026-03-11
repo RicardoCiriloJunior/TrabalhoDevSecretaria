@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/aluno/exbir-tarefas")
+@WebServlet("/aluno/exibir-tarefas")
 public class ExibirTarefasController extends HttpServlet {
 
     private final AtividadesService atividadesService = new AtividadesService ();
@@ -22,7 +22,14 @@ public class ExibirTarefasController extends HttpServlet {
     protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession ();
-        String matricula = (String) session.getAttribute ("matriculaAluno");
+        Object matriculaObj = session.getAttribute("matriculaAluno");
+        if (session == null || matriculaObj == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        String matricula = (String) matriculaObj;
+
+
 
         List<Atividades> atividades = atividadesService.listarAtividadesPorAluno (matricula);
 

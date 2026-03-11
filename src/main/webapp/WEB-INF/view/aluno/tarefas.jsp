@@ -1,3 +1,5 @@
+<%@ page import="org.example.model.Atividades" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="pt-br">
@@ -38,55 +40,55 @@
                 <td>Engenharia de Sustos<br> e <br>Rendimento Energético</td>
                 <td>Tecnologia <br>de Portais<br> Interdimensionais</td>
             </tr>
+                    <%
+List<Atividades> psicologia = (List<Atividades>) request.getAttribute("psicologia");
+List<Atividades> expressividade = (List<Atividades>) request.getAttribute("expressividade");
+List<Atividades> engenharia = (List<Atividades>) request.getAttribute("engenharia");
+List<Atividades> tecnologia = (List<Atividades>) request.getAttribute("tecnologia");
+
+int max = Math.max(
+    Math.max(psicologia.size(), expressividade.size()),
+    Math.max(engenharia.size(), tecnologia.size())
+);
+
+for(int i = 0; i < max; i++){
+%>
+
             <tr>
-                <td></td>
-                <td></td>
+
                 <td>
-                    <div class="card-verde">
-                        <strong>FAZER PROVA <br>DE MATEMÁTICA</strong><br>
-                        Entregar até dia: 05/02
-                    </div>
+                    <% if(i < psicologia.size()){ %>
+                    <strong><%= psicologia.get(i).getTitulo() %></strong><br>
+                    <%= psicologia.get(i).getDataEntrega() %>
+                    <% } %>
                 </td>
-                <td></td>
+
+                <td>
+                    <% if(i < expressividade.size()){ %>
+                    <strong><%= expressividade.get(i).getTitulo() %></strong><br>
+                    <%= expressividade.get(i).getDataEntrega() %>
+                    <% } %>
+                </td>
+
+                <td>
+                    <% if(i < engenharia.size()){ %>
+                    <strong><%= engenharia.get(i).getTitulo() %></strong><br>
+                    <%= engenharia.get(i).getDataEntrega() %>
+                    <% } %>
+                </td>
+
+                <td>
+                    <% if(i < tecnologia.size()){ %>
+                    <strong><%= tecnologia.get(i).getTitulo() %></strong><br>
+                    <%= tecnologia.get(i).getDataEntrega() %>
+                    <% } %>
+                </td>
+
             </tr>
-            <tr>
-                <td>
-                    <div class="card-vermelho">
-                        <strong>FAZER QUIZ DE <br>PSICOLOGIA</strong><br>
-                        Entregar até dia: 06/02
-                    </div>
-                </td>
-                <td></td>
-                <td>
-                    <div class="card-verde">
-                        <strong>EXERCÍCIOS DO LIVRO</strong><br>
-                        Entregar até dia: 04/02
-                    </div>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="card-amarelo">
-                        <strong>GRAVAR ÁUDIO</strong><br>
-                        Entregar até dia: 11/02
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="card-amarelo">
-                        <strong>FAZER <br>QUEBRA-CABEÇA</strong><br>
-                        Entregar até dia: 15/02
-                    </div>
-                </td>
-            </tr>
+
+            <%
+                }
+            %>
             <tr>
                 <td></td>
                 <td></td>

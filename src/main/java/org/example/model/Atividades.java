@@ -67,6 +67,10 @@ public class Atividades {
         return status;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public LocalDate getDataEntrega() {
         return dataEntrega;
     }
