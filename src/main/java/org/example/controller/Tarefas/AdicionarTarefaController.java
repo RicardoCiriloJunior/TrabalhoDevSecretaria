@@ -1,6 +1,7 @@
 package org.example.controller.Tarefas;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.example.service.DisciplinaService;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
+@MultipartConfig
 @WebServlet("/adicionar-tarefa")
 public class AdicionarTarefaController extends HttpServlet {
 
@@ -22,23 +24,22 @@ public class AdicionarTarefaController extends HttpServlet {
 
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Chegou requisição");
+        if (req.getParameter ("acao").equals ("confirmar")) {
+            System.out.println("entrou aqui");
 
-        if (req.getAttribute ("acao").equals ("confirmar")) {
-
-            String materia = (String) req.getAttribute ("materia");
-            long materiaId = disciplinaService.encontrarDisciplina (materia).getId ();
-
+            long materiaId = Long.parseLong(req.getParameter("materia"));
             HttpSession session = req.getSession();
             String matricula = (String) session.getAttribute("matriculaAluno");
-            String titulo = (String) req.getAttribute ("titulo");
-            String descricao = (String) req.getAttribute ("descricao");
-            String dataEntrega = (String) req.getAttribute ("data");
+            String titulo = req.getParameter ("titulo");
+            String descricao = req.getParameter ("descricao");
+            String dataEntrega = req.getParameter ("data");
             LocalDate dataEntregaFormatada = LocalDate.parse (dataEntrega);
             LocalDate dataCriacao = LocalDate.now ();
-            String urgencia = (String) req.getAttribute ("urgencia");
+            String status = req.getParameter ("status");
 
-            Atividades atividade = new Atividades (matricula, materiaId, titulo, descricao, urgencia, dataEntregaFormatada, dataCriacao);
-
+            Atividades atividade = new Atividades (matricula, materiaId, titulo, descricao, status, dataEntregaFormatada, dataCriacao);
+            System.out.println(atividade);
             atividadesService.adicionarAtividade (atividade);
 
             req.getRequestDispatcher("/WEB-INF/view/aluno/tarefas.jsp").forward(req, resp);

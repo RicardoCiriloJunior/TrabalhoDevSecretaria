@@ -10,39 +10,43 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     btnEditar.onclick = () => modal.classList.add('aberto');
-    document.getElementById('btn-cancelar').onclick = () => modal.classList.remove('aberto');
-
 
     modal.onclick = (e) => {
         if (e.target === modal) modal.classList.remove('aberto');
     };
+    document.getElementById('btn-cancelar').onclick = (e) => {
+        e.preventDefault();
+        modal.classList.remove('aberto');
+    };
 
-    document.getElementById('btn-salvar').onclick = (e) => {
+    document.getElementById('btn-salvar').onclick = async (e) => {
         e.preventDefault();
 
         const materia = document.getElementById('selecao-materia').value;
         const status = document.getElementById('selecao-status').value;
         const titulo = document.getElementById('input-titulo').value;
+        const descricao = document.getElementById('input-descricao').value;
         const dataInput = document.getElementById('input-data').value;
 
-        if (!materia || !status || !titulo || !dataInput) {
+        if (!materia || !status || !titulo || !dataInput || !descricao) {
             alert("Preencha todos os campos!");
             return;
         }
 
-        criarCard(materia, status, titulo, dataInput);
+        await criarCard(materia, status, titulo, dataInput);
         modal.classList.remove('aberto');
 
 
         document.getElementById('selecao-materia').value = '';
         document.getElementById('selecao-status').value = '';
         document.getElementById('input-titulo').value = '';
+        document.getElementById('input-descricao').value = '';
         document.getElementById('input-data').value = '';
 
         checarPrazosMike();
     };
 
-    function criarCard(materia, status, titulo, data) {
+    async function criarCard(materia, status, titulo, data) {
         const colunas = [
             "2",
             "3",
@@ -76,6 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.onclick = handleClick;
 
+        const ok = await fetchCriarTarefas();
+        if (!ok) {
+            alert("Erro ao salvar tarefa!");
+            return;
+        }
         alvo.appendChild(card);
     }
     function handleClick() {
@@ -87,6 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.replace('card-verde', 'card-vermelho');
         }
         checarPrazosMike();
+    }
+    async function fetchCriarTarefas() {
+        const formElement = document.getElementById("form-modal");
+        const formData = new FormData(formElement)
+
+        formData.append("acao", "confirmar")
+
+        const response = await fetch(contextPath + "/adicionar-tarefa", {
+            method: "POST",
+            body: formData
+        });
+
+        return response.ok
+
     }
 
     function checarPrazosMike() {
