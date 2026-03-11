@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const allCards = document.querySelectorAll('.card-amarelo, .card-vermelho, .card-verde');
     allCards.forEach((card) => {
-        card.onclick = handleClick;
+        ativarMenuContexto(card)
     })
 
     btnEditar.onclick = () => modal.classList.add('aberto');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.cssText = "width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;box-sizing:border-box;cursor:pointer;";
         card.innerHTML = `<strong>${titulo.toUpperCase()}</strong><br>Entregar até dia: ${data.split('-').reverse().join('/')}`;
 
-        card.onclick = handleClick;
+        ativarMenuContexto(card);
 
         const ok = await fetchCriarTarefas();
         if (!ok) {
@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         alvo.appendChild(card);
     }
+
     function handleClick() {
         if (this.classList.contains('card-amarelo')) {
             this.classList.replace('card-amarelo', 'card-verde');
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         checarPrazosMike();
     }
+
     async function fetchCriarTarefas() {
         const formElement = document.getElementById("form-modal");
         const formData = new FormData(formElement)
@@ -137,4 +139,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setTimeout(checarPrazosMike, 1000);
+
+// ==== MENU CONTEXTUAL (excluir + alterar status) ====
+
+    const menu = document.getElementById("menu-tarefa");
+    const btnExcluir = document.getElementById("excluir-tarefa");
+    const selectStatus = document.getElementById("atualizar-tarefa");
+
+    let tarefaSelecionada = null;
+
+
+    function ativarMenuContexto(card){
+
+        card.addEventListener("contextmenu", (e)=>{
+            e.preventDefault();
+
+            tarefaSelecionada = card;
+
+            menu.style.top = e.pageY + "px";
+            menu.style.left = e.pageX + "px";
+            menu.style.display = "flex";
+        });
+
+    }
+
+
+    document.querySelectorAll(".card-amarelo, .card-vermelho, .card-verde")
+        .forEach(card => ativarMenuContexto(card));
+
+
+    document.addEventListener("click", ()=>{
+        menu.style.display = "none";
+    });
+    menu.addEventListener("click", (e) => {
+        e.stopPropagation();
+    })
+
+
+    btnExcluir.onclick = () => {
+
+        if(!tarefaSelecionada) return;
+
+        tarefaSelecionada.remove();
+        tarefaSelecionada = null;
+
+        menu.style.display = "none";
+    };
+
+
+    selectStatus.addEventListener("change", ()=>{
+
+        if(!tarefaSelecionada) return;
+
+        tarefaSelecionada.classList.remove(
+            "card-verde",
+            "card-amarelo",
+            "card-vermelho"
+        );
+
+        if(selectStatus.value === "Finalizado"){
+            tarefaSelecionada.classList.add("card-verde");
+        }
+
+        if(selectStatus.value === "Em Andamento"){
+            tarefaSelecionada.classList.add("card-amarelo");
+        }
+
+        if(selectStatus.value === "Não Iniciado"){
+            tarefaSelecionada.classList.add("card-vermelho");
+        }
+
+        menu.style.display = "none";
+    });
 });
