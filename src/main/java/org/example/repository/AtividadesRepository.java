@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.example.mapper.AtividadesMapper;
 import org.example.model.Atividades;
+import org.example.model.Notas;
 import org.example.util.ConnectionFactory;
 
 public class AtividadesRepository {
@@ -51,6 +52,21 @@ public class AtividadesRepository {
                 atividades.add(mapper.map(rs));
             }
             return atividades;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Atividades findById(long id){
+        String sql = "SELECT * FROM atividades WHERE id = ?";
+
+        try (Connection conn = connectionFactory.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next() ? mapper.map(rs) : null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

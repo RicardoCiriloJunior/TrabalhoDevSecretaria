@@ -19,6 +19,10 @@ public class AtividadesService {
         return repository.findByMatr_aluno (matricula);
     }
 
+    public Atividades listarAtividadePorId(long id) {
+        return repository.findById(id);
+    }
+
     public boolean atualizarAtividade(Atividades atividade) {
         return repository.update(atividade);
     }

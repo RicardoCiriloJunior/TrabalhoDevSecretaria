@@ -39,78 +39,124 @@
                 <td>Expressividade Vocal<br> Avançada</td>
                 <td>Engenharia de Sustos<br> e <br>Rendimento Energético</td>
                 <td>Tecnologia <br>de Portais<br> Interdimensionais</td>
-            </tr>
+<%--            </tr>--%>
+<%--                 <%--%>
+<%--                        List<Atividades> psicologia = (List<Atividades>) request.getAttribute("psicologia");--%>
+
+<%--                        if(psicologia != null){--%>
+<%--                            for(Atividades a : psicologia){--%>
+<%--                    %>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <p><strong><%= a.getTitulo() %></strong></p>--%>
+<%--                                <p>Entregar até dia: <%= a.getDataEntrega() %></p>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    <%--%>
+<%--                            }--%>
+<%--                        }--%>
+<%--                    %>--%>
+<%--                    <%--%>
+<%--                        List<Atividades> expressividade = (List<Atividades>) request.getAttribute("expressividade");--%>
+
+<%--                        if(expressividade != null){--%>
+<%--                            for(Atividades a : expressividade){--%>
+<%--                    %>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <p><strong><%= a.getTitulo() %></strong></p>--%>
+<%--                                <p>Entregar até dia: <%= a.getDataEntrega() %></p>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    <%--%>
+<%--                            }--%>
+<%--                        }--%>
+<%--                    %>--%>
+
+<%--                    <%--%>
+<%--                        List<Atividades> engenharia = (List<Atividades>) request.getAttribute("engenharia");--%>
+
+<%--                        if(engenharia != null){--%>
+<%--                            for(Atividades a : engenharia){--%>
+<%--                    %>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <p><strong><%= a.getTitulo() %></strong></p>--%>
+<%--                                <p>Entregar até dia: <%= a.getDataEntrega() %></p>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    <%--%>
+<%--                            }--%>
+<%--                        }--%>
+<%--                    %>--%>
+
+<%--                    <%--%>
+<%--                        List<Atividades> tecnologia = (List<Atividades>) request.getAttribute("tecnologia");--%>
+
+<%--                        if(tecnologia != null){--%>
+<%--                            for(Atividades a : tecnologia){--%>
+<%--                    %>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <p><strong><%= a.getTitulo() %></strong></p>--%>
+<%--                                <p>Entregar até dia: <%= a.getDataEntrega() %></p>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    <%--%>
+<%--                            }--%>
+<%--                        }--%>
+<%--                    %>--%>
+
+
+                    <%
+List<Atividades> psicologia = (List<Atividades>) request.getAttribute("psicologia");
+List<Atividades> expressividade = (List<Atividades>) request.getAttribute("expressividade");
+List<Atividades> engenharia = (List<Atividades>) request.getAttribute("engenharia");
+List<Atividades> tecnologia = (List<Atividades>) request.getAttribute("tecnologia");
+
+int max = Math.max(
+    Math.max(psicologia.size(), expressividade.size()),
+    Math.max(engenharia.size(), tecnologia.size())
+);
+
+for(int i = 0; i < max; i++){
+%>
+
             <tr>
 
                 <td>
-                    <%
-                        List<Atividades> psicologia = (List<Atividades>) request.getAttribute("psicologia");
-
-                        if(psicologia != null){
-                            for(Atividades a : psicologia){
-                    %>
-                    <div>
-                        <p><strong><%= a.getTitulo() %></strong></p>
-                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
-                    </div>
-                    <%
-                            }
-                        }
-                    %>
+                    <% if(i < psicologia.size()){ %>
+                    <strong><%= psicologia.get(i).getTitulo() %></strong><br>
+                    <%= psicologia.get(i).getDataEntrega() %>
+                    <% } %>
                 </td>
 
                 <td>
-                    <%
-                        List<Atividades> expressividade = (List<Atividades>) request.getAttribute("expressividade");
-
-                        if(expressividade != null){
-                            for(Atividades a : expressividade){
-                    %>
-                    <div>
-                        <p><strong><%= a.getTitulo() %></strong></p>
-                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
-                    </div>
-                    <%
-                            }
-                        }
-                    %>
+                    <% if(i < expressividade.size()){ %>
+                    <strong><%= expressividade.get(i).getTitulo() %></strong><br>
+                    <%= expressividade.get(i).getDataEntrega() %>
+                    <% } %>
                 </td>
 
                 <td>
-                    <%
-                        List<Atividades> engenharia = (List<Atividades>) request.getAttribute("engenharia");
-
-                        if(engenharia != null){
-                            for(Atividades a : engenharia){
-                    %>
-                    <div>
-                        <p><strong><%= a.getTitulo() %></strong></p>
-                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
-                    </div>
-                    <%
-                            }
-                        }
-                    %>
+                    <% if(i < engenharia.size()){ %>
+                    <strong><%= engenharia.get(i).getTitulo() %></strong><br>
+                    <%= engenharia.get(i).getDataEntrega() %>
+                    <% } %>
                 </td>
 
                 <td>
-                    <%
-                        List<Atividades> tecnologia = (List<Atividades>) request.getAttribute("tecnologia");
-
-                        if(tecnologia != null){
-                            for(Atividades a : tecnologia){
-                    %>
-                    <div>
-                        <p><strong><%= a.getTitulo() %></strong></p>
-                        <p>Entregar até dia: <%= a.getDataEntrega() %></p>
-                    </div>
-                    <%
-                            }
-                        }
-                    %>
+                    <% if(i < tecnologia.size()){ %>
+                    <strong><%= tecnologia.get(i).getTitulo() %></strong><br>
+                    <%= tecnologia.get(i).getDataEntrega() %>
+                    <% } %>
                 </td>
 
             </tr>
+
+            <%
+                }
+            %>
             <tr>
                 <td></td>
                 <td></td>
