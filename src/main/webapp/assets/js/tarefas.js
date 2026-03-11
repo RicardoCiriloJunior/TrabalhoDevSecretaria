@@ -84,10 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         alvo.appendChild(card);
+        window.location.reload()
     }
 
     function aplicarClasse(card) {
         card.classList.remove("card-vermelho", "card-amarelo", "card-verde");
+        if (!card.dataset.status) return
         switch (card.dataset.status.toLowerCase()){
             case "não iniciado":
                 card.classList.add("card-vermelho");
@@ -117,15 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checarPrazosMike() {
-        const cards = document.querySelectorAll('.card-amarelo, .card-vermelho, .card-verde');
+        const cards = document.querySelectorAll('.card');
         const hoje = new Date().toISOString().split('T')[0];
         let avisos = [];
 
         cards.forEach(card => {
-            const match = card.innerText.match(/\d{2}\/\d{2}\/\d{4}/);
+            const match = card.innerText.match(/\d{4}-\d{2}-\d{2}/);
             if (!match) return;
-
-            const dataCard = match[0].split('/').reverse().join('-');
+            console.log(match[0]);
+            const dataCard = match[0];
             if (dataCard === hoje && !card.classList.contains('card-verde')) {
                 const strong = card.querySelector('strong');
                 if (strong) avisos.push(strong.innerText);
@@ -178,14 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
-    btnExcluir.onclick = () => {
+    btnExcluir.onclick = async () => {
 
         if(!tarefaSelecionada) return;
-
-        tarefaSelecionada.remove();
+        const idAtividade = tarefaSelecionada.dataset.id
         tarefaSelecionada = null;
+        const response = await fetch(contextPath + `/excluir-tarefa?idAtividade=${idAtividade}`, {
+            method: "GET",
+        });
 
         menu.style.display = "none";
+        if (!response.ok) {
+            alert("Erro ao excluir tarefa!");
+            return
+        }
+        window.location.reload();
+
     };
 
 
