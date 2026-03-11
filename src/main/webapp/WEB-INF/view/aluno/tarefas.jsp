@@ -58,30 +58,38 @@ for(int i = 0; i < max; i++){
 
                 <td>
                     <% if(i < psicologia.size()){ %>
-                    <strong><%= psicologia.get(i).getTitulo() %></strong><br>
-                    <%= psicologia.get(i).getDataEntrega() %>
-                    <% } %>
+                    <div class="card" data-status="<%=i < psicologia.size() ? psicologia.get(i).getStatus() : ""%>">
+                        <strong><%= psicologia.get(i).getTitulo() %></strong><br>
+                        <%= psicologia.get(i).getDataEntrega() %>
+                        <% } %>
+                    </div>
                 </td>
 
                 <td>
                     <% if(i < expressividade.size()){ %>
-                    <strong><%= expressividade.get(i).getTitulo() %></strong><br>
-                    <%= expressividade.get(i).getDataEntrega() %>
-                    <% } %>
+                    <div class="card" data-status="<%=i < expressividade.size() ? expressividade.get(i).getStatus() : ""%>">
+                        <strong><%= expressividade.get(i).getTitulo() %></strong><br>
+                        <%= expressividade.get(i).getDataEntrega() %>
+                        <% } %>
+                    </div>
                 </td>
 
                 <td>
                     <% if(i < engenharia.size()){ %>
-                    <strong><%= engenharia.get(i).getTitulo() %></strong><br>
-                    <%= engenharia.get(i).getDataEntrega() %>
-                    <% } %>
+                    <div class="card" data-status="<%=i < engenharia.size() ? engenharia.get(i).getStatus() : ""%>">
+                        <strong><%= engenharia.get(i).getTitulo() %></strong><br>
+                        <%= engenharia.get(i).getDataEntrega() %>
+                        <% } %>
+                    </div>
                 </td>
 
                 <td>
                     <% if(i < tecnologia.size()){ %>
-                    <strong><%= tecnologia.get(i).getTitulo() %></strong><br>
-                    <%= tecnologia.get(i).getDataEntrega() %>
-                    <% } %>
+                    <div class="card" data-status="<%=i < tecnologia.size() ? tecnologia.get(i).getStatus() : ""%>">
+                        <strong><%= tecnologia.get(i).getTitulo() %></strong><br>
+                        <%= tecnologia.get(i).getDataEntrega() %>
+                        <% } %>
+                    </div>
                 </td>
 
             </tr>

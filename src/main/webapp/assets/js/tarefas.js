@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mikeBalao = document.getElementById('mike-balao');
     const mikeText = document.getElementById('mike-text');
 
-    const allCards = document.querySelectorAll('.card-amarelo, .card-vermelho, .card-verde');
+    const allCards = document.querySelectorAll('.card');
     allCards.forEach((card) => {
+        aplicarClasse(card)
         ativarMenuContexto(card)
     })
 
@@ -69,12 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!alvo) return alert("Não há espaço nesta coluna!");
-        let cardClass = "verde";
-        if (status.toLowerCase() === "não iniciado") cardClass = "vermelho";
-        if (status.toLowerCase() === "em andamento") cardClass = "amarelo";
 
         const card = document.createElement('div');
-        card.className = `card-${cardClass}`;
+        aplicarClasse(card)
         card.style.cssText = "width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;box-sizing:border-box;cursor:pointer;";
         card.innerHTML = `<strong>${titulo.toUpperCase()}</strong><br>Entregar até dia: ${data.split('-').reverse().join('/')}`;
 
@@ -88,15 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
         alvo.appendChild(card);
     }
 
-    function handleClick() {
-        if (this.classList.contains('card-amarelo')) {
-            this.classList.replace('card-amarelo', 'card-verde');
-        } else if (this.classList.contains('card-vermelho')) {
-            this.classList.replace('card-vermelho', 'card-amarelo');
-        } else if (this.classList.contains('card-verde')) {
-            this.classList.replace('card-verde', 'card-vermelho');
+    function aplicarClasse(card) {
+        card.classList.remove("card-vermelho", "card-amarelo", "card-verde");
+        switch (card.dataset.status.toLowerCase()){
+            case "não iniciado":
+                card.classList.add("card-vermelho");
+                break
+            case "em andamento":
+                card.classList.add("card-amarelo");
+                break
+            case "finalizado":
+                card.classList.add("card-verde");
         }
-        checarPrazosMike();
+
     }
 
     async function fetchCriarTarefas() {
